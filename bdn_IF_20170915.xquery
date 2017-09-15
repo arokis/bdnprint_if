@@ -295,16 +295,44 @@ declare function intfo:cleanUp
 
 (:~  
  : BLE definition variable 
- : Array of tei-elements that are BLE or elements that should be handelt as BLE
+ : Array of elements that are BLE or elements that should be handelt as BLE
  :   
  : @version 1.0 (2017-09-13)
  : @author Uwe Sikora
  :)
-declare variable $blockLevelElements := ('aligned', 'div','list', 'item', 'table', 'row', 'head', 'p', 'note');
+declare variable $blockLevelElements := ('aligned', 'div', 'list', 'item', 'table', 'row', 'head', 'p', 'note');
 
 
 (:~  
- : Marker Constructor
+ : intfo:checkForBLE()
+ : This function checks if a node() from a given nodeset is or contains BLE Elements. 
+ : In this case it returns 'true' else 'false' 
+ :
+ : @param $nodes the nodes() to check for BLEs
+ : @param $bleElements a list of defined BLEs
+ : @return xs:boolean ('true' else 'false')
+ : 
+ : @version 1.0 (2017-09-15)
+ : @status working
+ : @author Uwe Sikora
+ :)
+declare function intfo:BLEcheck
+    ($nodes as node()*, $bleElements as item()*) as xs:boolean{
+    
+    some $node in $nodes
+    satisfies
+        if(functx:is-value-in-sequence($node/name(), $bleElements)) then(
+            fn:true()
+        ) 
+        
+        else (
+            fn:false()
+        )
+};
+
+
+(:~  
+ : intfo:marker() - Marker Constructor
  : Constructor function whch creates the marker element with name, mark-type and references 
  :
  : @param $name The name of the marker element
@@ -356,7 +384,8 @@ declare function intfo:buildMarkers
 
 
 (:~
- : recursive function to determine the id of the last NON-BLE
+ : intfo:lastNonBLE()
+ : This recursive function determines the id of the last NON-BLE
  : - starts on the first or the last node() in depth given as first argument
  : - walks up the tree by parent:node() and looks if it is BLE
  :    TRUE: it returns the id of the last NON-BLE
@@ -398,6 +427,7 @@ declare function intfo:lastNonBLE
 
 
 (:~
+ : intfo:expanReadings()
  : recursive function to run the rdgMarker Transformation
  : 
  : @param $node The treestructure to transform
@@ -527,7 +557,7 @@ declare function intfo:mergeReadings
 
 (:~
  : intfo:evaluateElementForBLE()
- : This function evaluates the position of the first and last text(),
+ : This function evaluates the position of the first and last save node() [a node() that is not and does not contain a BLE],
  : builds a target model, which is then evaluated with the tree and
  : finally given both to setMarksInElement() to serialise the converted structure in the main tree
  : 
@@ -543,15 +573,21 @@ declare function intfo:evaluateElementForBLE
     let $new_tree := <tree>{$node/node()}</tree>
         
     let $firstTextNode := functx:first-node(
-                                $new_tree//text()[ 
+                                (:$new_tree//text()[ 
                                     not( normalize-space(self::node()) = '' )
-                                ]
+                                ]:)
+                                $new_tree//node()
+                                    [not( self::text() and normalize-space(.) = '' )]
+                                    [not( intfo:BLEcheck(descendant-or-self::node(), $blockLevelElements) )]
                           )
     
     let $lastTextNode := functx:last-node(
-                                $new_tree//text()[
+                                (:$new_tree//text()[
                                         not( normalize-space(self::node()) = '' )
-                                ]
+                                ]:)
+                                $new_tree//node()
+                                    [not( self::text() and normalize-space(.) = '' )]
+                                    [not( intfo:BLEcheck(descendant-or-self::node(), $blockLevelElements) )]
                          )
     
     return
@@ -886,3 +922,29 @@ return
     )
     return
         intfo:mergeReadings($target/readings/node()):)
+        
+(:    let $target := (
+        <div>
+            <readings>
+                <note>
+                     <milestone/>
+                     <seg><hi><t>u</t></hi></seg>
+                     <p>das ist</p> <t>keine</t> dritte
+                     <list>
+                        <item>Liste<ptr/></item>
+                     </list>
+                  </note>
+            </readings>
+            <note>
+                <rdg type="v" wit="a" id="r1"/>
+                <rdg type="v" wit="b" id="r23" />
+                <rdg type="om" wit="c" id="r51" />
+                <rdg wit="d" id="r514" >
+                    zhgjghjgh
+                    <u>jhgjghg</u>
+                </rdg>
+            </note>
+        </div>
+    )
+    return
+        intfo:BLEcheck($target/readings[1]/note/seg, $blockLevelElements):)
