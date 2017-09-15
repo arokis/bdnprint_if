@@ -272,7 +272,7 @@ declare function intfo:cleanUp
     return
         typeswitch($node)
             case text() return (
-                replace(normalize-space($node), $escaped_whitespace, ' ')
+                replace(normalize-space($node), "[\s]+", '')
             )
             
             case comment() return $node
@@ -300,7 +300,7 @@ declare function intfo:cleanUp
  : @version 1.0 (2017-09-13)
  : @author Uwe Sikora
  :)
-declare variable $blockLevelElements := ('aligned', 'div', 'list', 'item', 'table', 'row', 'head', 'p', 'note');
+declare variable $blockLevelElements := ('titlePage', 'titlePart', 'aligned', 'div', 'list', 'item', 'table', 'row', 'cell', 'head', 'p', 'note');
 
 
 (:~  
@@ -723,172 +723,6 @@ declare function intfo:setMarksInElement
             )
 };
 
-
-(:~
- : workflow function to manage the MarkerSetting
- : 
- : @param $node The node to process and check for marks, mainly tei:lem and tei:rdg
- : @return the converted node-set
- :   
- : @version 1.0 (2017-09-13)
- : @author Uwe Sikora
- :)
-(:declare function intfo:setReadingMarks
-    ($node as node()*) as item()* {
-    
-    if($node [ 
-        not( descendant::node()[functx:is-value-in-sequence(name(), $blockLevelElements)] )
-       ]
-    ) then (
-        attribute rdg_type {"simple"},
-        (\:
-            Converting rdg[@type='om'] to rdgMarker[@bdnp_mark='omit']
-        :\)
-        
-        if($node/@type='om') then(
-            intfo:marker('rdgMarker', 'omit', $node)
-        ) else (
-            intfo:marker('rdgMarker', 'open', $node),
-            intfo:transformReadings($node/node()), 
-            intfo:marker('rdgMarker', 'close', $node)
-        )
-    ) else(
-    (\:
-     :   Congrats: You found a complex tei:rdg that has one or more BLE descendants
-     :   - Find first node()[not ( text(), BLE )] -> place rdgMarker right in front 
-     :   - Find last node()[not ( text(), BLE )] -> place rdgMarker right in front
-     :\)
-        attribute rdg_type {"complex"},
-        (\:~
-         :   FIRST NON-BLE:
-         :   - modification: To identify the first node is not enough -> to be save the best way would be to do it as with the lastNonBLE
-         :\)
-        let $firstNode := functx:first-node(
-                                $node//node()[ 
-                                    not( functx:is-value-in-sequence(name(), $blockLevelElements) )
-                                ]
-                          )
-        
-        (\: 
-         :   LAST NON-BLE:
-         :   - works
-         :\)
-        let $lastNode := functx:last-node(
-                                $node//node()[
-                                        not(self::text())
-                                ]
-                         )
-                          
-        let $lastNonBLE := intfo:lastNonBLE($lastNode)
-        
-        let $openMark := (
-            element{"mark"}{
-                attribute id {data($firstNode/@id)},
-                intfo:marker('rdgMarker', 'open', $node)
-            }
-        )
-        
-        let $closeMark := (
-            element{"mark"}{
-                attribute id {data($lastNonBLE)},
-                intfo:marker('rdgMarker', 'close', $node)
-            }
-        )
-       
-        return (
-            (\:"RDG: ", data($node/@bdnp_id),
-            "FIRST: ",(\: $firstNode, :\)fn:generate-id($firstNode), 
-            "LAST: ", (\:$lastNode, :\)fn:generate-id($lastNode), 
-            "OPEN: ", data($openMark/@id),
-            "CLOSE: ", data($closeMark/@id),
-            "LAST_NONBLE: ", data($lastNonBLE),:\)
-            
-            intfo:runForMarker($openMark, $closeMark, $node/node())
-        )
-    )
-};:)
-
-
-(:~
- : THE function wich runs for the identified first and last target associated with the rdgMarker
- : - The first and last Targe is completed with markers
- : - Every node that is uniteresting gets copied
- : - if there is a further rdg in the tree it is processed as a new instance with intfo:setReadingsMarker()
- : 
- : @param $openMark The openMark including the @id of the target and the rdgMarker element
- : @param $closeMark The closeMark including the @id of the target and the rdgMarker element
- : @param $node The node-set getting processed
- : @return the converted node-set
- :   
- : @version 1.0 (2017-09-13)
- : @author Uwe Sikora
- :)
-(:declare function intfo:runForMarker
-    ($openMark, $closeMark, $nodes as node()*) as item()* {
-    
-    for $node in $nodes
-    return
-        typeswitch($node)
-            case text() return (
-               (\: $node, fn:generate-id($node):\)
-               (\:"ID: ", fn:generate-id($node), " closeMarkerID: ", data($closeMark/@id),:\) 
-               if(fn:generate-id($node) = data($closeMark/@id) ) then(
-                    $node,
-                    $closeMark/node()
-               ) else($node(\:, fn:generate-id($node):\))
-            )
-            case comment() return ($node)
-            case element(rdg) return (
-                element { name($node) } {
-                    $node/@*,
-                    intfo:setReadingMarks($node)
-                }(\:,
-                intfo:runForMarker($openMark, $closeMark, $node/following-sibling::node())
-                :\)
-            )
-            default return (
-                if(data($node/@id) = data($openMark/@id) and data($node/@id) = data($closeMark/@id)) then(
-                    (\:"CIRCUMFIXING - first and last are the same",:\)
-                    $openMark/node(),
-                    element { name($node) } {
-                        $node/@*,
-                        intfo:runForMarker($openMark, $closeMark, $node/node())
-                    },
-                    $closeMark/node()
-                    
-                ) else if(data($node/@id) = data($openMark/@id)) then(
-                    (\:"OPEN FOUND: ", $node/name(),:\)
-                    $openMark/node(),
-                    element { name($node) } {
-                        $node/@*,
-                        attribute test {fn:generate-id($node)},
-                        intfo:runForMarker($openMark, $closeMark, $node/node())
-                    }
-                    
-                ) else if(data($node/@id) = data($closeMark/@id)) then(
-                    (\:"CLOSE FOUND: ", $node/name(),:\)
-                    element { name($node) } {
-                        $node/@*,
-                        attribute test {fn:generate-id($node)},
-                        intfo:runForMarker($openMark, $closeMark, $node/node())
-                    },
-                    $closeMark/node()
-                    
-                )(\: else if($node/name() = "rdg") then(
-                    element { name($node) } {
-                        $node/@*,
-                        intfo:setReadingMarks($node)
-                    }(\:,
-                    intfo:runForMarker($openMark, $closeMark, $node/following-sibling::node())
-                    :\)
-                ):\) else (
-                    element { name($node) } {
-                        $node/@*,
-                        intfo:runForMarker($openMark, $closeMark, $node/node())
-                    }
-                ) 
-            )
-};:)
 
 (:################# END BLE - Handling #################:)
 (:######################################################:)
