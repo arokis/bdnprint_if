@@ -7,8 +7,14 @@
  : - text() is handled in the manner of whitespace preservation
  : - tei:rdg is expanded as rdgMarkers to cope with BLE (BlockLevel Elements) 
  :
+ : NEW Elements and attributes from Intermediate Format:
+ : - rdgMarker [ @wit="<wit from rdg>" , @ref="<ref to rdg>" , @mark="open|close" , @type="v|pp|pt|ppl|ptl", @context="lem|rdg" ]
+ : - aligned [ @type="right-aligned|center-aligned" ]
+ : - tei:lem [ @omit="true" ]
+ :
+ :
  : @author Uwe Sikora
- : @version 1.1 (2017-09-14)
+ : @version 1.2 (2017-09-15)
  :)
 declare namespace intfo = "http://www.bdn-edition.de/bdnPrint/intermediate_format";
 declare namespace functx = "http://www.functx.com";
@@ -258,21 +264,29 @@ declare function intfo:preprocessing
 
 (:~  
  : intfo:cleanUp() 
- : normalizes all text() and replaces the whitespace preservation character 
+ : reduces all text() with preservation character to get rid of all conversion related whitespaces 
+ : 
+ : TO-DO:
+ : normalizing all text() and replaceing the whitespace preservation character 
  : with real whitespace
  : 
  :
- : @version 1.0 (2017-09-13)
+ : @version 1.1 (2017-09-18)
  : @author Uwe Sikora
  :)
-declare function intfo:cleanUp
+declare function intfo:postprocessing
     ($nodes as node()*, $escaped_whitespace as xs:string) as item()* {
     
     for $node in $nodes
     return
         typeswitch($node)
             case text() return (
-                replace(normalize-space($node), "[\s]+", '')
+                let $reduce_expression := concat('[', $escaped_whitespace, ']+')
+                let $save := replace(normalize-space($node), "[\s]+", $escaped_whitespace)
+                let $reduce := replace($save, $reduce_expression, $escaped_whitespace)
+                return
+                    $reduce
+                    (:replace($reduce, "$escaped_whitespace", ' '):)
             )
             
             case comment() return $node
@@ -280,7 +294,7 @@ declare function intfo:cleanUp
             default return ( 
                 element {name($node)} { 
                     $node/@*, 
-                    intfo:cleanUp($node/node(), $escaped_whitespace)
+                    intfo:postprocessing($node/node(), $escaped_whitespace)
                 } 
             )
 };
@@ -357,7 +371,8 @@ declare function intfo:marker
             attribute wit {$marker_rdg_wit},
             attribute ref {$marker_rdg_ref},
             attribute mark {$marker_mark},
-            attribute type {$marker_rdg_type}
+            attribute type {$marker_rdg_type},
+            attribute context {data($rdg_node/@context)}
         }
     )
 };
@@ -458,7 +473,6 @@ declare function intfo:expanReadings
                     element {name($node)} {
                         $node/@*,
                         intfo:evaluateElementForBLE($node)
-                        (:intfo:setReadingMarks($node):)
                     } 
                 ) 
                 else (
@@ -506,7 +520,8 @@ declare function intfo:identifyReadings
         for $reading in $readings
         return    
             element { name($reading) } {
-                $reading/@*
+                $reading/@*,
+                attribute {"context"}{name($node)}
             }
     )
     
@@ -549,6 +564,7 @@ declare function intfo:mergeReadings
             element {"rdg"}{
                 attribute wit {$rdgs/@wit},
                 attribute id {$rdgs/@id},
+                attribute context {distinct-values($rdgs/@context)},
                 attribute type {$type}
             }
     )
@@ -596,7 +612,7 @@ declare function intfo:evaluateElementForBLE
             let $last := intfo:lastNonBLE($lastTextNode)
             let $targets := (
                 element {"targets"} {
-                
+                    
                     element {"open"} {
                         attribute id {$first}
                     },
@@ -737,9 +753,10 @@ let $doc := .
 let $preprocessed := intfo:preprocessing($doc/TEI)
 (:let $extend := intfo:extendWhiteSpace($preprocessed):)
 let $readingMarkers := intfo:expanReadings($preprocessed)
+let $postprocessed := intfo:postprocessing($readingMarkers, '&#x3040;')
 
 return
-    $readingMarkers
+    $postprocessed
     (:intfo:cleanUp($readingMarkers, '&#x3040;'):)
     (:intfo:transformReadings($doc/TEI):)
     (:let $target := (
