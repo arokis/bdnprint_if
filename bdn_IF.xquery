@@ -16,11 +16,12 @@
  : @author Uwe Sikora
  : @version 1.2 (2017-09-15)
  :)
+declare namespace saxon="http://saxon.sf.net/";
 declare namespace intfo = "http://www.bdn-edition.de/bdnPrint/intermediate_format";
 declare namespace functx = "http://www.functx.com";
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
-
+declare option saxon:output "indent=no";
 (:######################################################:)
 (:##################### FunctX Lib #####################:)
 
@@ -148,11 +149,26 @@ declare function intfo:preprocessing
     return
         typeswitch($node)
             case text() return (
-                intfo:preservedText($node, '&#x3040;')
+                (: This is absolutly magical! "May Her Hooves Never Be Shod":)
+                intfo:preservedText($node, '&#x1f984;')
             )
             
-            case comment() return $node
+            (: COMPLETE IGNORE :)
+            case comment() return ((:$node:))
             
+            case element(encodingDesc) return (
+                intfo:preprocessing($node/following-sibling::node()[1])
+            )
+            
+            case element(revisionDesc) return (
+                intfo:preprocessing($node/following-sibling::node()[1])
+            )
+            
+            case element(ptr) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            (: ELEMENT IGNORE :)
             case element(choice) return (
                 if ($node[child::expan and child::abbr]) then (
                     intfo:preprocessing($node/abbr/node())
@@ -165,6 +181,60 @@ declare function intfo:preprocessing
                 ) 
             )
             
+            case element(byline) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(docAuthor) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(persName) return (
+                if ($node[ not (ancestor::index) ]) then (
+                    intfo:preprocessing($node/node())
+                ) 
+                else (
+                    element {name($node)} { 
+                        $node/@*,
+                        intfo:preprocessing($node/node())
+                    }
+                )
+            )
+            
+            case element(docEdition) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(docImprint) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(docDate) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(ref) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(foreign) return (
+                intfo:preprocessing($node/node())
+            )
+            
+            case element(div) return (
+                if ($node[@type = 'section-group']) then (
+                    intfo:preprocessing($node/node())
+                ) 
+                else (
+                    element {name($node)} { 
+                        $node/@*,
+                        intfo:preprocessing($node/node())
+                    }
+                )
+                
+            )
+            
+            (: CHANGE :)
             case element(rdg) return (
                 element {name($node)} { 
                     $node/@*, 
@@ -221,49 +291,7 @@ declare function intfo:preprocessing
 
 
 (:~  
- : The extendWhiteSpace() function merges empty single whitespace textNodes with its following textNode and thus preserves the single space in the following textNode
- : 
- :  single whitespace between two node()[not(self::text())]: //text()[ self::node() = ' '][preceding-sibling::node()[not(self::node() = text())]][following-sibling::node()[not(self::node() = text())]]
- :  the next following textNode: //textNode[preceding::textNode[1][@preserved]]
- :
- : @version 1.0 (2017-09-13)
- : @deprecated
- : @author Uwe Sikora
- :)
-(:declare function intfo:extendWhiteSpace
-    ($nodes as node()*) as item()* {
-    
-    for $node in $nodes
-    return
-        typeswitch($node)
-            case text() return $node
-            case comment() return $node
-            case element(textNode) return (
-                if($node[preceding::textNode[1][@preserved]]) then(
-                    element {name($node)} { 
-                        $node/@*, 
-                        concat( "&#x3040;", data($node/text()) )
-                        (\:data($node/text()):\)
-                    }
-                ) else if ($node[@preserved]) then(
-                ) else (
-                    element {name($node)} { 
-                        $node/@*, 
-                        intfo:extendWhiteSpace($node/node())
-                    }
-                )
-            )
-            default return ( 
-                element {name($node)} { 
-                    $node/@*, 
-                    intfo:extendWhiteSpace($node/node())
-                } 
-            )
-};:)
-
-
-(:~  
- : intfo:cleanUp() 
+ : intfo:postprocessing() 
  : reduces all text() with preservation character to get rid of all conversion related whitespaces 
  : 
  : TO-DO:
@@ -285,17 +313,17 @@ declare function intfo:postprocessing
                 let $save := replace(normalize-space($node), "[\s]+", $escaped_whitespace)
                 let $reduce := replace($save, $reduce_expression, $escaped_whitespace)
                 return
-                    $reduce
-                    (:replace($reduce, "$escaped_whitespace", ' '):)
+                    (:$reduce:)
+                    replace($reduce, $escaped_whitespace, ' ')
             )
             
             case comment() return $node
             
-            default return ( 
-                element {name($node)} { 
+            default return (
+                element {name($node)} {
                     $node/@*, 
                     intfo:postprocessing($node/node(), $escaped_whitespace)
-                } 
+                }
             )
 };
 
@@ -753,7 +781,7 @@ let $doc := .
 let $preprocessed := intfo:preprocessing($doc/TEI)
 (:let $extend := intfo:extendWhiteSpace($preprocessed):)
 let $readingMarkers := intfo:expanReadings($preprocessed)
-let $postprocessed := intfo:postprocessing($readingMarkers, '&#x3040;')
+let $postprocessed := intfo:postprocessing($readingMarkers, '&#x1f984;')
 
 return
     $postprocessed
