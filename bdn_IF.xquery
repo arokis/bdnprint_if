@@ -16,321 +16,31 @@
  : @author Uwe Sikora
  : @version 1.2 (2017-09-15)
  :)
+
+declare default element namespace "http://www.tei-c.org/ns/1.0"; 
 declare namespace saxon="http://saxon.sf.net/";
 declare namespace intfo = "http://www.bdn-edition.de/bdnPrint/intermediate_format";
+
+
 declare namespace functx = "http://www.functx.com";
-declare default element namespace "http://www.tei-c.org/ns/1.0";
+import module "http://www.functx.com" at "functx.xqm";
 
-declare option saxon:output "indent=no";
-(:######################################################:)
-(:##################### FunctX Lib #####################:)
+declare namespace arokis = "http://www.arokis.com/xquery/libs/bdn/general";
+import module "http://www.arokis.com/xquery/libs/bdn/general" at "arokis.xqm";
 
-declare function functx:is-value-in-sequence
-  ( $value as xs:anyAtomicType? ,
-    $seq as xs:anyAtomicType* )  as xs:boolean {
+declare namespace string="http://www.arokis.com/xquery/libs/string";
+import module "http://www.arokis.com/xquery/libs/string" at "string.xqm";
 
-   $value = $seq
- } ;
+declare namespace bdnprint="http://www.arokis.com/xquery/libs/bdn/print";
+import module "http://www.arokis.com/xquery/libs/bdn/print" at "bdnprint.xqm";
 
-declare function functx:first-node
-  ( $nodes as node()* )  as node()? {
-  
-   ($nodes/.)[1]
- } ;
- 
-declare function functx:last-node
-  ( $nodes as node()* )  as node()? {
-  
-   ($nodes/.)[last()]
- } ;
 
-declare function functx:index-of-node
-  ( $nodes as node()* ,
-    $nodeToFind as node() )  as xs:integer* {
+(:declare option saxon:output "indent=no";:)
 
-  for $seq in (1 to count($nodes))
-  return $seq[$nodes[$seq] is $nodeToFind]
- } ;
- 
- declare function functx:add-attributes
-  ( $elements as element()* ,
-    $attrNames as xs:QName* ,
-    $attrValues as xs:anyAtomicType* )  as element()? {
-
-   for $element in $elements
-   return element { node-name($element)}
-                  { for $attrName at $seq in $attrNames
-                    return if ($element/@*[node-name(.) = $attrName])
-                           then ()
-                           else attribute {$attrName}
-                                          {$attrValues[$seq]},
-                    $element/@*,
-                    $element/node() }
- } ;
- 
-(:################## END FunctX Lib ####################:)
-(:######################################################:)
-
-(:                         ***                          :)
 
 (:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~:)
 (:                       OWN Lib                        :)
 (:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~:)
-(:######################################################:)
-(:################### Preprocessing ####################:)
-
-(:~  
- : @version 1.0 (2017-09-13)
- : @deprecated used by deprecaded intfo:id()
- : @author Uwe Sikora
- :)
-declare function intfo:pos
-    ($x) {
-    
-    let $parent := $x/..
-    for $child at $p in $parent/*
-        return (if ($child is $x) then $p else ())
-};
-
-
-(:~  
- : @version 1.0 (2017-09-13)
- : @deprecated replaced with fn:generate-id()
- : @author Uwe Sikora
- :)
-declare function intfo:id
-    ($x) {
-   
-   string-join(for $n in ($x/ancestor::node(),$x) return string(intfo:pos($n)), "/")
-};
-
-
-(:~ 
- : intfo:preservedText()
- : This function preserves whitespace in a test-node by replacing 1-N Whitespacecharacters
- : by one defined preservation character
- :
- : @version 1.0 (2017-09-14)
- : @author Uwe Sikora
- :)
-declare function intfo:preservedText
-    ($text as node(), $escape as xs:string) as item()* {
-
-    if (
-        normalize-space($text) != '' or
-        $text
-            [ self::node() = ' ']
-            [preceding-sibling::node()[not(self::node() = text())]]
-            [following-sibling::node()[not(self::node() = text())]] 
-       
-    ) then (
-        let $t := replace($text, '[\s]+', $escape)
-        return
-            $t
-       
-    ) else ($text)
-};
-
-
-(:~  
- : intfo:preprocessing()
- : This function is used to preprocess the bdn-tei 
- : 
- : single whitespace between to node()[not(self::text())]: //text()[ self::node() = ' '][preceding-sibling::node()[not(self::node() = text())]][following-sibling::node()[not(self::node() = text())]]
- : //textNode[preceding::textNode[1][@preserved]]
- :
- : @version 1.2 (2017-09-14)
- : @author Uwe Sikora
- :)
-declare function intfo:preprocessing
-    ($nodes as node()*) as item()* {
-    
-    for $node in $nodes
-    return
-        typeswitch($node)
-            case text() return (
-                (: This is absolutly magical! "May Her Hooves Never Be Shod":)
-                intfo:preservedText($node, '&#x1f984;')
-            )
-            
-            (: COMPLETE IGNORE :)
-            case comment() return ((:$node:))
-            
-            case element(encodingDesc) return (
-                intfo:preprocessing($node/following-sibling::node()[1])
-            )
-            
-            case element(revisionDesc) return (
-                intfo:preprocessing($node/following-sibling::node()[1])
-            )
-            
-            case element(ptr) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            (: ELEMENT IGNORE :)
-            case element(choice) return (
-                if ($node[child::expan and child::abbr]) then (
-                    intfo:preprocessing($node/abbr/node())
-                )
-                else (
-                    element {name($node)} { 
-                        $node/@*,
-                        intfo:preprocessing($node/node())
-                    }
-                ) 
-            )
-            
-            case element(byline) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(docAuthor) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(persName) return (
-                if ($node[ not (ancestor::index) ]) then (
-                    intfo:preprocessing($node/node())
-                ) 
-                else (
-                    element {name($node)} { 
-                        $node/@*,
-                        intfo:preprocessing($node/node())
-                    }
-                )
-            )
-            
-            case element(docEdition) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(docImprint) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(docDate) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(ref) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(foreign) return (
-                intfo:preprocessing($node/node())
-            )
-            
-            case element(div) return (
-                if ($node[@type = 'section-group']) then (
-                    intfo:preprocessing($node/node())
-                ) 
-                else (
-                    element {name($node)} { 
-                        $node/@*,
-                        intfo:preprocessing($node/node())
-                    }
-                )
-                
-            )
-            
-            (: CHANGE :)
-            case element(rdg) return (
-                element {name($node)} { 
-                    $node/@*, 
-                    attribute id {fn:generate-id($node)},
-                    intfo:preprocessing($node/node())
-                } 
-            )
-            
-            case element(hi) return (
-                if($node[@rend = 'right-aligned' or @rend = 'center-aligned']) then(
-                    element {'aligned'} {
-                        $node/@*,
-                        intfo:preprocessing($node/node())
-                    } 
-                )
-                else (
-                    element {name($node)} { 
-                        $node/@*,
-                        intfo:preprocessing($node/node())
-                    }
-                )
-            )
-            
-            case element(seg) return (
-                if($node[@type = 'item']) then(
-                    element {'item'} {
-                        $node/@*[name() != 'type'],
-                        intfo:preprocessing($node/node())
-                    } 
-                )
-                else if($node[@type = 'row']) then(
-                    element {'row'} {
-                        $node/@*[name() != 'type'],
-                        intfo:preprocessing($node/node())
-                    } 
-                )
-                else (
-                    element {name($node)} { 
-                        $node/@*, 
-                        (:attribute id {fn:generate-id($node)},:)
-                        intfo:preprocessing($node/node())
-                    }
-                )
-            )
-            
-            default return ( 
-                element {name($node)} { 
-                    $node/@*, 
-                    (:attribute id {fn:generate-id($node)},:)
-                    intfo:preprocessing($node/node())
-                } 
-            )
-};
-
-
-(:~  
- : intfo:postprocessing() 
- : reduces all text() with preservation character to get rid of all conversion related whitespaces 
- : 
- : TO-DO:
- : normalizing all text() and replaceing the whitespace preservation character 
- : with real whitespace
- : 
- :
- : @version 1.1 (2017-09-18)
- : @author Uwe Sikora
- :)
-declare function intfo:postprocessing
-    ($nodes as node()*, $escaped_whitespace as xs:string) as item()* {
-    
-    for $node in $nodes
-    return
-        typeswitch($node)
-            case text() return (
-                let $reduce_expression := concat('[', $escaped_whitespace, ']+')
-                let $save := replace(normalize-space($node), "[\s]+", $escaped_whitespace)
-                let $reduce := replace($save, $reduce_expression, $escaped_whitespace)
-                return
-                    (:$reduce:)
-                    replace($reduce, $escaped_whitespace, ' ')
-            )
-            
-            case comment() return $node
-            
-            default return (
-                element {name($node)} {
-                    $node/@*, 
-                    intfo:postprocessing($node/node(), $escaped_whitespace)
-                }
-            )
-};
-
-(:################ END Preprocessing ###################:)
-(:######################################################:)
-
-(:                         ***                          :)
 
 (:######################################################:)
 (:################### BLE - Handling ###################:)
@@ -343,34 +53,6 @@ declare function intfo:postprocessing
  : @author Uwe Sikora
  :)
 declare variable $blockLevelElements := ('titlePage', 'titlePart', 'aligned', 'div', 'list', 'item', 'table', 'row', 'cell', 'head', 'p', 'note');
-
-
-(:~  
- : intfo:checkForBLE()
- : This function checks if a node() from a given nodeset is or contains BLE Elements. 
- : In this case it returns 'true' else 'false' 
- :
- : @param $nodes the nodes() to check for BLEs
- : @param $bleElements a list of defined BLEs
- : @return xs:boolean ('true' else 'false')
- : 
- : @version 1.0 (2017-09-15)
- : @status working
- : @author Uwe Sikora
- :)
-declare function intfo:BLEcheck
-    ($nodes as node()*, $bleElements as item()*) as xs:boolean{
-    
-    some $node in $nodes
-    satisfies
-        if(functx:is-value-in-sequence($node/name(), $bleElements)) then(
-            fn:true()
-        ) 
-        
-        else (
-            fn:false()
-        )
-};
 
 
 (:~  
@@ -427,7 +109,7 @@ declare function intfo:buildMarkers
 
 
 (:~
- : intfo:lastNonBLE()
+ : intfo:firstNonBleNodeId()
  : This recursive function determines the id of the last NON-BLE
  : - starts on the first or the last node() in depth given as first argument
  : - walks up the tree by parent:node() and looks if it is BLE
@@ -452,19 +134,19 @@ declare function intfo:buildMarkers
         )
     };
  :)
-declare function intfo:lastNonBLE
+declare function intfo:firstNonBleNodeId
     ($node as node()) as item() {
     
     if (functx:is-value-in-sequence($node/parent::node()/name(), $blockLevelElements)) then(
         fn:generate-id($node)
     ) 
     
-    else if ($node[parent::tree]) then (
+    else if ($node[parent::node()[not(parent::node())]]) then (
         fn:generate-id($node)
     ) 
     
     else (
-        intfo:lastNonBLE($node/parent::node())
+        intfo:firstNonBleNodeId($node/parent::node())
     )
 };
 
@@ -616,37 +298,21 @@ declare function intfo:evaluateElementForBLE
     
     let $new_tree := <tree>{$node/node()}</tree>
         
-    let $firstTextNode := functx:first-node(
-                                (:$new_tree//text()[ 
-                                    not( normalize-space(self::node()) = '' )
-                                ]:)
-                                $new_tree//node()
-                                    [not( self::text() and normalize-space(.) = '' )]
-                                    [not( intfo:BLEcheck(descendant-or-self::node(), $blockLevelElements) )]
-                          )
-    
-    let $lastTextNode := functx:last-node(
-                                (:$new_tree//text()[
-                                        not( normalize-space(self::node()) = '' )
-                                ]:)
-                                $new_tree//node()
-                                    [not( self::text() and normalize-space(.) = '' )]
-                                    [not( intfo:BLEcheck(descendant-or-self::node(), $blockLevelElements) )]
-                         )
+    let $firstSaveNode := arokis:first-save-node-not-in-sequence($new_tree//node(), $blockLevelElements)
+    let $lastSaveNode := arokis:last-save-node-not-in-sequence($new_tree//node(), $blockLevelElements)
     
     return
-        if( not(empty($firstTextNode) and empty($lastTextNode)) ) then (
-            let $first := intfo:lastNonBLE($firstTextNode)
-            let $last := intfo:lastNonBLE($lastTextNode)
+        if( not( empty($firstSaveNode) and empty($lastSaveNode) ) ) then (
+            
             let $targets := (
                 element {"targets"} {
                     
                     element {"open"} {
-                        attribute id {$first}
+                        attribute id {intfo:firstNonBleNodeId($firstSaveNode)}
                     },
                     
                     element {"close"} {
-                        attribute id {$last}
+                        attribute id {intfo:firstNonBleNodeId($lastSaveNode)}
                     },
                     
                     element {'readings'} {
@@ -669,7 +335,8 @@ declare function intfo:evaluateElementForBLE
             :)
             
             return (
-                (:"&#xa;FIRST: ", $firstTextNode, " LAST: ", $lastTextNode, " TREE: ", $new_tree, "&#xa;FIRST NODE: ", $first, " LAST NODE: ", $last,:)
+(:                  "&#xa;FIRST: ", fn:generate-id($firstSaveNode), "&#xa;FIRST NODE: ", intfo:lastNonBLE($firstSaveNode), " &#xa;LAST: ", fn:generate-id($lastSaveNode), " LAST NODE: ", intfo:lastNonBLE($lastSaveNode):)
+(:                "&#xa;FIRST: ", fn:generate-id($firstTextNode), " LAST: ", $lastTextNode, " TREE: ", $new_tree, "&#xa;FIRST NODE: ", $first, " LAST NODE: ", $last:)
                 intfo:setMarksInElement($new_tree, $targets)
             )
         ) 
@@ -682,8 +349,8 @@ declare function intfo:evaluateElementForBLE
 
 (:~
  : THE function wich runs for the identified first and last target associated with the rdgMarker
- : - The first and last Targe is completed with markers
- : - Every node that is uniteresting gets copied
+ : - The first and last Target is completed with markers
+ : - Every node that is not interesting gets copied
  : - if there is a further rdg or lem in the tree it is processed as a new instance with intfo:transformReadings()
  : 
  : @param $target_model The model of target nodes, that are the open/first node() and the close/last node() with ids and all readings which should be represented by markers
@@ -778,10 +445,9 @@ declare function intfo:setMarksInElement
 (:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~:)
 
 let $doc := .
-let $preprocessed := intfo:preprocessing($doc/TEI)
-(:let $extend := intfo:extendWhiteSpace($preprocessed):)
+let $preprocessed := bdnprint:preprocessing($doc/TEI)
 let $readingMarkers := intfo:expanReadings($preprocessed)
-let $postprocessed := intfo:postprocessing($readingMarkers, '&#x1f984;')
+let $postprocessed := bdnprint:postprocessing($readingMarkers, '&#x1f984;')
 
 return
     $postprocessed
