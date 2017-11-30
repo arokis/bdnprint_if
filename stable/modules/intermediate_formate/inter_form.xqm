@@ -3,7 +3,7 @@ xquery version "3.1";
 module namespace interform="xmldb:exist:///db/apps/bdn/modules/intermediate_format/inter_form.xqm";
 
 import module namespace functx="http://www.functx.com";
-import module namespace string = "xmldb:exist:///db/apps/bdn/modules/bdn_string.xqm" at "xmldb:exist:///db/apps/bdn/modules/bdn_string.xqm";
+import module namespace string = "xmldb:exist:///db/apps/bdn/modules/string.xqm" at "xmldb:exist:///db/apps/bdn/modules/string.xqm";
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
 
@@ -48,6 +48,14 @@ declare function interform:preprocessing
             (: COMPLETE IGNORE :)
             case comment() return ((:$node:))
             
+            case element(teiHeader) return (
+                element {name($node)} { 
+                     $node/@*, 
+                     $node/node()
+                 } 
+            )
+            
+            (:
             case element(encodingDesc) return (
                 interform:preprocessing($node/following-sibling::node()[1])
             )
@@ -55,7 +63,7 @@ declare function interform:preprocessing
             case element(revisionDesc) return (
                 interform:preprocessing($node/following-sibling::node()[1])
             )
-            
+            :)
             (:case element(ptr) return (
                 interform:preprocessing($node/node())
             ):)
@@ -73,6 +81,7 @@ declare function interform:preprocessing
                 ) 
             ):)
             
+            (:
             case element(byline) return (
                 interform:preprocessing($node/node())
             )
@@ -101,6 +110,7 @@ declare function interform:preprocessing
             case element(docDate) return (
                 interform:preprocessing($node/node())
             )
+            :)
             
             (:case element(ref) return (
                 interform:preprocessing($node/node())

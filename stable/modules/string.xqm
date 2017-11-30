@@ -1,6 +1,6 @@
 xquery version "3.1";
 
-module namespace string="xmldb:exist:///db/apps/bdn/modules/bdn_string.xqm";
+module namespace string="xmldb:exist:///db/apps/bdn/modules/string.xqm";
 
 
 (:~ 
