@@ -282,7 +282,7 @@ declare function interform:transform-map
             case text() return (
                 let $norm := string:escape-and-normalize($node, '&#x1f984;')
                 return
-                    replace($norm, '&#x1f984;', '&#xA0;')
+                    replace($norm, '&#x1f984;', '&#x20;')
             )
             
             case comment() return ($node)
