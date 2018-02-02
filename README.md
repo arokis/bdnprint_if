@@ -1,4 +1,4 @@
-# bdn:IntermediateFormat
+# bdn:IntermediateFormat.v2
 Scripts to convert bdn-TEI into an intermediate-format dealing with reading markers
 
 # Notes in Advance
