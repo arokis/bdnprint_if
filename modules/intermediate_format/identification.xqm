@@ -1,19 +1,73 @@
 xquery version "3.0";
-
+(:~  
+ : IDENTIFICATION Module ("ident", "http://bdn.edition.de/intermediate_format/identification")
+ : *******************************************************************************************
+ : This module defines functions and variables to set reading markers in tei:lem or tei:rdg elements.
+ : The problem it solves is to identify non-Blocklevel-elements self not containing Blocklevel-elements
+ : on their first or last decendants path to set textcritical markers required in the printed version of a
+ : BdN digital edition.
+ :
+ : The basic idea is constructing a some kind of first- and last-descendants PATH for reading nodes (tei:lem and tei:rdg) describing
+ : a save PATH of non-BLE self not including Blocklevel-elements on their own first- or last-decendants paths down the tree.  
+ : 
+ : It includes the helping module "markerset" holding helper functions to collect and construct reading markers
+ 
+ : @version 2.0 (2018-01-29)
+ : @note This new versions identification algorithm is more flexible and much more configurable as in the old version 1
+ : @status working
+ : @author Uwe Sikora
+ :)
 module namespace ident="http://bdn.edition.de/intermediate_format/identification";
 import module namespace markerset = "http://bdn.edition.de/intermediate_format/markerset" at "markerset.xqm";
 
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
 
+(:############################# Modules Variables #############################:)
+
+(:~  
+ : ident:blocklevel-elements
+ : Variable defining Blocklevelelements by name 
+ : 
+ : @version 2.0 (2018-01-29)
+ : @author Uwe Sikora
+ :)
 declare variable $ident:blocklevel-elements := ('titlePage', 'titlePart', 'aligned', 'div', 'list', 'item', 'table', 'row', 'cell', 'head', 'p', 'note');
 
+
+(:############################# Modules Functions #############################:)
+
+(:~  
+ : ident:in-sequence()
+ : This function checks if nodes are includes in a sequence of nodes 
+ :
+ : @param $values the nodes to check against the sequence
+ : @param $sequence a sequence of AtomicTypes
+ : @return xs:boolean ('true' else 'false')
+ : 
+ : @version 2.0 (2018-01-29)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:in-sequence
     ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType*) as xs:boolean {
     
     $values = $sequence
 };
 
+
+(:~  
+ : ident:is-or-are-ble()
+ : This function checks if nodes are Blocklevelelements 
+ :
+ : @param $values the nodes to check against the sequence
+ : @return xs:boolean ('true' else 'false')
+ : 
+ : @version 2.0 (2018-01-29)
+ : @note derived function from ident:in-sequence
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:is-or-are-ble
     ( $values as xs:anyAtomicType* ) as xs:boolean {
     
@@ -21,8 +75,21 @@ declare function ident:is-or-are-ble
 };
 
 
+(:~  
+ : ident:first-descendants-path()
+ : This recursive function describes the so called first-descendants PATH,
+ : that is the path of all save first nodes (1) not self a BLE and not including
+ : BLEs and (2) listen to defined parameters
+ :
+ : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
+ : @return set of node() representing the PATH
+ : 
+ : @version 2.0 (2018-01-30)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:first-descendants-path
-    ($node as node()?) as node()* {
+    ( $node as node()? ) as node()* {
     
     let $first-child := (
         let $target := $node/child::node()[1]
@@ -55,8 +122,21 @@ declare function ident:first-descendants-path
 };
 
 
+(:~  
+ : ident:last-descendants-path()
+ : This recursive function describes the so called last-descendants PATH,
+ : that is the path of all save last nodes (1) not self a BLE and not including
+ : BLEs and (2) listen to defined parameters
+ :
+ : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
+ : @return set of node() representing the PATH
+ : 
+ : @version 2.0 (2018-01-30)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:last-descendants-path
-    ($node as node()?) as node()* {
+    ( $node as node()? ) as node()* {
     
     let $last-child := (
         let $target := $node/child::node()[last()]
@@ -95,8 +175,19 @@ declare function ident:last-descendants-path
 };
 
 
+(:~  
+ : ident:first-save-node()
+ : This function identifies the first-save node for a given node()
+ :
+ : @param $node the node of which the first save node should be identified
+ : @return the first save node of a defined set of save nodes
+ : 
+ : @version 2.0 (2018-01-30)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:first-save-node
-    ($node as node()) as node()* {
+    ( $node as node() ) as node()* {
     
     let $first := ident:first-descendants-path($node)
                   [not ( ident:is-or-are-ble(self::node()/name()) )]
@@ -106,8 +197,19 @@ declare function ident:first-save-node
 };
 
 
+(:~  
+ : ident:last-save-node()
+ : This function identifies the last-save node for a given node()
+ :
+ : @param $node the node of which the last save node should be identified
+ : @return the last save node of a defined set of save nodes
+ : 
+ : @version 2.0 (2018-01-30)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:last-save-node
-    ($node as node()) as node()* {
+    ( $node as node() ) as node()* {
                  
     let $last := ident:last-descendants-path($node)
                  [not ( ident:is-or-are-ble(self::node()/name()) )]
@@ -117,8 +219,26 @@ declare function ident:last-save-node
 };
 
 
+(:~  
+ : ident:identify-targets()
+ : This function identifies the first and last save node for a given reading (tei:lem and tei:rdg)
+ : It also collect the sibling readings as shortcuts (name and attributes) to build a set
+ : of reading markers for opening and closing Markers 
+ :
+ : @param $node the reading nodegoing to be evaluated
+ : @return evaluation report for the node acording to the following form
+ :  - element "rdg" or "lem" incl. copied attributes
+ :      - element "target"[@type = "open"] incl. @id (generated)
+ :      - element "target"[@type = "close"] incl. @id (generated)
+ :      - element "marker"[@type = "open"] incl. @id (generated)
+ :      - element "marker"[@type = "close"] incl. @id (generated)
+ : 
+ : @version 2.0 (2018-01-31)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:identify-targets
-    ($node as node()) as node()* {
+    ( $node as node() ) as node()* {
                   
     let $first := ident:first-save-node($node)            
     let $last := ident:last-save-node($node)
@@ -130,13 +250,13 @@ declare function ident:identify-targets
             $node/@*,
             element {"target"}{
                 attribute {"type"}{ "open" },
-                attribute {"gid"}{ generate-id($first) },
-                $first
+                attribute {"gid"}{ generate-id($first) }(:,
+                $first:)
             },
             element {"target"}{
                 attribute {"type"}{ "close" },
-                attribute {"gid"}{ generate-id($last) },
-                $last
+                attribute {"gid"}{ generate-id($last) }(:,
+                $last:)
             },
             element {"marker"}{
                 attribute {"type"}{ "open" },
@@ -150,8 +270,21 @@ declare function ident:identify-targets
 };
 
 
+(:~  
+ : ident:walk()
+ : This recursive function represents the main conversion which adds the reading markers
+ : for tei:lem and tei:rdg nodes 
+ :
+ : @param $nodes nodes to be converted
+ : @param $reading-sequence sequence holding the evaluation reports of the relevant readings in the nodes' context
+ : @return converted node
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:walk
-    ($nodes as node()*, $reading-sequence as item()*) as item()* {
+    ( $nodes as node()*, $reading-sequence as item()* ) as item()* {
     
     for $node in $nodes
     return
@@ -186,8 +319,22 @@ declare function ident:walk
             )
 };
 
+
+(:~  
+ : ident:mark-node()
+ : This function checks if a given node is a identified first or last save node
+ : and sets in case of positive identification sets opening and closing markers before and after the node
+ :
+ : @param $nodes nodes to be checked and in case of positive identification decorated with markers
+ : @param $reading-sequence sequence holding the evaluation reports of the relevant readings in the nodes' context
+ : @return converted node()
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:mark-node
-    ($node as node(), $reading-sequence as item()* ) as node()* {
+    ( $node as node(), $reading-sequence as item()* ) as node()* {
     
     let $node-id := generate-id( $node )
     let $in-reading-sequence := $reading-sequence//target[@gid eq $node-id]
@@ -220,6 +367,20 @@ declare function ident:mark-node
         )
 };
 
+
+(:~  
+ : ident:mark-text()
+ : This function checks if a given text() is a identified first or last save node
+ : and sets in case of positive identification sets opening and closing markers before and after the node
+ :
+ : @param $nodes nodes to be checked and in case of positive identification decorated with markers
+ : @param $reading-sequence sequence holding the evaluation reports of the relevant readings in the nodes' context
+ : @return converted node()
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status deprecated. integrated in ident:mark-node()
+ : @author Uwe Sikora
+ :)
 (:declare function ident:mark-text
     ($node as node(), $reading-sequence as item()* ) as node()* {
     
@@ -237,6 +398,18 @@ declare function ident:mark-node
 };:)
 
 
+(:~  
+ : ident:fetch-marker-from-sequence()
+ : Helperfunction to collect the reading markers from a given reading sequence
+ :
+ : @param $node-id id to be checked against the reading-sequences target-ids
+ : @param $reading-sequence sequence holding the evaluation reports of the relevant readings in the nodes' context
+ : @return reading markers as node()* for the node associated with node-id
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status working
+ : @author Uwe Sikora
+ :)
 declare function ident:fetch-marker-from-sequence
     ($node-id as xs:string, $reading-sequence as item()* ) as node()* {
     
@@ -250,8 +423,21 @@ declare function ident:fetch-marker-from-sequence
 };
 
 
+
+(:~  
+ : ident:identify-unit-test()
+ : Some kind of test-unit-function to eval the main identification functionality of this module on all tei:lem and tei:readings of a given xml-tree
+ :
+ : @param $nodes xml-tree to be tested
+ : @return test report for each tei:lem and tei:reading as node()*
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status working
+ : @note meant to test the identification algorithm
+ : @author Uwe Sikora
+ :)
 declare function ident:identify-unit-test
-    ($nodes as node()*) as node()* {
+    ( $nodes as node()* ) as node()* {
     
     for $node at $nr in $nodes//node()[self::lem or self::rdg]
     let $identified-targets := ident:identify-targets($node)
