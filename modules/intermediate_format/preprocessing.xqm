@@ -185,7 +185,7 @@ declare function pre:preprocessing
             )
             
             case element(note) return (
-                if ( $node[@type != "editorial"] ) then (
+                if ( $node[@type != "editorial"] or $node[ not(@type) ] ) then (
                     pre:default-element( $node, pre:preprocessing($node/node()) )
                 ) else ( )
             )

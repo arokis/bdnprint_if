@@ -179,7 +179,7 @@ let $target-index := target:index($app-index):)
 
 return (
     (:ident:identify-unit-test($pre):)
-(:    $pre:)
+    (:$pre:)
     ident:walk($pre, ())
 (:    $target-index:)
     (:local:target-in-index("d0t36", $app-index),:)

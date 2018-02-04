@@ -76,10 +76,10 @@ declare function ident:is-or-are-ble
 
 
 (:~  
- : ident:first-descendants-path()
- : This recursive function describes the so called first-descendants PATH,
- : that is the path of all save first nodes (1) not self a BLE and not including
- : BLEs and (2) listen to defined parameters
+ : ident:left-nodes-path()
+ : This recursive function describes the so called left nodes PATH,
+ : that is the path of all save left nodes in a given tree (1) not self a BLE and not including
+ : BLEs in their own left nodes PATH and (2) listen to defined parameters
  :
  : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
  : @return set of node() representing the PATH
@@ -88,13 +88,13 @@ declare function ident:is-or-are-ble
  : @status working
  : @author Uwe Sikora
  :)
-declare function ident:first-descendants-path
+declare function ident:left-nodes-path
     ( $node as node()? ) as node()* {
     
     let $first-child := (
         let $target := $node/child::node()[1]
         return
-            (: PATH CONTROLL for the last-descendants-path :)
+            (: PATH CONTROLL for the left-nodes-path :)
             
             (: IN CASE there is an tei:app, be ready to change the path to 
                the first tei:rdg[ppl, ptl] and its first child::node()! :)
@@ -118,15 +118,15 @@ declare function ident:first-descendants-path
             )
     )
     return
-        if($first-child) then ($first-child, ident:first-descendants-path($first-child)) else () 
+        if($first-child) then ($first-child, ident:left-nodes-path($first-child)) else () 
 };
 
 
 (:~  
- : ident:last-descendants-path()
- : This recursive function describes the so called last-descendants PATH,
- : that is the path of all save last nodes (1) not self a BLE and not including
- : BLEs and (2) listen to defined parameters
+ : ident:right-nodes-path()
+ : This recursive function describes the so called left nodes PATH,
+ : that is the path of all save right nodes in a given tree (1) not self a BLE and not including
+ : BLEs in their own right nodes PATH and (2) listen to defined parameters
  :
  : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
  : @return set of node() representing the PATH
@@ -135,13 +135,13 @@ declare function ident:first-descendants-path
  : @status working
  : @author Uwe Sikora
  :)
-declare function ident:last-descendants-path
+declare function ident:right-nodes-path
     ( $node as node()? ) as node()* {
     
     let $last-child := (
         let $target := $node/child::node()[last()]
         return
-            (: PATH CONTROLL for the last-descendants-path :)
+            (: PATH CONTROLL for the right-nodes-path :)
             
             (: IN CASE there is an tei:app, be ready to change the path ! :)
             if ( $target[self::app] ) then (
@@ -171,7 +171,7 @@ declare function ident:last-descendants-path
             )
     )
     return
-        if($last-child) then ($last-child, ident:last-descendants-path($last-child)) else () 
+        if($last-child) then ($last-child, ident:right-nodes-path($last-child)) else () 
 };
 
 
@@ -189,9 +189,9 @@ declare function ident:last-descendants-path
 declare function ident:first-save-node
     ( $node as node() ) as node()* {
     
-    let $first := ident:first-descendants-path($node)
+    let $first := ident:left-nodes-path($node)
                   [not ( ident:is-or-are-ble(self::node()/name()) )]
-                  [not ( ident:is-or-are-ble( ident:first-descendants-path(self::node())/name() ) )]  
+                  [not ( ident:is-or-are-ble( ident:left-nodes-path(self::node())/name() ) )]  
                   
     return $first[1]
 };
@@ -211,9 +211,9 @@ declare function ident:first-save-node
 declare function ident:last-save-node
     ( $node as node() ) as node()* {
                  
-    let $last := ident:last-descendants-path($node)
+    let $last := ident:right-nodes-path($node)
                  [not ( ident:is-or-are-ble(self::node()/name()) )]
-                 [not ( ident:is-or-are-ble( ident:last-descendants-path(self::node())/name() ) )]  
+                 [not ( ident:is-or-are-ble( ident:right-nodes-path(self::node())/name() ) )]  
                  
     return $last[1]
 };
