@@ -1,0 +1,246 @@
+xquery version "3.0";
+(:~  
+ : PREPROCESSING Module ("pre", "http://bdn.edition.de/intermediate_format/preprocessing")
+ : *******************************************************************************************
+ : This module contains the preprocessing routines for the intermediate format
+ :
+ : It imports the whitespace handling helper module to make some whitespace handling duricng the preprocessing
+ 
+ : @version 2.0 (2018-01-29)
+ : @status working
+ : @author Uwe Sikora
+ :)
+module namespace pre="http://bdn.edition.de/intermediate_format/preprocessing";
+import module namespace whitespace = "http://bdn.edition.de/intermediate_format/whitespace_handling" at "whitespace-handling.xqm";
+
+declare default element namespace "http://www.tei-c.org/ns/1.0";
+
+
+(:############################# Modules Functions #############################:)
+
+(:~  
+ : pre:preprocessing-textNode
+ : preprocessing function which converts each text() into a xml-node "textNode". This function is a experimental fall back solution and not the main preprocessing routine!
+ :
+ : @param $nodes the nodes to be converted
+ : @return item()* representing the converted node
+ : 
+ : @version 1.2 (2017-10-15)
+ : @status working
+ : @author Uwe Sikora
+ :)
+declare function pre:preprocessing-textNode
+    ($nodes as node()*) as item()* {
+    
+    for $node in $nodes
+    return
+        typeswitch($node)
+            case processing-instruction() return ()
+            case text() return (
+                if (normalize-space($node) eq "") then () else (
+                    element {"textNode"} {
+                        (:attribute {"interformId"}{ generate-id($node) },:)
+                        $node
+                    }
+                )
+            )
+            
+            case element(TEI) return (
+                element{$node/name()}{
+                    $node/@*,
+                    pre:preprocessing-textNode($node/node()),
+                    element{"editorialNotes"}{
+                        $node//note[@type eq "editorial"]
+                    }
+                }
+            )
+            
+            case element(lem) return (
+                element{$node/name()}{
+                    $node/@*,
+                    attribute {"id"}{ generate-id($node)},
+                    pre:preprocessing-textNode($node/node())
+                }
+            )
+            
+            case element(rdg) return (
+                element{$node/name()}{
+                    $node/@*,
+                    attribute {"id"}{ generate-id($node)},
+                    pre:preprocessing-textNode($node/node())
+                }
+            )
+            
+            case element(note) return (
+                if ($node[@type eq "editorial"]) then (
+                ) else (
+                    element{$node/name()}{
+                        $node/@*,
+                        pre:preprocessing-textNode($node/node())
+                    }
+                )
+            )
+            
+            default return ( 
+                element{$node/name()}{
+                    $node/@*,
+                    pre:preprocessing-textNode($node/node())
+                }
+            )
+};
+
+
+(:~  
+ : pre:pre:default-element
+ : function that suites as default element constructor for the preproseccing conversion.
+ : It is more or less a copy function, copying the elements name and its node and recurively leeds the conversion to its child-nodes
+ :
+ : @param $node the node to be copied
+ : @param $recursive-function the recursive function as some kind of call back to the main conversion
+ : @return item()* representing the converted node
+ : 
+ : @version 1.0 (2018-01-31)
+ : @note Would be great if $recursive-function would be a real function and not a node-sequence (TO-DO)
+ : @status working
+ : @author Uwe Sikora
+ :)
+declare function pre:default-element
+    ( $node as node(), $recursive-function as node()* ) as item()* {
+
+    element{$node/name()}{
+        $node/@*,
+        $recursive-function
+    }
+};
+
+
+(:~  
+ : pre:preprocessing
+ : main preprocessing function.
+ :
+ : @param $nodes the nodes to be converted
+ : @return item()* representing the converted node
+ : 
+ : @version 2.0 (2018-02-01)
+ : @status working
+ : @author Uwe Sikora
+ :)
+declare function pre:preprocessing
+    ($nodes as node()*) as item()* {
+    
+    for $node in $nodes
+    return
+        typeswitch($node)
+            case processing-instruction() return ()
+            
+            case text() return (
+                whitespace:text($node, "&#160;")
+            )
+            
+            case comment() return ()
+            
+            case element(TEI) return (
+                element{$node/name()}{
+                    $node/@*,
+                    pre:preprocessing($node/node()),
+                    element{"editorialNotes"}{
+                        for $editorial-note in $node//note[@type eq "editorial"]
+                        return
+                            pre:default-element( $editorial-note, pre:preprocessing($editorial-note/node()) )
+                    }
+                }
+            )
+            
+            case element(teiHeader) return (
+                element {name($node)} { 
+                     $node/@*, 
+                     $node/node()
+                 } 
+            )
+            
+            case element(div) return (
+                if ($node[@type = 'section-group']) then (
+                    pre:preprocessing($node/node())
+                ) 
+                else (
+                    pre:default-element( $node, pre:preprocessing($node/node()) )
+                )
+                
+            )
+            
+            case element(lem) return (
+                element{$node/name()}{
+                    $node/@*,
+                    attribute {"id"}{ generate-id($node)},
+                    pre:preprocessing($node/node())
+                }
+            )
+            
+            case element(rdg) return (
+                element{$node/name()}{
+                    $node/@*,
+                    attribute {"id"}{ generate-id($node)},
+                    pre:preprocessing($node/node())
+                }
+            )
+            
+            case element(note) return (
+                if ( $node[@type != "editorial"] ) then (
+                    pre:default-element( $node, pre:preprocessing($node/node()) )
+                ) else ( )
+            )
+            
+            case element(pb) return (
+                let $preceeding-sibling := $node/preceding-sibling::node()[1]
+                let $following-sibling := $node/following-sibling::node()[1]
+                return
+                    element {$node/name()}{
+                        $node/@*,
+                        if ( ends-with($preceeding-sibling, " ") eq false() and starts-with($following-sibling, " ") eq false() ) then (
+                            attribute {"break"}{"no"}
+                        ) else ( )(:,
+                        attribute {"whitespace"}{
+                            if (ends-with($preceeding-sibling, " ")) then (
+                                "before"
+                            ) else (),
+                            if (starts-with($following-sibling, " ")) then (
+                                "after"
+                            ) else ()
+                        }:)
+                    }
+            )
+            
+            case element(hi) return (
+                if($node[@rend = 'right-aligned' or @rend = 'center-aligned']) then(
+                    element {'aligned'} {
+                        $node/@*,
+                        pre:preprocessing($node/node())
+                    } 
+                )
+                else (
+                    pre:default-element( $node, pre:preprocessing($node/node()) )
+                )
+            )
+            
+            case element(seg) return (
+                if($node[@type = 'item']) then(
+                    element {'item'} {
+                        $node/@*[name() != 'type'],
+                        pre:preprocessing($node/node())
+                    } 
+                )
+                else if($node[@type = 'row']) then(
+                    element {'row'} {
+                        $node/@*[name() != 'type'],
+                        pre:preprocessing($node/node())
+                    } 
+                )
+                else (
+                    pre:default-element( $node, pre:preprocessing($node/node()) )
+                )
+            )
+            
+            default return ( 
+                pre:default-element( $node, pre:preprocessing($node/node()) )
+            )
+};
