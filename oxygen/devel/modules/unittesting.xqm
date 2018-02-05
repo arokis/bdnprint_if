@@ -14,6 +14,8 @@ module namespace test="http://bdn.edition.de/intermediate_format/unit_testing";
 
 import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "../../../modules/intermediate_format/identification.xqm";
 
+declare namespace tei = "http://www.tei-c.org/ns/1.0";
+
 (:############################# Modules Functions #############################:)
 
 (:~  
@@ -73,28 +75,54 @@ declare function test:branch-axis
  : @author Uwe Sikora
  :)
 declare function test:reading-evaluation
-    ( $readings as node()* ) as item()* {
+    ( $nodes as node()* ) as item()* {
     
-    for $reading at $nr in $readings
-    let $first-save-node := ident:first-save-node($reading)
-    let $last-save-node := ident:last-save-node($reading)
+    for $reading at $nr in $nodes//node()[self::tei:lem or self::tei:rdg]
+    let $first-save-target := ident:first-save-node($reading)
+    let $last-save-target := ident:last-save-node($reading)
     return 
         element {$reading/name()}{
             $reading/@*,
-            attribute {"index"} { $nr },
+            attribute {"nr"} { $nr },
             element {"self"}{
                 attribute {"gid"}{ generate-id($reading) },
                 $reading
             },
-            element {"target"}{
-                attribute {"type"}{ "open" },
-                attribute {"gid"}{ generate-id($first-save-node) },
-                $first-save-node
-            },
-            element {"target"}{
-                attribute {"type"}{ "close" },
-                attribute {"gid"}{ generate-id($last-save-node) },
-                $last-save-node
+            element {"evaluation"}{
+                element {"first"}{ 
+                    attribute {"gid"}{ generate-id($first-save-target) },
+                    $first-save-target 
+                },
+                element {"last"}{ 
+                    attribute {"gid"}{ generate-id($last-save-target) },
+                    $last-save-target 
+                }
             }
+        }
+};
+
+
+(:~  
+ : test:identify-target()
+ : unit-test-function to eval the main identification functionality of the ident module on all tei:lem and tei:readings of a given xml-tree
+ :
+ : @param $nodes xml-tree to be tested
+ : @return test report for each tei:lem and tei:reading as node()*
+ : 
+ : @version 2.1 (2018-02-05)
+ : @status working
+ : @note meant to test the identification algorithm
+ : @author Uwe Sikora
+ :)
+declare function test:identify-target
+    ( $nodes as node()* ) as node()* {
+    
+    for $node at $nr in $nodes//node()[self::tei:lem or self::tei:rdg]
+    let $identified-targets := ident:identify-targets($node)
+    return
+        element{"UTEST"}{
+            attribute {"n"}{$nr},
+            element {"SELF"} {$node},
+            $identified-targets
         }
 };

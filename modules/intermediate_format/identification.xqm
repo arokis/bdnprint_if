@@ -447,30 +447,3 @@ declare function ident:fetch-marker-from-sequence
     return
         $markers
 };
-
-
-
-(:~  
- : ident:identify-unit-test()
- : Some kind of test-unit-function to eval the main identification functionality of this module on all tei:lem and tei:readings of a given xml-tree
- :
- : @param $nodes xml-tree to be tested
- : @return test report for each tei:lem and tei:reading as node()*
- : 
- : @version 2.0 (2018-02-01)
- : @status working
- : @note meant to test the identification algorithm
- : @author Uwe Sikora
- :)
-declare function ident:identify-unit-test
-    ( $nodes as node()* ) as node()* {
-    
-    for $node at $nr in $nodes//node()[self::lem or self::rdg]
-    let $identified-targets := ident:identify-targets($node)
-    return
-        element{"UTEST"}{
-            attribute {"n"}{$nr},
-            element {"SELF"} {$node},
-            $identified-targets
-        }
-};
