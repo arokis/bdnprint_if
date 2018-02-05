@@ -151,12 +151,7 @@ declare function pre:preprocessing
                 }
             )
             
-            case element(teiHeader) return (
-                element {name($node)} { 
-                     $node/@*, 
-                     $node/node()
-                 } 
-            )
+            case element(teiHeader) return ( $node )
             
             case element(div) return (
                 if ($node[@type = 'section-group']) then (
