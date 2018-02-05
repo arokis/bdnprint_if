@@ -224,6 +224,12 @@ declare function pre:preprocessing
                         pre:preprocessing($node/node())
                     } 
                 )
+                else if($node[@type = 'head']) then(
+                    element {'head'} {
+                        $node/@*[name() != 'type'],
+                        pre:preprocessing($node/node())
+                    } 
+                )
                 else if($node[@type = 'row']) then(
                     element {'row'} {
                         $node/@*[name() != 'type'],
