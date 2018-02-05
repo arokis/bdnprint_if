@@ -135,9 +135,6 @@ declare function local:check-reading
 };
 
 
-
-
-
 declare function local:is-save-first-node
     ($node as node()) as xs:boolean {
     let $first-descendants := local:first-descendants($node)
@@ -146,6 +143,7 @@ declare function local:is-save-first-node
     return 
         if ($has-save-first-descendants and not ($self-ble)) then (true()) else (false())
 };
+
 
 declare function local:is-save-last-node
     ($node as node()) as xs:boolean {
@@ -162,30 +160,38 @@ let $pre := pre:preprocessing($doc/node())
 (:let $pre := pre:preprocessing($doc/node())
 let $app-index := local:app-index( $pre//app[not(@type)] )
 let $target-index := target:index($app-index):)
-let $test := <test>
-    <div>
-        <head>
-            <app>
-                <lem>Überschrift</lem>
-                <rdg wit="#a" type="v">überschrift</rdg>
-            </app>
-        </head>
-        <p>Erster Absatz</p>
-        <p>Zweiter Absatz</p>
-        <note>
-            <app>
-                <lem>Anmerkung</lem>
-                <rdg wit="#a" type="v">anmerkung</rdg>
-                <rdg wit="#b" type="ppl"><div>DIV anmerkung</div></rdg>
-                <rdg wit="#c" type="v"><div>DIV2 anmerkung</div></rdg>
-            </app>
-        </note>
-    </div>
-</test>
+let $test := 
+    <test>
+        <div>
+            <head>
+                <app>
+                    <lem>
+                        <app>
+                            <lem><aligned><hi>LEM Überschrift</hi></aligned></lem>
+                            <rdg wit="#a" type="v">A Überschrift</rdg>
+                        </app>
+                    </lem>
+                    <rdg wit="#a" type="v">überschrift</rdg>
+                </app>
+            </head>
+            <p>Erster Absatz</p>
+            <p>Zweiter Absatz</p>
+            <note>
+                <app>
+                    <lem>Anmerkung</lem>
+                    <rdg wit="#a" type="v">anmerkung</rdg>
+                    <rdg wit="#b" type="ppl"><div>DIV anmerkung</div></rdg>
+                    <rdg wit="#c" type="v"><div>DIV2 anmerkung</div></rdg>
+                </app>
+            </note>
+        </div>
+    </test>
+    
 return (
     (:ident:left-nodes-path($test),:)
-    test:branch-axis($test)
-    (:ident:identify-unit-test($pre):)
+    (:test:branch-axis($test):)
+    test:reading-evaluation($test)
+    (:test:identify-target($test):)
     (:$pre:)
     (:ident:walk($pre, ()):)
 (:    $target-index:)
