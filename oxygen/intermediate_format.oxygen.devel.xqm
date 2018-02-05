@@ -23,7 +23,7 @@ declare variable $blocklevel-elements := ('titlePage', 'titlePart', 'aligned', '
 
 
 declare function local:in-sequence
-    ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType*) as xs:boolean {
+    ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType* ) as xs:boolean {
     
     $values = $sequence
 };
