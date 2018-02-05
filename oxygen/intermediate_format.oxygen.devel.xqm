@@ -168,7 +168,39 @@ declare function local:is-save-last-node
         if ($has-save-last-descendants and not ($self-ble)) then (true()) else (false())
 };
 
-
+declare function local:axis-test
+    ( $node as node() ) as item() {
+    let $left-axis := ident:left-branch-axis($node)
+    let $right-axis := ident:right-branch-axis($node)
+    return 
+        element {"axisTest"}{
+            element {"node"}{$node},
+            (:element {"test"}{
+                 attribute {"index"}{fn:index-of($left-axis, $left-axis[4])},
+                 fn:index-of($left-axis, $left-axis[ ident:is-or-are-ble(self::node()/name()) ][last()])
+            },:)
+            element {"leftAxis"}{
+                attribute {"names"}{$left-axis/name()},
+                for $item at $nr in $left-axis
+                return 
+                    element {"item"}{
+                        attribute {"n"}{$nr},
+                        attribute {"gid"}{generate-id($item)},
+                        $item
+                    }
+            },
+            element {"rightAxis"}{
+                attribute {"names"}{$right-axis/name()},
+                for $item at $nr in $right-axis
+                return 
+                    element {"item"}{
+                        attribute {"n"}{$nr},
+                        attribute {"gid"}{generate-id($item)},
+                        $item
+                    }
+            }
+        }
+};
 
 
 let $doc := .
@@ -176,8 +208,29 @@ let $pre := pre:preprocessing($doc/node())
 (:let $pre := pre:preprocessing($doc/node())
 let $app-index := local:app-index( $pre//app[not(@type)] )
 let $target-index := target:index($app-index):)
-
+let $test := <test>
+    <div>
+        <head>
+            <app>
+                <lem>Überschrift</lem>
+                <rdg wit="#a" type="v">überschrift</rdg>
+            </app>
+        </head>
+        <p>Erster Absatz</p>
+        <p>Zweiter Absatz</p>
+        <note>
+            <app>
+                <lem>Anmerkung</lem>
+                <rdg wit="#a" type="v">anmerkung</rdg>
+                <rdg wit="#b" type="ppl"><div>DIV anmerkung</div></rdg>
+                <rdg wit="#c" type="v"><div>DIV2 anmerkung</div></rdg>
+            </app>
+        </note>
+    </div>
+</test>
 return (
+    (:ident:left-nodes-path($test),:)
+    (:local:axis-test($test):)
     (:ident:identify-unit-test($pre):)
     (:$pre:)
     ident:walk($pre, ())

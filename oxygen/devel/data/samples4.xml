@@ -140,7 +140,7 @@
             </div>
          </lem>
          <rdg wit="#a" type="om"></rdg>
-         <rdg wit="#b" type="ptl">
+         <rdg wit="#b #e" type="ptl">
             <div>
                <app>
                   <lem />
