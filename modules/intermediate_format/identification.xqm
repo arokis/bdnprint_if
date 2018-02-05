@@ -34,6 +34,23 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
  :)
 declare variable $ident:blocklevel-elements := ('titlePage', 'titlePart', 'aligned', 'div', 'list', 'item', 'table', 'row', 'cell', 'head', 'p', 'note');
 
+(:~  
+ : ident:apparatus
+ : Variable defining Apparatus Elements by name 
+ : 
+ : @version 1.0 (2018-02-05)
+ : @author Uwe Sikora
+ :)
+declare variable $ident:apparatus := ('app');
+
+(:~  
+ : ident:apparatus-readings
+ : Variable defining Apparatus-Child Elements by name 
+ : 
+ : @version 1.0 (2018-02-05)
+ : @author Uwe Sikora
+ :)
+declare variable $ident:apparatus-readings := ('lem', 'rdg');
 
 (:############################# Modules Functions #############################:)
 
