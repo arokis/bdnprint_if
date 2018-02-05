@@ -7,7 +7,7 @@ import module namespace functx = "http://www.functx.com" at "functx.xqm";
 import module namespace markerset = "http://bdn.edition.de/intermediate_format/markerset" at "../modules/intermediate_format/markerset.xqm";
 import module namespace pre = "http://bdn.edition.de/intermediate_format/preprocessing" at "../modules/intermediate_format/preprocessing.xqm";
 import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "../modules/intermediate_format/identification.xqm";
-
+import module namespace test = "http://bdn.edition.de/intermediate_format/unit_testing" at "devel/modules/unittesting.xqm";
 (:declare namespace target = "http://www.interform.com/target_index";
 import module "http://www.interform.com/target_index" at "targetindex.xqm";
 :)
@@ -15,18 +15,6 @@ import module "http://www.interform.com/target_index" at "targetindex.xqm";
 
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 (:declare option saxon:output "indent=no";:)
-
-
-declare variable $apparatus := ('app');
-declare variable $apparatus-childs := ('lem', 'rdg');
-declare variable $blocklevel-elements := ('titlePage', 'titlePart', 'aligned', 'div', 'list', 'item', 'table', 'row', 'cell', 'head', 'p', 'note');
-
-
-declare function local:in-sequence
-    ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType* ) as xs:boolean {
-    
-    $values = $sequence
-};
 
 
 declare function local:app-index
@@ -153,8 +141,8 @@ declare function local:check-reading
 declare function local:is-save-first-node
     ($node as node()) as xs:boolean {
     let $first-descendants := local:first-descendants($node)
-    let $has-save-first-descendants := not ( local:in-sequence($first-descendants/name(), $blocklevel-elements) )
-    let $self-ble := functx:is-value-in-sequence( $node/name(), $blocklevel-elements )
+    let $has-save-first-descendants := not ( ident:in-sequence($first-descendants/name(), $ident:blocklevel-elements) )
+    let $self-ble := functx:is-value-in-sequence( $node/name(), $ident:blocklevel-elements )
     return 
         if ($has-save-first-descendants and not ($self-ble)) then (true()) else (false())
 };
@@ -162,44 +150,10 @@ declare function local:is-save-first-node
 declare function local:is-save-last-node
     ($node as node()) as xs:boolean {
     let $last-descendants := local:last-descendants($node)
-    let $has-save-last-descendants := not ( local:in-sequence($last-descendants/name(), $blocklevel-elements) )
-    let $self-ble := functx:is-value-in-sequence( $node/name(), $blocklevel-elements )
+    let $has-save-last-descendants := not ( ident:in-sequence($last-descendants/name(), $ident:blocklevel-elements) )
+    let $self-ble := functx:is-value-in-sequence( $node/name(), $ident:blocklevel-elements )
     return 
         if ($has-save-last-descendants and not ($self-ble)) then (true()) else (false())
-};
-
-declare function local:axis-test
-    ( $node as node() ) as item() {
-    let $left-axis := ident:left-branch-axis($node)
-    let $right-axis := ident:right-branch-axis($node)
-    return 
-        element {"axisTest"}{
-            element {"node"}{$node},
-            (:element {"test"}{
-                 attribute {"index"}{fn:index-of($left-axis, $left-axis[4])},
-                 fn:index-of($left-axis, $left-axis[ ident:is-or-are-ble(self::node()/name()) ][last()])
-            },:)
-            element {"leftAxis"}{
-                attribute {"names"}{$left-axis/name()},
-                for $item at $nr in $left-axis
-                return 
-                    element {"item"}{
-                        attribute {"n"}{$nr},
-                        attribute {"gid"}{generate-id($item)},
-                        $item
-                    }
-            },
-            element {"rightAxis"}{
-                attribute {"names"}{$right-axis/name()},
-                for $item at $nr in $right-axis
-                return 
-                    element {"item"}{
-                        attribute {"n"}{$nr},
-                        attribute {"gid"}{generate-id($item)},
-                        $item
-                    }
-            }
-        }
 };
 
 
@@ -230,10 +184,10 @@ let $test := <test>
 </test>
 return (
     (:ident:left-nodes-path($test),:)
-    (:local:axis-test($test):)
+    test:branch-axis($test)
     (:ident:identify-unit-test($pre):)
     (:$pre:)
-    ident:walk($pre, ())
+    (:ident:walk($pre, ()):)
 (:    $target-index:)
     (:local:target-in-index("d0t36", $app-index),:)
     (:target:conversion-by-target-index($pre, $target-index):)
