@@ -7,8 +7,8 @@ xquery version "3.0";
  : on their first or last decendants path to set textcritical markers required in the printed version of a
  : BdN digital edition.
  :
- : The basic idea is constructing a some kind of first- and last-descendants PATH for reading nodes (tei:lem and tei:rdg) describing
- : a save PATH of non-BLE self not including Blocklevel-elements on their own first- or last-decendants paths down the tree.  
+ : The basic idea is constructing some kind of left- and right-branch AXIS for reading nodes (tei:lem and tei:rdg) describing
+ : a save axis of non-Blocklevel nodes (non-BLE) self not including BLEs on their own left- or right-branch AXIS down the tree.  
  : 
  : It includes the helping module "markerset" holding helper functions to collect and construct reading markers
  
@@ -27,7 +27,7 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
 
 (:~  
  : ident:blocklevel-elements
- : Variable defining Blocklevelelements by name 
+ : Variable defining Blocklevel Elements (BLE) by name 
  : 
  : @version 2.0 (2018-01-29)
  : @author Uwe Sikora
@@ -50,7 +50,7 @@ declare variable $ident:blocklevel-elements := ('titlePage', 'titlePart', 'align
  : @author Uwe Sikora
  :)
 declare function ident:in-sequence
-    ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType*) as xs:boolean {
+    ( $values as xs:anyAtomicType* , $sequence as xs:anyAtomicType* ) as xs:boolean {
     
     $values = $sequence
 };
@@ -292,12 +292,13 @@ declare function ident:walk
     return
         typeswitch($node)
             case processing-instruction() return ()
+            case comment() return ()
             case text() return (
                 if (normalize-space($node) eq "") then () else (
                     ident:mark-node($node, $reading-sequence)
                 )
             )
-            
+            case element(teiHeader) return ( $node )
             case element(rdg) return (
                 if ( not($node/parent::app[ @type eq "structural-variance" ]) ) then (
                     let $identified-targets := ident:identify-targets($node)
@@ -359,10 +360,16 @@ declare function ident:mark-node
            )
         ) else (
             if ( $node[ not(self::text()) ] ) then (
-                element{$node/name()}{
-                    $node/@*,
-                    ident:walk($node/node(), $reading-sequence)
-                }
+                
+                if ($node[not(name())]) then (
+                    <ERROR>{$node}</ERROR>
+                ) else (
+                    element{$node/name()}{
+                        $node/@*,
+                        ident:walk($node/node(), $reading-sequence)
+                    }
+                )
+                
             ) else (
                 $node
             )
@@ -413,7 +420,7 @@ declare function ident:mark-node
  : @author Uwe Sikora
  :)
 declare function ident:fetch-marker-from-sequence
-    ($node-id as xs:string, $reading-sequence as item()* ) as node()* {
+    ( $node-id as xs:string, $reading-sequence as item()* ) as node()* {
     
     for $seq-item in $reading-sequence
     let $found := $seq-item/target[@gid = $node-id]
