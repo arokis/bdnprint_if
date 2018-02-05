@@ -76,102 +76,104 @@ declare function ident:is-or-are-ble
 
 
 (:~  
- : ident:left-nodes-path()
- : This recursive function describes the so called left nodes PATH,
- : that is the path of all save left nodes in a given tree (1) not self a BLE and not including
- : BLEs in their own left nodes PATH and (2) listen to defined parameters
+ : ident:left-branch-axis()
+ : This recursive function describes a pseudo axis "LEFT-BRANCH AXIS" of a given node. The left-branch axis
+ : incorporates all first nodes of a subtree (aka the left branch) represented by a node and its descendants.
+ : In case one of the nodes on this axis is self a tei:app the axis is rerouted from the tei:app downwards the branch 
+ : according to defined parameters. 
  :
- : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
- : @return set of node() representing the PATH
+ : @param $node the nodes on the AXIS from where all following nodes and thus the AXIS itself is defined
+ : @return set of node() representing the AXIS
  : 
  : @version 2.0 (2018-01-30)
  : @status working
  : @author Uwe Sikora
  :)
-declare function ident:left-nodes-path
+declare function ident:left-branch-axis
     ( $node as node()? ) as node()* {
     
     let $first-child := (
         let $target := $node/child::node()[1]
         return
-            (: PATH CONTROLL for the left-nodes-path :)
+            (: AXIS CONTROLL of the left-branch :)
             
-            (: IN CASE there is an tei:app, be ready to change the path to 
+            (: IN CASE there is an tei:app, be ready to change the axis to 
                the first tei:rdg[ppl, ptl] and its first child::node()! :)
             if ( $target[self::app] ) then (
                 
-                (: If tei:app has an empty tei:lem change the path to tei:lems last child() :)
+                (: If tei:app has an empty tei:lem change the axis to tei:lems last child() :)
                 if ( empty($target/child::lem/node()) ) then (
                     $target/child::rdg[@type eq "ppl" or @type eq "ptl"][1]/node()[1]
                 ) 
                 
                 (: If tei:app has no empty tei:lem
-                   follow the normal path from tei:app :)
+                   follow the normal axis from tei:app :)
                 else (
                     $target
                 ) 
             ) 
             
-            (: If there is no tei:app proceed on normal path by default :)
+            (: If there is no tei:app proceed on normal axis by default :)
             else (
                 $target
             )
     )
     return
-        if($first-child) then ($first-child, ident:left-nodes-path($first-child)) else () 
+        if($first-child) then ($first-child, ident:left-branch-axis($first-child)) else () 
 };
 
 
 (:~  
- : ident:right-nodes-path()
- : This recursive function describes the so called left nodes PATH,
- : that is the path of all save right nodes in a given tree (1) not self a BLE and not including
- : BLEs in their own right nodes PATH and (2) listen to defined parameters
+ : ident:right-branch-axis()
+ : This recursive function describes a pseudo axis "RIGHT-BRANCH AXIS" of a given node. The right-branch axis
+ : incorporates all last() nodes of a subtree (aka the right branch) represented by a node and its descendants.
+ : In case one of the nodes on this axis is self a tei:app the axis is rerouted from the tei:app downwards the branch 
+ : according to defined parameters.
  :
- : @param $node the nodes in the PATH from where all following nodes and thus the path itsel is defined
- : @return set of node() representing the PATH
+ : @param $node the nodes in the AXIS from where all following nodes and thus the AXIS itsel is defined
+ : @return set of node() representing the AXIS
  : 
  : @version 2.0 (2018-01-30)
  : @status working
  : @author Uwe Sikora
  :)
-declare function ident:right-nodes-path
+declare function ident:right-branch-axis
     ( $node as node()? ) as node()* {
     
     let $last-child := (
         let $target := $node/child::node()[last()]
         return
-            (: PATH CONTROLL for the right-nodes-path :)
+            (: AXIS CONTROLL for the right-branch :)
             
-            (: IN CASE there is an tei:app, be ready to change the path ! :)
+            (: IN CASE there is an tei:app, be ready to change the axis ! :)
             if ( $target[self::app] ) then (
                 
-                (: If tei:apps last child is a tei:rdg[ppl, ptl] change the path to this rdg and 
+                (: If tei:apps last child is a tei:rdg[ppl, ptl] change the axis to this rdg and 
                    its last child() :)
                 if ( $target/child::node()[last()][ self::rdg[@type eq "ppl" or @type eq "ptl"] ] ) then (
                     $target/child::node()[last()]/child::node()[last()]
                 )
                 
                 (: If tei:app has no last child tei:rdg[ppl, ptl] and its tei:lem is not empty 
-                   change the path to tei:lems last child() :)
+                   change the axis to tei:lems last child() :)
                 else if ( not(empty($target/child::lem/node())) ) then (
                     $target/lem/child::node()[last()]
                 ) 
                 
                 (: If tei:app has no last child tei:rdg[ppl, ptl] and its tei:lem is empty 
-                   follow the normal path from tei:app :)
+                   follow the normal axis from tei:app :)
                 else (
                     $target
                 ) 
             ) 
             
-            (: If there is no tei:app proceed on normal path by default :)
+            (: If there is no tei:app proceed on normal axis by default :)
             else (
                 $target
             )
     )
     return
-        if($last-child) then ($last-child, ident:right-nodes-path($last-child)) else () 
+        if($last-child) then ($last-child, ident:right-branch-axis($last-child)) else () 
 };
 
 
@@ -189,9 +191,9 @@ declare function ident:right-nodes-path
 declare function ident:first-save-node
     ( $node as node() ) as node()* {
     
-    let $first := ident:left-nodes-path($node)
+    let $first := ident:left-branch-axis($node)
                   [not ( ident:is-or-are-ble(self::node()/name()) )]
-                  [not ( ident:is-or-are-ble( ident:left-nodes-path(self::node())/name() ) )]  
+                  [not ( ident:is-or-are-ble( ident:left-branch-axis(self::node())/name() ) )]  
                   
     return $first[1]
 };
@@ -211,9 +213,9 @@ declare function ident:first-save-node
 declare function ident:last-save-node
     ( $node as node() ) as node()* {
                  
-    let $last := ident:right-nodes-path($node)
+    let $last := ident:right-branch-axis($node)
                  [not ( ident:is-or-are-ble(self::node()/name()) )]
-                 [not ( ident:is-or-are-ble( ident:right-nodes-path(self::node())/name() ) )]  
+                 [not ( ident:is-or-are-ble( ident:right-branch-axis(self::node())/name() ) )]  
                  
     return $last[1]
 };
