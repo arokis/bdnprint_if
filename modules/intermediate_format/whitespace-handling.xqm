@@ -32,9 +32,9 @@ declare function whitespace:text
     let $normalized := normalize-space($text)
     let $single-whitespace-between-nodes := $text
                                             [ self::node() = ' ']
-                                            [preceding-sibling::node()[not(self::node() = text())]]
-                                            [following-sibling::node()[not(self::node() = text())]]
-    return
+(:                                            [preceding-sibling::node()[not(self::node() = text())]]:)
+(:                                            [following-sibling::node()[not(self::node() = text())]]:)
+    return 
         if ( $normalized != "" or $single-whitespace-between-nodes) then (
             
             if ($escape-char) then (
@@ -43,6 +43,7 @@ declare function whitespace:text
             
         ) 
         else ()
+    
 };
 
 
