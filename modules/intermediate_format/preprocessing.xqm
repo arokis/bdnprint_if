@@ -188,20 +188,23 @@ declare function pre:preprocessing
             case element(pb) return (
                 let $preceeding-sibling := $node/preceding-sibling::node()[1]
                 let $following-sibling := $node/following-sibling::node()[1]
+                let $first := $node = $node/parent::node()/node()[not(self::text() and normalize-space(self::node()) = '')][1]
+                let $ignore := ("docAuthor", "app", "index", "seg", "bibl")
                 return
                     element {$node/name()}{
                         $node/@*,
-                        if ( ends-with($preceeding-sibling, " ") eq false() and starts-with($following-sibling, " ") eq false() ) then (
-                            attribute {"break"}{"no"}
-                        ) else ( )(:,
-                        attribute {"whitespace"}{
-                            if (ends-with($preceeding-sibling, " ")) then (
-                                "before"
-                            ) else (),
-                            if (starts-with($following-sibling, " ")) then (
-                                "after"
-                            ) else ()
-                        }:)
+                         
+                        if ( 
+                                ( $preceeding-sibling[self::text() and not(normalize-space(.) = '')] and ends-with($preceeding-sibling, " ") = false() )
+                                and
+                                ( $following-sibling[self::text() and not(normalize-space(.) = '')] and starts-with($following-sibling, " ") = false() )
+                            ) then ( attribute {"break"}{"no"} ) 
+                        
+                        else if ( $following-sibling[self::docAuthor or self::app or self::index or self::seg or self::bibl] ) then (
+                            attribute {"break"}{"yes"}
+                        )
+                        
+                        else ( )
                     }
             )
             
