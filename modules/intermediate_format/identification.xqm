@@ -171,6 +171,11 @@ declare function ident:right-branch-axis
                     $target/child::node()[last()]/child::node()[last()]
                 )
                 
+                (: If tei:apps last child is a tei:rdg[pp, pt] stop here and return the tei:app :)
+                else if ( $target/child::node()[last()][ self::rdg[@type eq "pp" or @type eq "pt"] ] ) then (
+                    $target
+                )
+                
                 (: If tei:app has no last child tei:rdg[ppl, ptl] and its tei:lem is not empty 
                    change the axis to tei:lems last child() :)
                 else if ( not(empty($target/child::lem/node())) ) then (
