@@ -30,15 +30,13 @@ declare function whitespace:text
     ( $text as text()*, $escape-char as xs:string? ) as text()* {
     
     let $normalized := normalize-space($text)
-    let $single-whitespace-between-nodes := $text
-                                            [ self::node() = ' ']
-(:                                            [preceding-sibling::node()[not(self::node() = text())]]:)
-(:                                            [following-sibling::node()[not(self::node() = text())]]:)
+    let $whitespace-node := $text[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
+    let $single-whitespace-between-nodes := $text = ' '
     return 
-        if ( $normalized != "" or $single-whitespace-between-nodes) then (
+        if ( not($whitespace-node) or $single-whitespace-between-nodes) then (
             
             if ($escape-char) then (
-                whitespace:escape-text($text, $escape-char) 
+                whitespace:escape-text($text, "#") 
             ) else ( whitespace:escape-text($text, " ") )
             
         ) 
