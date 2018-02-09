@@ -211,9 +211,9 @@ declare function pre:preprocessing
                         )
                         
                         else if ( 
-                            ( $preceding-sibling[self::text()][matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
+                            ( $preceding-sibling[matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
                             and
-                            ( $following-sibling[self::text()][matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
+                            ( $following-sibling[matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
                         ) then (
                             attribute {"break"}{"yes"}
                         )
