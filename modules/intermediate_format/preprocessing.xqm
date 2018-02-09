@@ -206,9 +206,9 @@ declare function pre:preprocessing
                                 ( $following-sibling[self::text() and not(normalize-space(.) = '')] and starts-with($following-sibling, " ") = true() )
                             ) then ( attribute {"clear"}{"left"} ) :)
                             
-                        else if ( $following-sibling[self::docAuthor or self::app or self::index or self::seg or self::bibl] ) then (
+                        (:else if ( $following-sibling[self::docAuthor or self::app or self::index or self::seg or self::bibl] ) then (
                             attribute {"break"}{"yes"}
-                        )
+                        ):)
                         
                         else if ( 
                             ( $preceding-sibling[matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
