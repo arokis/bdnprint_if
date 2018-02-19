@@ -198,9 +198,6 @@ declare function pre:preprocessing
             case element(pb) return (
                 let $preceding-sibling := $node/preceding-sibling::node()[1]
                 let $following-sibling := $node/following-sibling::node()[1]
-                let $following-element := $node/following::*[1]
-                let $first := $node = $node/parent::node()/node()[not(self::text() and normalize-space(self::node()) = '')][1]
-                let $ignore := ("docAuthor", "app", "index", "seg", "bibl")
                 return
                     element {$node/name()}{
                         $node/@*,
@@ -210,13 +207,6 @@ declare function pre:preprocessing
                             and
                             ( $following-sibling[self::text() and not(normalize-space(.) = '')] and starts-with($following-sibling, " ") = false() )
                         ) then ( attribute {"break"}{"no"} )
-
-                        (:else if (
-                                ( $preceeding-sibling[self::text() and not(normalize-space(.) = '')] and ends-with($preceeding-sibling, " ") = true() )
-                                and
-                                ( $following-sibling[self::text() and not(normalize-space(.) = '')] and starts-with($following-sibling, " ") = true() )
-                            ) then ( attribute {"clear"}{"left"} ) :)
-
                         else if (
                             ( $preceding-sibling[matches(., "[\s\n\r\t]") and normalize-space(.) = ""] )
                             and
@@ -271,7 +261,7 @@ declare function pre:preprocessing
                     }
                 )
                 else (
-                    pre:default-element( $node, pre:preprocessing($node/node()) )
+                    whitespace:set-additional-whitespace($node) )
                 )
             )
 

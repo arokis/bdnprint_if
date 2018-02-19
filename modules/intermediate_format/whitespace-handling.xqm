@@ -38,7 +38,7 @@ declare function whitespace:text
         if ( not($whitespace-node) or $single-whitespace-between-nodes) then (
 
             if ($escape-char) then (
-                whitespace:escape-text($text, "#")
+                whitespace:escape-text($text, "@")
             ) else ( whitespace:escape-text($text, " ") )
 
         )
@@ -87,7 +87,7 @@ declare function whitespace:set-additional-whitespace($node as node()) as node()
         (if($following-node[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
         and $following-sibling[self::ref or self::app or self::hi or self::bibl
         or self::foreign or self::choice or self::milestone or self::persName
-        or self::choice or self::index])
+        or self::choice or self::index or self::seg])
         then
             attribute {"break-after"}{"yes"}
         else ()),
