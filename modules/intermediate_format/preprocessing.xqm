@@ -261,7 +261,7 @@ declare function pre:preprocessing
                     }
                 )
                 else (
-                    whitespace:set-additional-whitespace($node) )
+                    whitespace:set-additional-whitespace($node)
                 )
             )
 
