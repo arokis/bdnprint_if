@@ -114,7 +114,7 @@ declare function pre:default-element
             (if($following-node[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
             and $following-sibling[self::ref or self::app or self::hi or self::bibl
             or self::foreign or self::choice or self::milestone or self::persName
-            or self::choice or self::index]
+            or self::choice or self::index or self::seg]
             and not($node[self::index]))
             then
                 attribute {"break-after"}{"yes"}
@@ -261,32 +261,8 @@ declare function pre:preprocessing
                     }
                 )
                 else (
-                    whitespace:set-additional-whitespace($node)
+                    pre:default-element( $node, pre:preprocessing($node/node()) )
                 )
-            )
-
-            case element(ref) return (
-                whitespace:set-additional-whitespace($node)
-            )
-
-            case element(app) return (
-                whitespace:set-additional-whitespace($node)
-            )
-
-            case element(bibl) return (
-                whitespace:set-additional-whitespace($node)
-            )
-
-            case element(foreign) return (
-                whitespace:set-additional-whitespace($node)
-            )
-
-            case element(p) return (
-                whitespace:set-additional-whitespace($node)
-            )
-
-            case element(choice) return (
-                whitespace:set-additional-whitespace($node)
             )
 
             default return (

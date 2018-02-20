@@ -65,32 +65,3 @@ declare function whitespace:escape-text
 
     text {replace($text, '[\s]+', $escape)}
 };
-
-(:~
- : whitespace:set-additional-whitespace()
- : This function creates a "break-after"-attribute for a node, that has to be
- : followed by a whitespace in PDF.
- :
- :
- : @param $node the current node
- : @return node() the new node with an attribute where necessary
- :
- : @version 1.0 (2018-02-13)
- : @status working
- : @author Michelle Rodzis
- :)
-declare function whitespace:set-additional-whitespace($node as node()) as node() {
-    let $following-node := $node/following-sibling::node()[1]
-    let $following-sibling := $node/following-sibling::*[1]
-    return element {$node/name()}{
-        $node/@*,
-        (if($following-node[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
-        and $following-sibling[self::ref or self::app or self::hi or self::bibl
-        or self::foreign or self::choice or self::milestone or self::persName
-        or self::choice or self::index or self::seg])
-        then
-            attribute {"break-after"}{"yes"}
-        else ()),
-        pre:preprocessing($node/node())
-    }
-};
