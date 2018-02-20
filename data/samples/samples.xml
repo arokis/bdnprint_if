@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader xml:id="noe_header">
+      <!-- Dateibeschreibung -->
+      <fileDesc>
+         <!--Titelbeschreibung -->
+         <titleStmt>
+            <title level="s">
+               <title type="main">Bibliothek der Neologie (BdN)</title>
+               <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+            </title>
+            <title level="a">BdN VI: Johann August Nösselt, Anweisung zur Bildung angehender
+               Theologen (1. Aufl. 1786/89; 2. Aufl. 1791; 3. Aufl. 1818/19)</title>
+            <author>
+               <persName>
+                        <ref target="#textgrid:24gvc">Nösselt, Johann August</ref>
+                    </persName>
+            </author>
+            <principal>
+               <persName>Beutel, Albrecht</persName>
+            </principal>
+            <respStmt>
+               <resp from="2015-04">Informationswissenschaftliche und -technologische
+                  Leitung</resp>
+               <persName>Blümm, Mirjam</persName>
+            </respStmt>
+            <respStmt>
+               <resp key="former" from="2014-04" to="2015-03">Informationswissenschaftliche und
+                  -technologische Leitung</resp>
+               <persName>Neuroth, Heike</persName>
+            </respStmt>
+            <editor>
+               <persName>Lemitz, Bastian</persName>
+               <persName>Söntgerath, Olga</persName>
+            </editor>
+            <respStmt>
+               <resp>Editorische Mitarbeit</resp>
+               <persName>Figgen, Larissa</persName>
+               <persName>Huck, Johannes</persName>
+               <persName>Stallmann, Marco</persName>
+            </respStmt>
+            <respStmt>
+               <resp key="former" from="2014-05" to="2016-09">Editorische Mitarbeit</resp>
+               <persName>Goormann, Lena</persName>
+            </respStmt>
+            <respStmt>
+               <resp key="former" from="2014-05" to="2015-09">Editorische Mitarbeit</resp>
+               <persName>Meier, Lars-Steffen</persName>
+            </respStmt>
+            <respStmt>
+               <resp>TEI-Schema und Metadaten</resp>
+               <persName>Sikora, Uwe</persName>
+            </respStmt>
+            <respStmt>
+               <resp from="2015-10">Visualisierung und Portal</resp>
+               <persName>Rodzis, Michelle</persName>
+            </respStmt>
+            <respStmt>
+               <resp key="former" from="2014-05" to="2015-09">Visualisierung und Portal</resp>
+               <persName>Riebl, Hannes</persName>
+            </respStmt>
+            <respStmt>
+               <resp from="2015-10">Serverpflege</resp>
+               <persName>Veentjer, Ubbo</persName>
+            </respStmt>
+            <sponsor>Deutsche Forschungsgemeinschaft (DFG)</sponsor>
+         </titleStmt>
+         
+         <!-- Editionsbeschreibung -->
+         <editionStmt>
+            <edition>Johann August Nösselt, Anweisung zur Bildung angehender Theologen (1. Aufl.
+               1786/89; 2. Aufl. 1791; 3. Aufl. 1818/19), hg. v. Albrecht Beutel, Bastian
+               Lemitz u. Olga Söntgerath (BdN VI), <date>2017</date>
+            </edition>
+         </editionStmt>
+         
+         <!-- Größe und Umfang des digitalen Dokuments -->
+         <extent>
+            <measure unit="MB" quantity="123">xxx MB</measure>
+            <measure unit="pages" quantity="234">xxx Seiten</measure>
+         </extent>
+         
+         <!-- Publikationsbeschreibung -->
+         <publicationStmt>
+            <publisher>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische
+               Auswahledition in zehn Bänden", Seminar für Kirchengeschichte II,
+               Evangelisch-Theologische Fakultät, Westfälische Wilhelms-Universität
+               Münster</publisher>
+            <publisher>Niedersächsische Staats- und Universitätsbibliothek Göttingen,
+               Abteilungen: Forschung und Entwicklung, Informations- und Literaturversorgung
+               Zentrale Erwerbung und Erschließung (Gruppe Metadaten und
+               Datenkonversion)</publisher>
+            <distributor>
+               <persName>Beutel, Albrecht</persName>
+               <persName>Söntgerath, Olga</persName>
+            </distributor>
+            <authority>
+               <persName>Blümm, Mirjam</persName>
+            </authority>
+            <date>2017</date>
+            <availability status="free">
+               <licence target="https://creativecommons.org/licenses/by-sa/3.0/legalcode">
+                  <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p>
+               </licence>
+            </availability>
+         </publicationStmt>
+         
+         <!-- Reihenbeschreibung -->
+         <seriesStmt>
+            <title level="s">
+               <title type="main">Bibliothek der Neologie (BdN)</title>
+               <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+            </title>
+            <title level="a">
+                    <title type="main">BdN VI: Johann August Nösselt, Anweisung zur
+               Bildung angehender Theologen (1. Aufl. 1786/89; 2. Aufl. 1791; 3. Aufl.
+               1818/19)</title>
+               <title type="condensed">Nösselt, Anweisung zur Bildung angehender Theologen <hi rend="superscript">1</hi>1786/89–<hi rend="superscript">3</hi>1818/19</title>
+                </title>
+            <respStmt>
+               <resp>Reihenherausgeber</resp>
+               <persName>Beutel, Albrecht</persName>
+               <persName>Söntgerath, Olga</persName>
+            </respStmt>
+            <respStmt>
+               <resp>Bandherausgeber</resp>
+               <persName>Beutel, Albrecht</persName>
+               <persName>Lemitz, Bastian</persName>
+               <persName>Söntgerath, Olga</persName>
+            </respStmt>
+         </seriesStmt>
+         
+         <!-- Quellenbeschreibung -->
+         <sourceDesc>
+            <listWit>
+               <witness xml:id="a">
+                  <desc>1. Aufl. 1786/89</desc>
+                  <bibl>Anweisung zur Bildung angehender Theologen. von D. Johann August
+                     Nösselt. Erster Theil. Halle, bey Joh. Jac. Curts Wittwe, 1786, [XVI],
+                     1–288 S.; Zweyter Theil, 1786, [IV], 289–580 S.; Dritter und letzter
+                     Theil, 1789, [XII], 581–824 S. Vorlage: Universitäts- und
+                     Landesbibliothek Sachsen-Anhalt, Signatur: Ia 1630 (Hefte 1–3),
+                     Standort: Ha 179.</bibl>
+               </witness>
+               <witness xml:id="b">
+                  <desc type="base-text">2. Aufl. 1791</desc>
+                  <bibl>Anweisung zur Bildung angehender Theologen, von D. Johann August
+                     Nösselt. Erster Band. Zweyte vermehrte und verbesserte Auflage. Halle,
+                     bey Joh. Jac. Curts Wittwe, 1791, [XXVIII], 340 S.; Zweyter Band, 1791,
+                     320 S.; Dritter und letzter Band, 1791, 256 S. Vorlage:
+                     Evangelisch-Theologische Seminare der Westfälischen Wilhelms-Universität
+                     Münster, Signatur: 8: 2007/4.</bibl>
+               </witness>
+               <witness xml:id="c">
+                  <desc>3. Aufl. 1818/19</desc>
+                  <bibl>Anweisung zur Bildung angehender Theologen, von Johann August Nösselt,
+                     weil. Königl. Preußischem Geheimderath, Doctor und Professor der
+                     Theologie zu Halle. Herausgegeben und mit Anmerkungen, literarischen
+                     Zusätzen und Ergänzungen begleitet von D. August Hermann Niemeyer,
+                     Königl. Preuß. Oberkonsistorialrath, Kanzler und Professor der Theologie
+                     auf der vereinigten Friedrichsuniversität Halle und Wittenberg, Director
+                     der Frankischen Stiftungen, auch Ritter des rothen Adlerordens dritter
+                     Klasse. Erster Band. Dritte Auflage. Halle, im Verlage der Curtschen
+                     Buchhandlung, 1818, XXX, 303 S.; Zweiter Band, 1818, VIII, 275 S.;
+                     Dritter Band, 1819, X, 228 S. Vorlage: Staatsbibliothek zu Berlin –
+                     Preußischer Kulturbesitz, Signatur: Bc 1266 1–3.</bibl>
+               </witness>
+            </listWit>
+         </sourceDesc>
+      </fileDesc>
+      
+      <!-- Beschreibung der Editionsrichtlinien -->
+      <encodingDesc>
+         <projectDesc>
+            <p>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische Auswahledition in
+               zehn Bänden", Seminar für Kirchengeschichte II, Evangelisch-Theologische
+               Fakultät, Westfälische Wilhelms-Universität Münster</p>
+         </projectDesc>
+         <editorialDecl>
+            <p>Eine umfassende Beschreibung der Editionsrichtlinien siehe <ref target="http://www.bdn-edition.de/editionsrichtlinien.html">http://www.bdn-edition.de/editionsrichtlinien.html</ref>.</p>
+            <p>Dieses Dokument ist an das BdN-Verweisnetz angebunden, welches bibliographische
+               und Personendaten nach dem "Resource Description Framework" (RDF) zur Verfügung
+               stellt. Nähere Informationen dazu sind in Kapitel 4 der o.g. Richtlinien zu
+               finden.</p>
+         </editorialDecl>
+      </encodingDesc>
+      <!--<styleDefDecl scheme="css" schemeVersion="2.1"/>
+            <variantEncoding method="parallel-segmentation" location="internal"/>-->
+      
+      <!-- Profilbeschreibung, ggf. ergänzen -->
+      
+      
+      <revisionDesc>
+         <change when="2014-05-12">Beginn: Transkription der Leitauflage im Word-Format.</change>
+         <change when="2014-06-03">Beginn der ersten Korrekturphase durch abgleichende Lektüre
+            des Leittextes aus Word-Dateien mit dem Original.</change>
+         <change when="2014-07-07">Ende: Transkription der Leitauflage im Word-Format.</change>
+         <change when="2014-07-09">Datenkonversion ins XML-Format. Der Textbestand liegt zunächst
+            in Einzelsegmenten von ca. 20-30 Originalseiten vor, um die zeitgleiche Arbeit
+            mehrerer Personen an den Dokumenten zu ermöglichen.</change>
+         <change when="2014-07-31">Ende: Erste Korrekturphase des Leittextes. Fehlerkorrektur im
+            XML-Editor.</change>
+         <change when="2014-08-11">Auszeichnung Textstruktureinheiten (Kapitel, Paragraphen,
+            Überschriften, Absätze, Annotationen und ihre Verknüpfung mit dem Fließtext,
+            Aufzählungen, Seitenumbrüche), graphischer Hervorhebungen des Textes (Kursivdruck),
+            Sprache (Griechisch, Hebräisch) sowie Sonderzeichen. Erste
+            Markup-Kontrolle.</change>
+         <change when="2014-08-27">Auszeichnung und Auflösung von Abkürzungen und Druckfehlern;
+            Überprüfung von Sonderzeichen.</change>
+         <change when="2014-08-28">Beginn der zweiten Korrekturphase durch abgleichende Lektüre
+            des Leittextes aus der XHTML-Ansicht im Projektportal mit dem Original.</change>
+         <change when="2014-10-27">Anpassung der Auszeichnung, insbesondere Typisierung von
+            Annotationen (authorial/editorial), Präzisierung der XML-ID-Vergabe, Referenzierung
+            von Seitenwechsel.</change>
+         <change when="2014-12-04">Ende der zweiten Korrekturphase.</change>
+         <change when="2014-12-16">Beginn: Kollation aller Auflagen, Auszeichnung des
+            textkritischen Apparates (Textkritik) nach der Double-Endpoint-Methode.</change>
+         <change when="2015-04-20">Wechsel zu der Parallel-Segmentation-Methode in der
+            Auszeichnung der Textkritik wegen unzureichender Prozessierbarkeit der Daten.
+            Implementierung einer Korrekturansicht im TextGrid-Lab zur sofortigen Überprüfung
+            der Textkritik-Auszeichnung. Verknüpfung aller Dateien mit CSS und XSLT. Kontrolle
+            der Textkritikauszeichnung nach einer maschinellen Überführung der bereits
+            ausgezeichneten Daten in die Parallel-Segmentation-Methode und deren Anpassung
+            aufgrund eines geringfügigen Informationsverlusts.</change>
+         <change when="2015-06-04">Korrekturlektüre des Textausschnittes für die Modelledition
+            aus der Printversion.</change>
+         <change when="2015-08-01">Beginn: Anlegen der RDF-Objekte (Personen, bibliographische
+            Angaben). Beginn: editorische Erläuterungen.</change>
+         <change when="2015-08-13">Ende: Kollation aller Auflagen und
+            Textkritikauszeichnung.</change>
+         <change when="2015-09-03">Verlinkung der Querverweise im Text und zu den
+            Inhaltsverzeichnissen sowie zu den Corrigendalisten in allen Auflagen.</change>
+         <change when="2015-09-15">Anlegen der Hauptdatei, die alle Einzeldateien includiert.
+            Anbinden aller Texte aus den Einzeldateien an die Hauptdatei.</change>
+         <change when="2015-10-01">Differenzierte Anlage der Metadaten im Header der Hauptdatei
+            und kontinuierliche Metadatenpflege.</change>
+         <change when="2015-11-02">Verlinkung zu den autorschaftlichen Annotationen in allen
+            Auflagen.</change>
+         <change when="2015-11-15">Beginn: Anbinden der RDF-Objekte und gleichzeitige
+            Auszeichnung des Personenregisters und des Registers Antiker Autoren im ersten
+            Teilband.</change>
+         <change when="2015-12-01">Beginn: Auszeichnung variierender Strukturen der
+            Einzelauflagen (Strukturkritik). Kontrolle der Strukturkritikauszeichnung mithilfe
+            von Ansichten der Einzelauflagen im Projektportal.</change>
+         <change when="2016-02-15">Korrekturlektüre des Textausschnittes für die Modelledition
+            aus der druckähnlichen textkritischen Ansicht im Projektportal.</change>
+         <change when="2016-02-16">Korrekturlektüre des Textausschnittes für die Modelledition
+            aus den Einzelansichten aller Auflagen im Projektportal.</change>
+         <change when="2016-04-18">Beginn der ersten Korrekturphase der Textkritikauszeichnung
+            des gesamten Bandes.</change>
+         <change when="2016-05-03">Beginn: semantische Bibelstellenauszeichnung und gleichzeitige
+            Bibelstellenindexierung.</change>
+         <change when="2016-05-09">Anpassung der Listenauszeichnung.</change>
+         <change when="2016-05-30">Kontrolle der Metadaten im Header.</change>
+         <change when="2016-05-31">Erneute Korrekturlektüre des Textausschnittes für die
+            Modelledition aus der Printversion.</change>
+         <change when="2016-06-29">Veröffentlichung der Modelledition am Beispiel der Paragraphen
+            140-150 des ersten Teilbandes.</change>
+         <change when="2016-09-08">Ende der ersten Korrekturphase der Textkritikauszeichnung des
+            gesamten Bandes. Gleichzeitige Anpassung der Textkritikauszeichnung.</change>
+         <change when="2016-10-01">Ende: semantische Bibelstellenauszeichnung und gleichzeitige
+            Bibelstellenindexierung.</change>
+         <change when="2016-10-17">Beginn: Kontrolle der Satzfehlerauszeichnung.</change>
+         <change when="2016-10-25">Beginn: Überprüfen der Querverweise im Text in ihrer
+            inhaltlichen Richtigkeit.</change>
+         <change when="2016-11-04">Ende: Überprüfen der Querverweise im Text in ihrer
+            inhaltlichen Richtigkeit.</change>
+         <change when="2016-11-07">Beginn: Anbinden der RDF-Objekte und gleichzeitige
+            Auszeichnung des Personenregisters und des Registers Antiker Autoren im dritten
+            Teilband.</change>
+         <change when="2016-11-25">Überführen der Seitenumbrüche in die
+            Block-Level-Elemente.</change>
+         <change when="2016-12-09">Anreicherung der Kapitel-Elemente auf allen hierarchischen
+            Ebenen mit XML-ID.</change>
+         <change when="2016-12-14">Ende: Anbinden der RDF-Objekte und gleichzeitiges Auszeichnen
+            des Personenregisters und des Registers Antiker Autoren im dritten
+            Teilband.</change>
+         <change when="2016-12-21">Inhaltliche Überprüfung der Berichtigung von Satzfehlern im
+            gesamten Band.</change>
+         <change when="2017-02-01">Beginn: Auswahl einschlägiger Begriffe für das Sachregister
+            und gleichzeitiges Auszeichnen des Sachregisters.</change>
+         <change when="2017-02-02">Korrektur des Bibelstellenregisters aus der ersten Printfahne,
+            Korrektur der Auszeichnung.</change>
+         <change when="2017-03-06">Ende: Auszeichnen des Sachregisters.</change>
+         <change when="2017-03-07">Wiederholte Kontrolle der Strukturkritikumsetzung mithilfe von
+            Ansichten der Einzelauflagen im Projektportal.</change>
+         <change when="2017-04-03">Kontrolle der Funktionalität der RDF-Objekte und deren
+            Anbindung an die Daten über die interaktive Ansicht im Projektportal.</change>
+         <change when="2017-05-15">Erste Printkontrolle des gesamten Bandes.</change>
+         <change when="2017-05-25">Kontextualisierende inhaltliche Einleitung erarbeitet und
+            korrigiert.</change>
+         <change when="2017-06-26">Auszeichnen der kontextualisierenden inhaltlichen
+            Einleitung.</change>
+         <change when="2017-07-13">Auszeichnung der Kolumnentitel für den Print.</change>
+         <change when="2017-08-24">Beginn: Anbinden der RDF-Objekte und gleichzeitiges
+            Auszeichnen des Personenregisters und des Registers Antiker Autoren im zweiten
+            Teilband.</change>
+      </revisionDesc>
+   </teiHeader>
+  <text>
+      <body>
+         <div n="0">
+            <app>
+               <lem>
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#b" type="sp" n="I"/>
+                        <choice>
+                           <orig>Anweisung <lb/>zur <lb/>Bildung <lb/>angehender
+                              Theologen,</orig>
+                           <seg type="toc-item">Anweisung zur Bildung angehender
+                              Theologen</seg>
+                        </choice>
+                            </titlePart>
+                     <lb/>
+                     <byline>von <lb/>
+                                <docAuthor>
+                                    <choice>
+                        <abbr>D.</abbr>
+                        <expan>Doctor</expan>
+                     </choice>
+                        <index indexName="persons">
+                           <term>Nösselt, Johann August</term>
+                        </index>
+                                    <persName ref="#textgrid:24gvc">Johann August
+                           Nösselt</persName>
+                                </docAuthor>.</byline>
+                     <lb/>
+                     <titlePart type="volume">
+                                <choice>
+                        <orig>Erster Band.</orig>
+                        <seg type="toc-item">Erster Band</seg>
+                     </choice>
+                            </titlePart>
+                     <lb/>
+                     <docEdition>Zweyte vermehrte und verbesserte Auflage.</docEdition>
+                     <lb/>
+                     <docImprint>Halle, <lb/>bey <index indexName="persons">
+                        <term>Curt, Johann Jacob</term>
+                     </index>
+                                <persName ref="#textgrid:24gvp">Joh. Jac. Curts</persName>
+                        <persName ref="#textgrid:24gvq">Wittwe</persName>.
+                        <docDate>1791.<ptr target="#textgrid:24h5d"/>
+                                </docDate>
+                            </docImprint>
+                  </titlePage>
+                  <pb edRef="#b" type="sp" n="II"/>
+                    </lem>
+               
+               <rdg wit="#a" type="ppl">
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#a" type="sp" n="I"/> Anweisung
+                        <lb/>zur <lb/>Bildung <lb/>angehender Theologen.</titlePart>
+                     <lb/>
+                     <byline>von <lb/>
+                        <docAuthor>
+                                    <choice>
+                           <abbr>D.</abbr>
+                           <expan>Doctor</expan>
+                        </choice>
+                           <index indexName="persons">
+                              <term>Nösselt, Johann August</term>
+                           </index>
+                                    <persName>Johann August
+                              Nösselt</persName>
+                                </docAuthor>.</byline>
+                     <lb/>
+                     <titlePart type="volume">Erster Theil.</titlePart>
+                     <lb/>
+                     <docImprint>Halle, <lb/>bey <index indexName="persons">
+                        <term>Curt, Johann Jacob</term>
+                     </index>
+                                <persName>Joh. Jac. Curts</persName> Wittwe.
+                        <docDate>1786.<ptr target="#textgrid:24gvh"/><!-- BL: kein Link im RDF-Objekt -->
+                                </docDate>
+                            </docImprint>
+                  </titlePage>
+                  <pb edRef="#a" type="sp" n="II"/>
+                    </rdg>
+               
+               <rdg wit="#c" type="ppl">
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#c" type="sp" n="I"/> Anweisung
+                        <lb/>zur <lb/>Bildung <lb/>angehender Theologen,</titlePart>
+                     <lb/>
+                     <byline>von <lb/>
+                                <docAuthor>
+                                    <index indexName="persons">
+                        <term>Nösselt, Johann August</term>
+                     </index>
+                                    <persName>Johann August Nösselt</persName>, <lb/>
+                                    <choice>
+                        <abbr>weil.</abbr>
+                        <expan>weiland</expan>
+                     </choice>
+                        <choice>
+                           <abbr>Königl.</abbr>
+                           <expan>Königlich</expan>
+                        </choice> Preußischem Gemeinderath, Doctor und Professor
+                        <lb/>der Theologie zu Halle.</docAuthor>
+                        <lb/>Herausgegeben <lb/>und mit Anmerkungen, literarischen Zusätzen
+                        <lb/>und Ergänzungen begleitet <lb/>von <lb/>
+                                <choice>
+                           <abbr>D.</abbr>
+                           <expan>Doctor</expan>
+                        </choice>
+                        <index indexName="persons">
+                           <term>Niemeyer, August Hermann</term>
+                        </index>
+                                <persName role="editor" ref="#textgrid:24gvf">August Hermann
+                           Niemeyer</persName>, <lb/>
+                                <choice>
+                              <abbr>Königl.</abbr>
+                              <expan>Königlich</expan>
+                           </choice>
+                        <choice>
+                           <abbr>Preuß.</abbr>
+                           <expan>Preußisch</expan>
+                        </choice> Oberkonsistorialrath, Kanzler und Professor der
+                        Theo-<lb/>logie auf der vereinigten Friedrichsuniversität Halle und
+                        Wittenberg, <lb/>Director der Frankischen Stiftungen, auch Ritter
+                        <lb/>des rothen Adlerordens dritter Klasse.</byline>
+                     <lb/>
+                     <titlePart type="volume">Erster Band.</titlePart>
+                     <lb/>
+                     <docEdition>Dritte Auflage.</docEdition>
+                     <lb/>
+                     <docImprint>Halle, <lb/>im Verlage der <index indexName="persons">
+                        <term>Curt, Johann Jacob</term>
+                     </index>
+                                <persName>Curtschen</persName> Buchhandlung.
+                        <lb/>
+                                <docDate>1818.<ptr target="#textgrid:25484"/>
+                                </docDate>
+                            </docImprint>
+                  </titlePage>
+                  <pb edRef="#c" type="sp" n="II"/>
+                    </rdg>
+            </app>
+         </div>
+         <div n="1">
+            <head>Einfaches Beispiel mit pp und v</head>
+            <p>[...] was sie <hi>sollten</hi>, ist <app>
+            <lem>die: –</lem>
+            <rdg wit="#c" type="pp">die,</rdg>
+         </app> daß diese so selten richtige Begriffe von dem <app>
+            <lem>Umfang</lem>
+            <rdg wit="#c" type="v">Umfange</rdg>
+         </app>, dem <app>
+            <lem>Werth</lem>
+            <rdg type="v" wit="#c">Werthe</rdg>
+         </app> der Wissenschaften, [...]</p>
+            </div>
+         <div>
+            <head>Einfaches Beispiel mit mehreren parallelen Varianten</head>
+            <p>
+                    <app>
+               <lem>Andrer</lem>
+               <rdg wit="#a" type="v">andrer</rdg>
+               <rdg wit="#c" type="v">Anderer</rdg>
+            </app> leiten <app>
+               <lem>laßen</lem>
+               <rdg wit="#a #c" type="v">lassen</rdg>
+            </app>, gegen die sie eine gewisse Vorliebe haben; kurz, weil sie
+               selten selbst</p>
+         </div>
+         <div n="2">
+            <head>Einfaches Beispiel mit NON BLE Tag im tei:lem</head>
+            <note>bla</note>
+            <div>
+                    <head>uk</head>
+                    <p>
+                        <app>
+               <lem>was</lem>
+               <rdg wit="#a #b" type="v">
+                  <app>
+                     <rdg wit="#a">
+                                        <hi>was</hi>
+                                    </rdg>
+                     <rdg wit="b">WAS</rdg>
+                  </app>,</rdg>
+            </app>
+                    </p>
+                </div>
+         </div>
+         <div>
+            <head>Einfaches Beispiel  mit tei:lem[@type='om'], tei:rdg[@type='om' | 'pt'] und tei:seg[@type='condensed']</head>
+            <head>
+                    <seg xml:id="var_1_vorrede_c_head">
+                        <pb edRef="#a" type="sp" n="III"/>
+               <pb edRef="#b" type="sp" n="III"/>
+               <pb edRef="#c" n="XIII"/>
+               <app>
+                  <lem>Vorrede</lem>
+                  <rdg wit="#c" type="pp">Vorreden des Verfassers bei</rdg>
+               </app>
+               <app>
+                  <lem>der ersten <app>
+                     <lem/>
+                     <rdg wit="#c" type="pt">und zweiten</rdg>
+                  </app> Ausgabe</lem>
+                  <rdg wit="#a" type="om"/>
+               </app>.</seg>
+                    <seg type="condensed">I. Vorrede der ersten
+                  Ausgabe</seg>
+                </head>
+         </div>
+         <div n="3">
+            <head>Komplexes Beispiel mit tei:lem in tei:lem</head>
+            <p>ich <app>
+               <lem>durch</lem>
+               <rdg wit="#c" type="pp">bei Abfassung</rdg>
+            </app> dieses <app>
+               <lem>ganze Buch</lem>
+               <rdg wit="#c" type="pp">ganzen Buchs</rdg>
+            </app> vor Augen gehabt<app>
+               <lem>, und mich daher bemüht, theils Manches <app>
+                  <lem>hervor zu ziehen</lem>
+                  <rdg type="pp" wit="#c">hervorzuziehen</rdg>
+               </app>, was zu sehr <app>
+                  <lem>bey</lem>
+                  <rdg wit="#c" type="v">bei</rdg>
+               </app> dem Studieren der Theologie übersehen wird, theils
+                  den wahren nur zu oft verkannten Werth mancher Studien und
+                  Uebungen, besonders durch deutliche <app>
+                     <lem>Beyspiele</lem>
+                     <rdg wit="#c" type="v">Beispiele</rdg>
+                  </app>, einleuchtender zu machen</lem>
+               <rdg wit="#a" type="om"/>
+            </app>.</p>
+         </div>
+         <div n="4">
+            <head>Einfaches Beispiel mit tei:rdg[@type='ptl']</head>
+            <p>
+                    <app>
+               <lem/>
+               <rdg wit="#a" type="ptl">Sollte man gerade einige der neuesten
+                  vermissen, die Empfehlung verdient hätten: so muß ich
+                  bemerken, daß ohngefehr die ersten zwölf Bogen dieses Buchs
+                  schon fast vor zwey Jahren ab<pb edRef="#a" type="sp" n="XIII"/>gedruckt waren.</rdg>
+            </app>
+                </p>
+         </div>
+         <div n="5">
+            <head>Komplexes Beispiel mit tei:rdg[@type='ptl'] und lehrem tei:lem</head>
+            <app>
+               <lem/>
+               <rdg wit="#c" type="ptl">
+                  <div type="preface" xml:id="preface_1_1_c">
+                     <head>
+                                <pb edRef="#c" type="sp" n="III"/> Vorrede des Herausgebers.<seg type="condensed">I. Vorrede des Herausgebers (c)</seg>
+                            </head>
+                     <p>Es darf in einer Zeit, wo die unendliche Menge neuer Schriften so
+                        leicht die älteren in Vergessenheit bringt, zu den erfreulichen
+                        Erscheinungen gerechnet werden, daß, nachdem <hi>sieben und
+                           zwanzig</hi> Jahre seit der <hi>letzten Ausgabe</hi> der
+                        vorliegenden Schrift [...] <hi>nebst einer Sammlung seiner zum Theil
+                           ungedruckten Aufsätze, Briefe und Fragmente</hi>, erschienen
+                        ist.</p>
+                     <p>Halle den 15ten März 1818. <lb/>
+                                <hi rend="right-aligned">Der
+                        Herausgeber.</hi>
+                            </p>
+                  </div>
+                    </rdg>
+            </app>
+         </div>
+         <div n="6">
+            <head>Hoch komplexes Beispiel mit Strukturapparat un tei:milestone</head>
+            <app type="structural-variance">
+               <lem>
+                        <seg xml:id="var_1_19_p1">Alles bisher <app>
+                  <lem>gesagte</lem>
+                  <rdg wit="#c" type="v">Gesagte</rdg>
+               </app> §. <app>
+                  <lem>
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19</ref>
+                     <app>
+                        <lem>kan</lem>
+                        <rdg wit="#a" type="v">kann</rdg>
+                     </app>
+                                </lem>
+                  <rdg wit="#c" type="pp">
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19.</ref>
+                     kann</rdg>
+               </app> dazu dienen, angehenden Theologen Liebe und Achtung gegen
+                  den Stand, dem sie sich widmen, <app>
+                     <lem>einzuflössen</lem>
+                     <rdg wit="#a #c" type="v">einzuflößen</rdg>
+                  </app>, und sie von ihrer wahren Bestimmung zu belehren.</seg>
+                  <app>
+                     <lem/>
+                     <rdg wit="#c" type="ptl">
+                                <milestone edRef="#c" type="structure" unit="p"/>
+                                <seg xml:id="var_1_19_p2">{Dieß ist um so mehr
+                        gleich bei dem [...] diesem Stande gewachsen
+                        seyn werden.} <hi rend="right-aligned">
+                                        <choice>
+                           <abbr>A. d. H.</abbr>
+                           <expan>Anmerkung des Herausgebers</expan>
+                        </choice>
+                                    </hi>
+                                </seg>
+                            </rdg>
+                  </app>
+                    </lem>
+               <rdg type="var-structure" wit="#c">
+                        <p copyOf="#var_1_19_p1"/>
+                  <p copyOf="#var_1_19_p2"/>
+                    </rdg>
+            </app>
+         </div>
+         <div type="section-group">
+                <div n="7">
+            <head>Komplexes Beispiel mit tei:rdg[@type='ppl'] und ineinandergeschachtelten Apparaten</head>
+            <p>
+                        <app>
+               <lem>könnte; und der hier angegebene scheint mit dem Sprachgebrauch am
+                  meisten <app>
+                     <lem>überein zu kommen</lem>
+                     <rdg wit="#c" type="pp">übereinzukommen</rdg>
+                  </app>, weil dadurch wirklich [...] Bequemlichkeit und Vergnügen, so wie mechanische
+                  und bildende Künste, um Bildung des Geistes zu befördern. <list>
+                     <item>
+                                        <choice>
+                        <abbr>S.</abbr>
+                        <expan>Siehe</expan>
+                     </choice>
+                        <hi>Philosophische Blicke auf Wissenschaften und
+                           Menschenleben</hi>, von <index indexName="persons">
+                              <term>Heinzelmann, Johann Christian Friedrich</term>
+                           </index>
+                                        <hi>
+                                            <persName ref="#textgrid:24kqp">Heinzelmann</persName>
+                                        </hi> und <app>
+                              <lem>
+                                                <index indexName="persons">
+                                 <term>Voss, Christian Daniel</term>
+                              </index>
+                                                <hi>
+                                                    <persName ref="#textgrid:24kqn">Voss</persName>
+                                                </hi>, Band.</lem>
+                              <rdg wit="#c" type="pp">
+                                                <hi>
+                                                    <persName>Voß</persName>
+                                                </hi>, Band</rdg>
+                           </app> 1.<!--<ptr target="#textgrid:24kqr"/>-->
+                        <choice>
+                           <abbr>S.</abbr>
+                           <expan>Seite</expan>
+                        </choice> 10 <choice>
+                           <abbr>f.</abbr>
+                           <expan>folgend</expan>
+                        </choice>
+                                    </item>
+                  </list>
+               </lem>
+               <rdg wit="#a" type="ppl">könnte. <ptr xml:id="klasse"/>Er hat den <index indexName="subjects">
+                  <term>Sprachgebrauch</term>
+               </index>Sprachgebrauch so gut [...] secundis tertiisque
+                  consistere. <index indexName="classical-authors">
+                     <term>
+                                        <persName>Cicero, Marcus Tullius</persName>
+                        <title>Orator.</title>
+                        <measure>1</measure>
+                                    </term>
+                  </index>
+                                <persName ref="#textgrid:24gxq">Cicero</persName> Orator. <choice>
+                     <abbr>cap.</abbr>
+                     <expan>caput/capitulum</expan>
+                  </choice> 1.</rdg>
+            </app>
+                    </p>
+         </div>
+            </div>
+         <div>
+            <p>
+               <app>
+                  <lem>Bla</lem>
+                  <rdg type="ppl" wit="#a">
+                     <div>
+                        <head>
+                           <a>Blub
+                              <note>hhj</note>
+                           </a>
+                        </head>
+                        <p>Test</p>
+                     </div>
+                  </rdg>
+                  <rdg type="ppl" wit="#b">
+                     Zeuge B
+                  </rdg>
+               </app>
+            </p>
+         </div>
+      </body>
+  </text>
+</TEI>

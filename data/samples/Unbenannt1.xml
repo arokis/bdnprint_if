@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Title</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <app>
+               <lem>
+                        <div type="preface">
+                     <head>Vorrede. <lb/>
+                                <app>
+                           <lem>Zur zweiten Ausgabe.</lem>
+                           <rdg wit="#b" type="om"/>
+                        </app>
+                                <seg type="condensed">Vorrede zur zweiten Ausgabe</seg>
+                            </head>
+                     <p>Vor sieben Jahren wurde diese kleine Schrift zum erstenmal auf meine eigene
+                        Kosten gedruckt. Weil sie aber bloß zum Leitfaden bey meinen akademischen
+                        Vorlesungen bestimmt war, und nur die Stelle zeitverderblicher Diktaten bey
+                        meinen Zuhörern vertreten sollte, hielt ich es für unnöthig, sie in den
+                        Buchhandel und durch diesen unter das Publikum kommen zu <app>
+                           <lem>lassen</lem>
+                           <rdg wit="#b" type="v">laßen</rdg>
+                        </app>. Inzwischen ward sie doch manchen zufälligerweise bekannt; und dieß
+                        veranlaßte dann allerley Anfragen. Um diesen für die Zukunft auszuweichen,
+                        und den Schein zu vermeiden, als würde dieses kleine Lehrbuch wohl gar
+                        absichtlich geheim gehalten, ließ ich es, als die erste Auflage vergriffen
+                        war, geschehen, daß eine zweite auf die sonst gewöhnliche Weise veran<pb edRef="#b" type="sp" n="IV"/>staltet wür<pb edRef="#c" type="sp" n="XII"/>de. Damit ich aber dem <app>
+                           <lem>Werkchen</lem>
+                           <rdg wit="#b" type="v">Werckchen</rdg>
+                        </app>, ehe es in fast nichts abzuändern nöthig fand.</p>
+                     <p>Neue Entdeckungen wird kein Verständiger in einem Buche dieser Art suchen.
+                        Man wird aber doch finden, daß ich die schäzbaren Aufklärungen mancher
+                        Dogmen, die wir dem Scharfsinne und dem Fleiß neuerer Gelehrten verdanken,
+                        so weit ich sie für gegründet hielt, <app>
+                           <lem>benutzt</lem>
+                           <rdg wit="#b" type="v">benuzt</rdg>
+                        </app> habe, und zuweilen wird selbst ein gerade in dieser Absicht
+                        beibehaltener von jenen Männern gebrauchter Ausdruck den kundigen Leser
+                        erinnern, was und wen ich dabey im Sinne hatte. Wären diese Bogen gleich
+                        damals, als sie entworfen wurden, in die Hände des Publikums gekommen, so
+                        hätte man vielleicht mehreres als izt daran gefunden, wodurch sie sich von
+                        den damals gewöhnlichsten Lehrbüchern unterscheiden. Welchen rechtschaffenen
+                        Lehrer wird es aber nicht freuen, wenn er siehet, daß Einsichten, welche er
+                        für richtig und nützlich erkennt, sich immer allgemeiner verbreiten? Es
+                        kommt auch hier gar nichts darauf an, was alt oder neu, diesem und jenem
+                        eigen oder mehrern gemein ist; son<pb edRef="#c" type="sp" n="XV"/>dern
+                        allein darauf mußte gesehen werden, daß aus dem ganzen Umfange der Dogmen
+                        und der darüber ver<pb edRef="#b" type="sp" n="VII"/>suchten Erklärungen und
+                        Erläuterungen, mit Absonderung bloß gelehrter Spekulationen, die so wenig
+                           <hi>mittelbar</hi> als unmittelbar dem Christen nützen können, diejenigen
+                        ausgehoben würden, welche einer auch Ungelehrten verständlichen und
+                        gemeinnützigen Behandlung fähig sind; daß diese so geordnet und von der
+                        Seite vornehmlich gezeiget würden, von welcher sie am leichtesten faßlich
+                        gemacht und zu praktischen Zwecken angewendet werden können; daß den
+                        gewöhnlichsten Zweifeln und Einwürfen so viel möglich gleich so vorgebeugt
+                        würde, daß es keiner Widerlegung derselben bedürfe; und daß endlich die
+                        Beweise so gewählt und so angelegt und gestellt würden, wie es zur
+                        Erleichterung einer gründlichen Ueberzeugung, selbst bey solchen, die mit
+                        Vorurtheilen gegen gewisse Lehrsätze oder Beweise schon eingenommen sind, am
+                        dienlichsten schien. Was insbesondere die Auswahl der biblischen
+                        Beweisstellen betrift, so bin ich dabey mit aller Sorgfalt zu Werk gegangen.
+                        Ich weiß zwar sehr wohl, daß manche angeführte Stellen von andern mir
+                        schäzbaren Gelehrten anders erklärt werden, und daß dagegen manche
+                        Beweissprüche hier fehlen, welche andere für tauglich halten. Allein ich
+                        bitte mir zuzu<pb edRef="#c" type="sp" n="XVI"/>trauen, daß ich jedesmal
+                        hinlängliche Gründe, so zu handeln, zu haben glaubte. Und <app>
+                           <lem>ausserdem</lem>
+                           <rdg wit="#b" type="v">auserdem</rdg>
+                        </app> muß ich noch erinnern, daß aus manchen Stellen nicht ein direkter
+                        sondern nur ein in<pb edRef="#b" type="sp" n="VIII"/>direkter Beweis
+                        geführet werden soll; daß die Beweisstellen nicht in der Meinung gehäuft
+                        sind, als käme etwas auf die Menge derselben an, sondern weil es dem
+                        Volkslehrer nützlich seyn kann, mehrere gleichsam in Vorrath zu haben, um
+                        bald von der einen, bald von einer andern, Gelegenheit zum Vortrage der
+                        wichtigsten Wahrheiten nehmen zu können; und daß ich durchgängig denen
+                        Lesarten folge, welche im Text meiner Ausgabe des <choice>
+                           <abbr>N. T.</abbr>
+                           <expan>Neues Testament</expan>
+                        </choice> stehen.</p>
+                     <p>Manchen Lesern wird vielleicht eine gewisse Einförmigkeit und
+                        Schwehrfälligkeit des Periodenbaues in diesen Blättern misfallen. Allein
+                        nach meiner Einsicht und Erfarung, ist ein Lehrbuch, welches durch <app>
+                           <lem>Akademische</lem>
+                           <rdg wit="#b" type="v">akademische</rdg>
+                        </app> Vorlesungen erläutert werden soll, am zweckmäßigsten eingerichtet,
+                        wann die zur Sache gehörigen Begriffe und Sätze in der gedrungensten Kürze
+                        vorgelegt und so unter ein<pb edRef="#c" type="sp" n="XVIII"/>ander
+                        verkettet sind, daß auf der einen Seite der Zusammenhang unter ihnen und
+                        ihre wechselsweisen Verhältnisse gegen einander, auf der andern aber die
+                        einzelnen Theile, in welche das Ganze zerlegt werden soll, deutlich auf
+                        einen Blick in die Augen fallen. Hiebey aber werden einförmige, <pb edRef="#b" type="sp" n="X"/> gedehnte und etwas zerstückelte Perioden
+                        kaum leicht ohne Affektation zu vermeiden seyn. Ein akademisches Lehrbuch
+                        ist aber auch nicht dazu bestimmt, flüchtig gelesen, sondern eigentlich
+                        studirt zu werden. Und daß ein solches zweckmäßiges Lehrbuch sich zugleich
+                        auch angenehm werde lesen lassen, oder daß ein Buch, das sich gut und leicht
+                        weglesen läßt, auch ein wirklich ganz zweckmäßiges Lehrbuch abgeben könne,
+                        daran zweifle ich immer noch sehr. Doch lasse ich gern jedem seine Weise.
+                        Geschrieben auf der Fürstlich Sächsischen Gesammt Akademie zu Jena, im März
+                        1786. <app>
+                           <lem/>
+                           <rdg wit="#b" type="ptl">
+                                        <hi rend="right-aligned">J. J.
+                              Griesbach</hi>
+                                    </rdg>
+                        </app>
+                            </p>
+                  </div>
+                    </lem>
+               <rdg wit="#a #d" type="om"/>
+            </app>
+         </div>
+         <div>
+            <p>
+               <app>
+                  <lem>Aber eben deswegen, und weil selbst zur gemeinschaftlichen Uebung in der
+                     Gottesverehrung gänzliche Uebereinstimmung in allen und jeden Meinungen nicht <app>
+                        <lem/>
+                        <rdg wit="#d" type="ptl">
+                                    <note place="bottom" type="authorial" xml:id="gr_4_149_note1">*) Hierin liegen die Hauptgründe zur Apologie
+                              der Reformation.</note>
+                                </rdg>
+                     </app>
+                        </lem>
+                  <rdg wit="#b" type="pp">e)</rdg>
+               </app>
+            </p>
+         </div>
+         <div>
+            <app>
+               <lem>
+                  <head>blab</head> Test<app>
+                     <lem>
+                        <head>
+                           <div>
+                              <head>
+                                            <p>
+                                                <ptr type="n"/>
+                                                <seg>
+                                                    <name>
+                                                        <hi>erster
+                                 p</hi>
+                                                    </name>
+                                                </seg>
+                                            </p>
+                                        </head>
+                           </div>
+                                </head>
+                                <p>
+                                    <hi>letztes p</hi>
+                                </p>
+                            </lem>
+                     <rdg type="ppl" wit="#b">
+                                <note>trtrrdg</note>
+                            </rdg>
+                     <rdg type="ppt" wit="#c">
+                                <note>tctcrdg</note>
+                            </rdg>
+                  </app>
+                    </lem>
+               <rdg type="ppl" wit="#a">
+                        <app>
+                     <lem>trtrlem</lem>
+                  <rdg wit="#f" type="om"/>   
+                     <rdg wit="#a" type="ptl">tata</rdg>
+                     <rdg wit="#b" type="ptl">tbtb</rdg>
+                     <rdg wit="#c" type="om"/>
+                     <rdg wit="#d" type="om"/> 
+                  <rdg wit="#e" type="om"/>   
+                     <rdg wit="#z" type="ppl">zzzz</rdg>
+                  </app>
+                    </rdg>
+               <rdg type="ppl" wit="#b">
+                        <note>
+                            <p>
+                                <name>name <p>zweites p</p>
+                                </name>
+                            </p>
+                        </note>
+                    </rdg>
+            </app>
+         </div>
+      </body>
+   </text>
+</TEI>

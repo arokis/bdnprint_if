@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Title</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Ein erstes 
+            <app>
+               <lem>Einfaches</lem>
+               <rdg>ein<hi>fach</hi>es</rdg>
+            </app> Beispiel
+         </p>
+         <p>Ein etwas <app>
+               <lem>komplexeres</lem>
+               <rdg>
+                  <hi>kom</hi>
+                  <ref>plizierteres</ref>
+                  <note>
+                     und 
+                     <hi>eine</hi> 
+                     Liste
+                     <list>
+                        <item>item1</item>
+                        <item>item2</item>
+                     </list>
+                  </note>
+               </rdg>
+            </app> Beispiel.</p>
+         <p>Ein drittes <app>
+               <lem>Beispiel</lem>
+               <rdg type="om">mit einer Liste und items
+                  <list>
+                     <item>item1.2</item>
+                     <item>ite<seg>sdsds</seg>m2.2</item> 
+                  </list> 
+               </rdg>
+            </app> here.</p>
+         <p>Ein viertes <app>
+               <lem>Beispiel</lem>
+               <rdg>
+                  <hi>Beispiel</hi> das einen ganzen
+                  <div>
+                     <head>Block</head> 
+                     <p>mit Paragraph enthält</p>
+                  </div>
+               </rdg>
+            </app> here.
+         </p>
+         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+         <p>Ein weiteres Beispiel mit<app>
+            <lem>nix</lem>
+            <rdg type="ptl">
+               <div>
+                  <div>
+                     <head>
+                                    <item>
+                                        <note>
+                                            <div>viele kleine blöcke</div>
+                                        </note>
+                                    </item>
+                                </head>
+                     <div>
+                        <div>
+                           <node>das ist</node> eine Anmerkung mit Absatz und<note>
+                              <p>
+                                 <div>
+                                    <list>
+                                       <item>Liste</item>
+                                    </list>
+                                    <hi>
+                                                        <ref>yx</ref>
+                                                    </hi>
+                                    <milestone/>
+                                 </div>
+                              </p>
+                           </note>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </rdg>
+         </app> here.
+         </p>
+         <p>Ein milestone Beispiel <app>
+            <lem>
+                        <head>Beispiel</head>
+                    </lem>
+            <rdg type="ptl">
+                  <note>
+                     <milestone/>
+                     <p>das ist</p> <t>keine</t> dritte
+                     <list>
+                        <item>Liste<ptr/>
+                                </item>
+                     </list>
+                  </note>
+            </rdg>
+         </app> here.
+         </p>
+         <p>Ein letztes krasses Beispiel  mit einer menge rdgs und verschachtelten rdgs<app>
+            <lem>
+                        <head>
+                            <p>
+                                <unclear>Beispiel</unclear> doof </p>
+                        </head>
+                    </lem>
+            <rdg wit="a" type="ptl">
+               <note>
+                  <seg>Jetzt kommt noch ein app 
+                     <app>
+                        <lem>Bei</lem>
+                        <rdg type="ptl" wit="#y">bey <div>mir</div> gehts<note>super</note>
+                                    </rdg>
+                     </app>
+                     spiel
+                  </seg>
+                  <p>Test</p>
+               </note>
+            </rdg>
+            <rdg wit="c" type="ptl">
+               <div xml:id="buhja">
+                  <uwe>
+                     <head>sdsd</head>
+                     hghgBeispiel
+                  </uwe>
+                  <p>
+                     Test 
+                     <franzi>ue</franzi>
+                  </p>
+               </div>
+            </rdg>
+            <rdg wit="b" type="mist">
+               <seg>
+                 <h>
+                    kjkj
+                    <note>
+                       <p>Test</p>
+                    </note>
+                 </h>
+               </seg>
+            </rdg>
+         </app> 
+            here <t>u</t> <b>werner ist <zu>doof</zu>
+                </b>.
+         </p>
+         <p>Ein milestone Beispiel <app>
+            <lem>
+                        <head>
+                            <seg type="item">Beispiel</seg>
+                        </head>
+                    </lem>
+            <rdg type="om" wit="#buhja"/>
+         </app> here.
+         </p>
+         <p>
+            <app>
+               <lem>1785<ptr target="#textgrid:252st"/> in 2 Theilen in
+                  8; oder an die practische</lem>
+               <rdg wit="#c" type="ppl">
+                        <seg xml:id="var_1_129_p2_item1c">1785. 2 Theile,
+                  8.</seg>
+                  <milestone unit="line" edRef="#c" type="structure"/>
+                        <seg xml:id="var_1_129_p2_item2">
+                            <index indexName="persons">
+                     <term>Seyfert, Ernst Joseph Alexander</term>
+                  </index>
+                            <hi>
+                                <persName ref="#textgrid:252xp">E. J.
+                     A. Seyfert's</persName>
+                            </hi> auf Geschichte und
+                     Kritik gegründete lateinische Sprachlehre,
+                     1798–1802.<ptr target="#textgrid:252xr"/>, auch
+                     abgekürzt 1810.<ptr target="#textgrid:252xt"/>
+                        </seg>
+                  <milestone unit="p" edRef="#c" type="structure"/>
+                        <seg xml:id="var_1_129_p3">Ganz vorzüglich</seg>
+                  <milestone unit="line" edRef="#c" type="structure"/>
+                        <seg xml:id="var_1_129_p3_item1">
+                            <index indexName="persons">
+                     <term>Wenck, Helfrich Bernhard</term>
+                  </index>
+                            <hi>
+                                <persName ref="#textgrid:252xw">Wenk's</persName>
+                            </hi> lateinische Sprachlehre,
+                     besonders nach der neuen Bearbeitung von <index indexName="persons">
+                        <term>Grotefend, Georg Friedrich</term>
+                     </index>
+                            <persName ref="#textgrid:252z0">Grotenfend</persName>. 1816.<ptr target="#textgrid:252xv"/>
+                        </seg>
+                  <milestone unit="line" edRef="#c" type="structure"/>
+                    </rdg>
+            </app>
+         </p>
+         <p>
+            <app>
+               <lem/>
+               <rdg wit="#c" type="ptl">
+                        <note place="end" type="authorial">
+                            <choice>
+                  <abbr>
+                                    <hi>Anm.</hi>
+                                </abbr>
+                  <expan>Anmerkung</expan>
+               </choice> Unstreitig läßt sich von der
+                  <hi>
+                                <persName>Sokratischen</persName><!-- AB: Index? RDF? -->
+                     Methode</hi> Manches für den Katecheten lernen. Doch hat man in
+                  neuern Zeiten das Sokratisiren<!-- AB: Index? RDF? --> sehr
+                  übertrieben, und dadurch der rechten Methode des Unterrichts der
+                  Anfänger geschadet. <hi rend="right-aligned">
+                                <choice>
+                     <abbr>D. H.</abbr>
+                     <expan>Der Herausgeber</expan>
+                  </choice>
+                            </hi>
+                        </note>
+                    </rdg>
+            </app>
+         </p>
+         <p>
+            <app>
+               <lem>
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#b" type="sp" n="I"/>
+                        <choice>
+                           <orig>Anweisung <lb/>zur <lb/>Bildung <lb/>angehender
+                              Theologen,</orig>
+                           <seg type="toc-item">Anweisung zur Bildung angehender
+                              Theologen</seg>
+                        </choice>
+                            </titlePart>
+                     <lb/>
+                     <byline>von <lb/>
+                                <docAuthor>
+                                    <choice>
+                        <abbr>D.</abbr>
+                        <expan>Doctor</expan>
+                     </choice>
+                        <index indexName="persons">
+                           <term>Nösselt, Johann August</term>
+                        </index>
+                                    <persName ref="#textgrid:24gvc">Johann August
+                           Nösselt</persName>
+                                </docAuthor>.</byline>
+                  </titlePage>
+                  <pb edRef="#b" type="sp" n="II"/>
+                    </lem>
+               
+               <rdg wit="#a" type="ppl">
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#a" type="sp" n="I"/> Anweisung
+                        <lb/>zur <lb/>Bildung <lb/>angehender Theologen.</titlePart>
+                     <lb/>
+                  </titlePage>
+                  <pb edRef="#a" type="sp" n="II"/>
+                    </rdg>
+               
+               <rdg wit="#c" type="ppl">
+                  <titlePage>
+                     <titlePart type="main">
+                                <pb edRef="#c" type="sp" n="I"/> Anweisung
+                        <lb/>zur <lb/>Bildung <lb/>angehender Theologen,</titlePart>
+                     <lb/>
+                     <docImprint>Halle, <lb/>im Verlage der <index indexName="persons">
+                        <term>
+                                        <choice>
+                           <expan>Curtschen</expan>
+                           <abbr>C.</abbr>
+                        </choice>, Johann Jacob</term>
+                     </index>
+                                <persName>
+                                    <choice>
+                        <expan>Curtschen</expan>
+                        <abbr>C.</abbr>
+                     </choice>
+                                </persName> Buchhandlung.
+                        <lb/>
+                                <docDate>1818.<ptr target="#textgrid:25484"/>
+                                </docDate>
+                            </docImprint>
+                  </titlePage>
+                  <pb edRef="#c" type="sp" n="II"/>
+                    </rdg>
+            </app>
+         </p>
+         <p>
+            <app>
+               <lem>
+                        <index indexName="subjects">
+                  <term>Prediger</term>
+               </index>
+                        <hi>Prediger</hi>
+                    </lem>
+               <rdg wit="#c" type="v">
+                        <hi>Predigers</hi>
+                    </rdg>
+            </app>
+         </p>
+         <p>
+            <app>
+               <lem>
+                        <hi>Prediger</hi>
+                        <index indexName="subjects">
+                  <term>Prediger</term>
+               </index>
+                    </lem>
+               <rdg wit="#c" type="v">
+                        <hi>Predigers</hi>
+                    </rdg>
+            </app>
+         </p>
+      </body>
+   </text>
+</TEI>

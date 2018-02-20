@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <text>
+      <app n="1">
+         <lem>
+                <body>
+               <div>
+                  <app n="2">
+                     <lem>
+                        <div>
+                           <seg>
+                              <hi>
+                                 <app n="3">
+                                    <lem>
+                                       <div>
+                                          <hi>OPEN SIGLE für app [1,2,3]/lem</hi>
+                                          <hi>Bla</hi>
+                                       </div> bla CLOSE SIGNLE für app[3]/lem
+                                    </lem>
+                                    <rdg type="v" wit="#c">OPEN SIGLE für app [3]/rdg"c" Blä CLOSE SIGNLE für app[3]/rdg"c"</rdg>
+                                    <rdg wit="#o" type="om"/>
+                                 </app>
+                              </hi>
+                              CLOSE SIGNLE für app[2]/lem
+                           </seg>
+                        </div>
+                     </lem>
+                     <rdg type="ppl" wit="#a">
+                        <div>
+                           <head>OPEN SIGLE für app [2]/rdg"a"
+                              <a>Blub <note>
+                                                <app n="4">
+                                 <lem>OPEN SIGLE für app [4]/lem hhj CLOSE SIGLE für app [4]/lem</lem>
+                                 <rdg wit="#d" type="v">OPEN SIGLE für app [4]/rdg"#d" hallo CLOSE SIGLE für app [4]/rdg"#d"</rdg>
+                                    </app>
+                                            </note>
+                              </a>
+                           </head>
+                           <p>Test CLOSE SIGLE für app[2]/rdg"a"</p>
+                        </div>
+                     </rdg>
+                     <rdg type="v" wit="#f">F</rdg>
+                     <rdg type="ppl" wit="#b">OPEN SIGLE für app [2]/rdg"b" Zeuge B <aligned>CLOSE SIGLE für app[2]/rdg"b" und app[1]/lem</aligned>
+                            </rdg>
+                     <rdg type="pt" wit="#c">C</rdg>
+                     <rdg type="ppl" wit="#e">E</rdg>
+                     <rdg type="om" wit="#g"/>
+                  </app>
+               </div>
+            </body>
+            </lem>
+         <rdg wit="#z" type="z">OPEN SIGLE für app [1]/rdg"z" test <note>note test CLOSE SIGLE für app[1]/rdg"z"</note>
+            </rdg>
+         <rdg wit="#t" type="l">hgjg</rdg>
+         <rdg wit="#r" type="l">hgjg</rdg>
+      </app>
+      <app>
+         <lem>
+            <div type="preface">
+               <head>
+                        <pb edRef="#c" type="sp" n="III"/>Vorrede. <lb/>zur dritten Ausgabe.<seg type="condensed">Vorrede zur dritten Ausgabe</seg>
+                    </head>
+               <p>Der schnelle ... <note type="editorial">Anmerkung</note>gegen ihre Gewohnheit zu nehmen sich
+               entschliessen mußte. <lb/>Jena <lb/>im September 1787. <lb/>
+                        <lb/>
+               <hi rend="right-aligned">D. J. J. Griesbach.</hi>
+                    </p>
+            </div>
+         </lem>
+         <rdg wit="#a #b #d" type="om"/>
+      </app>
+      <app> 
+         <lem>
+            <div>
+               <p>
+                  <app>
+                     <lem>Kein Griesbach</lem>
+                     <rdg wit="#b" type="ptl">
+                        <aligned rend="right-aligned">J. J. Griesbach</aligned>
+                     </rdg> 
+                  </app>
+               </p>
+            </div>
+         </lem> 
+         <rdg wit="#a #d" type="om"/> 
+      </app>
+      <app>
+         <lem>
+                <div type="preface">
+            <head>SIG-OPEN(lem[a,d]) Vorrede. <lb/>
+                        <app>
+               <lem>SIG-OPEN(lem2[b]) Zur zweiten Ausgabe. SIG-CLOSE(lem2[b])</lem>
+               <rdg wit="#b" type="om"/>
+            </app>
+                        <seg type="condensed">Vorrede zur zweiten Ausgabe</seg>
+                    </head>
+            <p>Vor sieben Jahren ... Fürstlich Sächsischen Gesammt Akademie zu Jena, im März
+               1786. <hi>Uwe</hi> <hi>Uwe</hi>
+                        <app>
+                  <lem/>
+                  <rdg wit="#b" type="ptl">
+                                <aligned rend="right-aligned">SIG-OPEN(rdg"b") J. J. Griesbach SIG-CLOSE(rdg"b") SIG-CLOSE(lem)
+                  </aligned>
+                            </rdg>
+               </app>
+                    </p>
+         </div>
+            </lem>
+         <rdg wit="#t" type="v">hgjg</rdg>
+         <rdg wit="#a" type="v">ghshghg</rdg>
+         <rdg wit="#a #d" type="om"/>
+      </app>
+      <app>
+         <lem>
+            <div>
+               <app>
+                  <lem>
+                     <head>Schnullibumms</head>
+                  </lem>
+                  <rdg wit="k" type="v">k</rdg>
+                  <rdg wit="l" type="v">l</rdg>
+                  <rdg wit="m" type="ptl">m</rdg>
+               </app>
+            </div>
+         </lem>
+         <rdg wit="q" type="v">q</rdg>
+         <rdg wit="r" type="v">r</rdg>
+         <rdg wit="s" type="ptl">s</rdg>
+      </app>
+      <div>
+         <app>
+            <lem>
+               <app> 
+                  <lem>beigelegt werden können;</lem> 
+                  <rdg wit="#a" type="pp">beigeleget werden,</rdg> 
+               </app>
+            </lem> 
+            <rdg wit="#d" type="pp">Theil nehmen und wahrhaft göttliche Werke verrichten kann;</rdg> 
+         </app>
+      </div>
+      <div type="section-group">
+         <app>
+            <lem>Test</lem>
+            <rdg type="ptl" wit="#c">
+               <div type="preface">
+                  <p>
+                     <hi rend="right-aligned">Der Herausgeber <index>
+                                    <term>asasas</term>
+                                </index>
+                            </hi>
+                  </p>
+                  <note type="editorial">
+                     <label>asdf</label>
+                     <p>dgdgh</p>
+                  </note>
+               </div>
+            </rdg>
+         </app>
+      </div>
+      <div>
+         <p>Das ist ein Test
+      der über <hi>zwei</hi> <hi>oder</hi> mehrere Zeilen 
+      <choice>
+         <var>läuft!</var>
+         <var>laeuft!</var>
+      </choice>
+         </p>
+         <p>Das ist der<pb/> Test und derein<pb/>zige Test der <pb/> <hi>page</hi>
+                <pb/>
+                <hi>bre<lb>uzgtats</lb>aks
+         richtig zählt</hi>
+            </p>
+      </div>
+   </text>
+</TEI>

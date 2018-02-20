@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <text>
+      <app n="1">
+         <lem>
+            <div>
+               <head>
+                  <item>
+                     <hi>
+                        <item>
+                                    <hi>ÜberschriftT</hi>
+                                </item>
+                     </hi>
+                  </item>
+                  <hi>1</hi>
+               </head>
+               <p>Erster Paragraph</p>
+               <p>
+                  <hi>
+                     <aligned>
+                        <app>
+                           <lem>
+                              <l>
+                                 <label>Zweiter Paragraph</label>
+                              </l>
+                           </lem>
+                           <rdg type="v" wit="#a">Erste V zu Zweiter Paragraph</rdg>
+                           <rdg type="ppl" wit="#b">PPL zu Zweiter Paragraph</rdg>
+                           <rdg type="v" wit="#c">Zweite V zu Zweiter Paragraph</rdg>
+                        </app>
+                     </aligned>
+                  </hi>
+               </p>
+            </div>
+         </lem>
+         <rdg wit="#z" type="om"/>
+         <rdg wit="#t" type="ppl">
+            <p>Erster Paragraph in T</p>
+            <p>Zweiter Paragraph in T</p>
+         </rdg>
+         <rdg wit="#r" type="ppl">
+            <p>Erster Paragraph in R</p>
+            <p>Zweiter Paragraph in R</p>
+         </rdg>
+      </app>
+      <app>
+         <lem>
+            <div>APP2</div>
+         </lem>
+         <rdg wit="#z" type="om"/>
+         <rdg wit="#t" type="ppl">
+            <p>Erster Paragraph in T</p>
+            <p>Zweiter Paragraph in T</p>
+         </rdg>
+      </app>
+      <app>
+         <lem>
+            <div>
+               <app>
+                  <lem/>
+                  <rdg wit="#h" type="ppl">
+                     <p>Erster Paragraph in H</p>
+                     <p>Zweiter Paragraph in H</p>
+                  </rdg>
+               </app>
+            </div>
+         </lem>
+         <rdg wit="#g" type="ppl">
+            <p>Erster Paragraph in G</p>
+         </rdg>
+      </app>
+      <app n="TEST1">
+         <lem>
+            <seg>
+               <div>
+                  <list>
+                     <item>Item 1</item>
+                     <item>Item 2</item>
+                  </list>
+                  <note>
+                     <seg>Anmerkung 1</seg>
+                  </note>
+               </div>
+            </seg>
+         </lem>
+         <rdg wit="#g" type="ppl">
+            <seg>Erstes SEG in G</seg>
+            <seg>
+               <p>
+                  <app>
+                     <lem>Erster Absatz in lem</lem>
+                     <rdg wit="#b" type="pp">Erster Absatz in rdg</rdg>
+                  </app>
+               </p>
+               <p> Zweiter Absatz in <hi>HI</hi>
+               </p>
+            </seg>
+         </rdg>
+      </app>
+      <app n="TEST2">
+         <lem>
+            <div>
+               <head>Test 2</head>
+               <p>Erste Absatz von Test 2</p>
+               <p>
+                  <app>
+                     <lem>Zweiter Absatz von Test 2</lem>
+                     <rdg wit="#b" type="pp">
+                                <hi>Zweiter Absatz von
+                        Test 2</hi>
+                            </rdg>
+                  </app>
+               </p>
+            </div>
+         </lem>
+         <rdg wit="#z" type="om"/>
+      </app>
+      <app n="TEST3">
+         <lem>
+            <div>
+               <head>
+                  <app>
+                     <lem>
+                        <hi>Test 3 in lem</hi>
+                     </lem>
+                     <rdg wit="#c" type="ptl">
+                        <aligned>Test 3 (aligned in rdg)</aligned>
+                     </rdg>
+                  </app>
+               </head>
+               <p> Erster Absatz in Test 3 <aligned>
+                     <app>
+                        <lem>
+                           <hi>Aligned im ersten Absatz im lem</hi>
+                        </lem>
+                        <rdg wit="#c" type="v">Aligned im ersten Absatz im rdg[v]</rdg>
+                     </app>
+                  </aligned>
+               </p>
+            </div>
+         </lem>
+         <rdg wit="#a" type="om"/>
+         <rdg wit="#b" type="ptl">
+            <div>
+               <app>
+                  <lem/>
+                  <rdg wit="#e" type="ppl">
+                     <p>PPL P in E</p>
+                  </rdg>
+                  <rdg wit="#d" type="ppl">
+                     <note>PPL NOTE in d</note>
+                     <note type="authorial">PPL //text()[matches(., "[\n\r\t]")] NOTE in d</note>
+                  </rdg>
+               </app>
+            </div>
+         </rdg>
+      </app>
+      <div>
+         <p>
+            <app>
+               <lem>bloß <app>
+                     <lem>gewißen, zumal ältern und nur die theologischen Systeme
+                        betreffenden%%</lem>
+                     <rdg wit="#b" type="pp">gewissen</rdg>
+                  </app>@@</lem>
+               <rdg wit="#a" type="pp">blos gewissen</rdg>
+            </app>
+         </p>
+      </div>
+      <div>
+         <p>
+            <app>
+               <lem>bloß <app>
+                     <lem>gewißen, zumal ältern und nur die theologischen Systeme betreffenden</lem>
+                     <rdg wit="#b" type="pp">gewissen</rdg>
+                  </app>
+               </lem>
+               <rdg wit="#a" type="pp">blos gewissen</rdg>
+            </app>
+         </p>   
+      </div>   
+      <div>   
+         <head>
+            <app>                                                                                                                                  
+               <lem> 
+                  <app>     
+                     <lem>      
+                        <aligned>                              
+                           <pb edRef="#c" type="sp" n="I"/>    
+                           <hi>LEM Überschrift</hi>
+                        </aligned>
+                            </lem>
+                     <rdg wit="#a" type="v">A Überschrift</rdg>
+                  </app>
+               </lem>     
+               <rdg wit="#a" type="v">überschrift</rdg>
+            </app>
+         </head>
+         <p>Ers<pb/>ter Absatz</p>
+         <p>
+                <pb/>Zweiter <pb/> Absatz<pb/>
+            </p>
+         <p>
+            <pb/>
+            <docAuthor>bhab<pb/>shabsjh</docAuthor>
+         </p>
+         <p>Dritter <pb/>Absatz <hi>mit</hi>
+                <pb/>
+                <hi>Highli<pb type="no-break"/>ghting</hi>.<pb/>
+            </p>
+         <pb edRef="#d" type="sp" n="XV"/>
+            <app> <lem>Inhalt.</lem>
+            </app>
+      </div>
+   </text>
+</TEI>
