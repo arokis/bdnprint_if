@@ -34,13 +34,15 @@ declare function markerset:collect-markers
             attribute {"count"}{count($reading/following-sibling::rdg)},
             for $sibling in $reading/following-sibling::rdg
             return(
-                element {name($sibling)} {
+                if(not($sibling[@type = 'v']))
+                then element {name($sibling)} {
                     $sibling/@*,
                     attribute {"context"}{"lem"}
                 }
+                else ()
             )
         )
-        else if ($reading[self::rdg]) then (
+        else if ($reading[self::rdg[not(@type = 'v')]]) then (
             element {name($reading)} {
                 $reading/@*,
                 attribute {"context"}{"rdg"}
@@ -105,16 +107,14 @@ declare function markerset:merge-markers
  :)
 declare function markerset:marker
     ($name as xs:string, $type as xs:string, $reading as node()) as element(){
-    if($type = 'open' and data($reading/@type) = 'v' and $reading/@context = 'rdg')
-    then ()
-    else (element {$name} {
+    element {$name} {
         (:attribute bdnp_parent {$node/parent::node()/name()}, :)
         attribute wit { replace(data($reading/@wit), '#', '') },
         attribute type { data($reading/@type) },
         attribute ref { data($reading/@id) },
         attribute mark { $type },
         attribute context { $reading/@context }
-    })
+    }
 };
 
 
