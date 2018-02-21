@@ -214,5 +214,18 @@
             <app> <lem>Inhalt.</lem>
             </app>
       </div>
+      <app>
+        <lem>die christliche Religion, deren einzige authentische Erkenntnißquelle das N. T. ist,
+            (§.17.) die Merkmale ihrer Wahrheit und Göttlichkeit immerfort an sich trägt, und ihre
+            für alle Menschenwohlthätige Natur nicht verändert hat:</lem>
+        <rdg wit="#a" type="ppl">die Verpflichtung, daß alle, die des Unterrichts der Apostel
+            theilhaftig werden würden, denselben annehmen und befolgen sollen, Marc. 16, <app>
+                <lem wit="#a">15,</lem>
+                <rdg wit="#b" type="v">15.</rdg>
+            </app> 16. (vergl. §. 15. b.) nie auf gewisse Zeitenund Menschen <app>
+                <lem wit="#a">eingeschränckt</lem>
+                <rdg wit="#b" type="v">eingeschränkt</rdg>
+            </app>, oder wieder aufgehoben worden ist:</rdg>
+        </app>
    </text>
 </TEI>

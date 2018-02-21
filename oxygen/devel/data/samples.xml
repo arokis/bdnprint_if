@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader xml:id="noe_header">
@@ -15,7 +14,9 @@
             <title level="a">BdN VI: Johann August Nösselt, Anweisung zur Bildung angehender
                Theologen (1. Aufl. 1786/89; 2. Aufl. 1791; 3. Aufl. 1818/19)</title>
             <author>
-               <persName><ref target="#textgrid:24gvc">Nösselt, Johann August</ref></persName>
+               <persName>
+                        <ref target="#textgrid:24gvc">Nösselt, Johann August</ref>
+                    </persName>
             </author>
             <principal>
                <persName>Beutel, Albrecht</persName>
@@ -112,10 +113,12 @@
                <title type="main">Bibliothek der Neologie (BdN)</title>
                <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
             </title>
-            <title level="a"><title type="main">BdN VI: Johann August Nösselt, Anweisung zur
+            <title level="a">
+                    <title type="main">BdN VI: Johann August Nösselt, Anweisung zur
                Bildung angehender Theologen (1. Aufl. 1786/89; 2. Aufl. 1791; 3. Aufl.
                1818/19)</title>
-               <title type="condensed">Nösselt, Anweisung zur Bildung angehender Theologen <hi rend="superscript">1</hi>1786/89–<hi rend="superscript">3</hi>1818/19</title></title>
+               <title type="condensed">Nösselt, Anweisung zur Bildung angehender Theologen <hi rend="superscript">1</hi>1786/89–<hi rend="superscript">3</hi>1818/19</title>
+                </title>
             <respStmt>
                <resp>Reihenherausgeber</resp>
                <persName>Beutel, Albrecht</persName>
@@ -302,70 +305,95 @@
             <app>
                <lem>
                   <titlePage>
-                     <titlePart type="main"><pb edRef="#b" type="sp" n="I"/>
+                     <titlePart type="main">
+                                <pb edRef="#b" type="sp" n="I"/>
                         <choice>
                            <orig>Anweisung <lb/>zur <lb/>Bildung <lb/>angehender
                               Theologen,</orig>
                            <seg type="toc-item">Anweisung zur Bildung angehender
                               Theologen</seg>
-                        </choice></titlePart>
+                        </choice>
+                            </titlePart>
                      <lb/>
-                     <byline>von <lb/><docAuthor><choice>
+                     <byline>von <lb/>
+                                <docAuthor>
+                                    <choice>
                         <abbr>D.</abbr>
                         <expan>Doctor</expan>
                      </choice>
                         <index indexName="persons">
                            <term>Nösselt, Johann August</term>
-                        </index><persName ref="#textgrid:24gvc">Johann August
-                           Nösselt</persName></docAuthor>.</byline>
+                        </index>
+                                    <persName ref="#textgrid:24gvc">Johann August
+                           Nösselt</persName>
+                                </docAuthor>.</byline>
                      <lb/>
-                     <titlePart type="volume"><choice>
+                     <titlePart type="volume">
+                                <choice>
                         <orig>Erster Band.</orig>
                         <seg type="toc-item">Erster Band</seg>
-                     </choice></titlePart>
+                     </choice>
+                            </titlePart>
                      <lb/>
                      <docEdition>Zweyte vermehrte und verbesserte Auflage.</docEdition>
                      <lb/>
                      <docImprint>Halle, <lb/>bey <index indexName="persons">
                         <term>Curt, Johann Jacob</term>
-                     </index><persName ref="#textgrid:24gvp">Joh. Jac. Curts</persName>
+                     </index>
+                                <persName ref="#textgrid:24gvp">Joh. Jac. Curts</persName>
                         <persName ref="#textgrid:24gvq">Wittwe</persName>.
-                        <docDate>1791.<ptr target="#textgrid:24h5d"/></docDate></docImprint>
+                        <docDate>1791.<ptr target="#textgrid:24h5d"/>
+                                </docDate>
+                            </docImprint>
                   </titlePage>
-                  <pb edRef="#b" type="sp" n="II"/></lem>
+                  <pb edRef="#b" type="sp" n="II"/>
+                    </lem>
                
                <rdg wit="#a" type="ppl">
                   <titlePage>
-                     <titlePart type="main"><pb edRef="#a" type="sp" n="I"/> Anweisung
+                     <titlePart type="main">
+                                <pb edRef="#a" type="sp" n="I"/> Anweisung
                         <lb/>zur <lb/>Bildung <lb/>angehender Theologen.</titlePart>
                      <lb/>
                      <byline>von <lb/>
-                        <docAuthor><choice>
+                        <docAuthor>
+                                    <choice>
                            <abbr>D.</abbr>
                            <expan>Doctor</expan>
                         </choice>
                            <index indexName="persons">
                               <term>Nösselt, Johann August</term>
-                           </index><persName>Johann August
-                              Nösselt</persName></docAuthor>.</byline>
+                           </index>
+                                    <persName>Johann August
+                              Nösselt</persName>
+                                </docAuthor>.</byline>
                      <lb/>
                      <titlePart type="volume">Erster Theil.</titlePart>
                      <lb/>
                      <docImprint>Halle, <lb/>bey <index indexName="persons">
                         <term>Curt, Johann Jacob</term>
-                     </index><persName>Joh. Jac. Curts</persName> Wittwe.
-                        <docDate>1786.<ptr target="#textgrid:24gvh"/><!-- BL: kein Link im RDF-Objekt --></docDate></docImprint>
+                     </index>
+                                <persName>Joh. Jac. Curts</persName> Wittwe.
+                        <docDate>1786.<ptr target="#textgrid:24gvh"/><!-- BL: kein Link im RDF-Objekt -->
+                                </docDate>
+                            </docImprint>
                   </titlePage>
-                  <pb edRef="#a" type="sp" n="II"/></rdg>
+                  <pb edRef="#a" type="sp" n="II"/>
+                    </rdg>
                
                <rdg wit="#c" type="ppl">
                   <titlePage>
-                     <titlePart type="main"><pb edRef="#c" type="sp" n="I"/> Anweisung
+                     <titlePart type="main">
+                                <pb edRef="#c" type="sp" n="I"/> Anweisung
                         <lb/>zur <lb/>Bildung <lb/>angehender Theologen,</titlePart>
                      <lb/>
-                     <byline>von <lb/><docAuthor><index indexName="persons">
+                     <byline>von <lb/>
+                                <docAuthor>
+                                    <index indexName="persons">
                         <term>Nösselt, Johann August</term>
-                     </index><persName>Johann August Nösselt</persName>, <lb/><choice>
+                     </index>
+                                    <persName>Johann August Nösselt</persName>, <lb/>
+                                    <choice>
                         <abbr>weil.</abbr>
                         <expan>weiland</expan>
                      </choice>
@@ -375,14 +403,17 @@
                         </choice> Preußischem Gemeinderath, Doctor und Professor
                         <lb/>der Theologie zu Halle.</docAuthor>
                         <lb/>Herausgegeben <lb/>und mit Anmerkungen, literarischen Zusätzen
-                        <lb/>und Ergänzungen begleitet <lb/>von <lb/><choice>
+                        <lb/>und Ergänzungen begleitet <lb/>von <lb/>
+                                <choice>
                            <abbr>D.</abbr>
                            <expan>Doctor</expan>
                         </choice>
                         <index indexName="persons">
                            <term>Niemeyer, August Hermann</term>
-                        </index><persName role="editor" ref="#textgrid:24gvf">August Hermann
-                           Niemeyer</persName>, <lb/><choice>
+                        </index>
+                                <persName role="editor" ref="#textgrid:24gvf">August Hermann
+                           Niemeyer</persName>, <lb/>
+                                <choice>
                               <abbr>Königl.</abbr>
                               <expan>Königlich</expan>
                            </choice>
@@ -400,10 +431,15 @@
                      <lb/>
                      <docImprint>Halle, <lb/>im Verlage der <index indexName="persons">
                         <term>Curt, Johann Jacob</term>
-                     </index><persName>Curtschen</persName> Buchhandlung.
-                        <lb/><docDate>1818.<ptr target="#textgrid:25484"/></docDate></docImprint>
+                     </index>
+                                <persName>Curtschen</persName> Buchhandlung.
+                        <lb/>
+                                <docDate>1818.<ptr target="#textgrid:25484"/>
+                                </docDate>
+                            </docImprint>
                   </titlePage>
-                  <pb edRef="#c" type="sp" n="II"/></rdg>
+                  <pb edRef="#c" type="sp" n="II"/>
+                    </rdg>
             </app>
          </div>
          <div n="1">
@@ -417,10 +453,12 @@
          </app>, dem <app>
             <lem>Werth</lem>
             <rdg type="v" wit="#c">Werthe</rdg>
-         </app> der Wissenschaften, [...]</p></div>
+         </app> der Wissenschaften, [...]</p>
+            </div>
          <div>
             <head>Einfaches Beispiel mit mehreren parallelen Varianten</head>
-            <p><app>
+            <p>
+                    <app>
                <lem>Andrer</lem>
                <rdg wit="#a" type="v">andrer</rdg>
                <rdg wit="#c" type="v">Anderer</rdg>
@@ -433,18 +471,27 @@
          <div n="2">
             <head>Einfaches Beispiel mit NON BLE Tag im tei:lem</head>
             <note>bla</note>
-            <div><head>uk</head><p><app>
+            <div>
+                    <head>uk</head>
+                    <p>
+                        <app>
                <lem>was</lem>
                <rdg wit="#a #b" type="v">
                   <app>
-                     <rdg wit="#a"><hi>was</hi></rdg>
+                     <rdg wit="#a">
+                                        <hi>was</hi>
+                                    </rdg>
                      <rdg wit="b">WAS</rdg>
                   </app>,</rdg>
-            </app></p></div>
+            </app>
+                    </p>
+                </div>
          </div>
          <div>
             <head>Einfaches Beispiel  mit tei:lem[@type='om'], tei:rdg[@type='om' | 'pt'] und tei:seg[@type='condensed']</head>
-            <head><seg xml:id="var_1_vorrede_c_head"><pb edRef="#a" type="sp" n="III"/>
+            <head>
+                    <seg xml:id="var_1_vorrede_c_head">
+                        <pb edRef="#a" type="sp" n="III"/>
                <pb edRef="#b" type="sp" n="III"/>
                <pb edRef="#c" n="XIII"/>
                <app>
@@ -457,8 +504,10 @@
                      <rdg wit="#c" type="pt">und zweiten</rdg>
                   </app> Ausgabe</lem>
                   <rdg wit="#a" type="om"/>
-               </app>.</seg><seg type="condensed">I. Vorrede der ersten
-                  Ausgabe</seg></head>
+               </app>.</seg>
+                    <seg type="condensed">I. Vorrede der ersten
+                  Ausgabe</seg>
+                </head>
          </div>
          <div n="3">
             <head>Komplexes Beispiel mit tei:lem in tei:lem</head>
@@ -486,13 +535,15 @@
          </div>
          <div n="4">
             <head>Einfaches Beispiel mit tei:rdg[@type='ptl']</head>
-            <p><app>
+            <p>
+                    <app>
                <lem/>
                <rdg wit="#a" type="ptl">Sollte man gerade einige der neuesten
                   vermissen, die Empfehlung verdient hätten: so muß ich
                   bemerken, daß ohngefehr die ersten zwölf Bogen dieses Buchs
                   schon fast vor zwey Jahren ab<pb edRef="#a" type="sp" n="XIII"/>gedruckt waren.</rdg>
-            </app></p>
+            </app>
+                </p>
          </div>
          <div n="5">
             <head>Komplexes Beispiel mit tei:rdg[@type='ptl'] und lehrem tei:lem</head>
@@ -500,7 +551,9 @@
                <lem/>
                <rdg wit="#c" type="ptl">
                   <div type="preface" xml:id="preface_1_1_c">
-                     <head><pb edRef="#c" type="sp" n="III"/> Vorrede des Herausgebers.<seg type="condensed">I. Vorrede des Herausgebers (c)</seg></head>
+                     <head>
+                                <pb edRef="#c" type="sp" n="III"/> Vorrede des Herausgebers.<seg type="condensed">I. Vorrede des Herausgebers (c)</seg>
+                            </head>
                      <p>Es darf in einer Zeit, wo die unendliche Menge neuer Schriften so
                         leicht die älteren in Vergessenheit bringt, zu den erfreulichen
                         Erscheinungen gerechnet werden, daß, nachdem <hi>sieben und
@@ -508,24 +561,31 @@
                         vorliegenden Schrift [...] <hi>nebst einer Sammlung seiner zum Theil
                            ungedruckten Aufsätze, Briefe und Fragmente</hi>, erschienen
                         ist.</p>
-                     <p>Halle den 15ten März 1818. <lb/><hi rend="right-aligned">Der
-                        Herausgeber.</hi></p>
-                  </div></rdg>
+                     <p>Halle den 15ten März 1818. <lb/>
+                                <hi rend="right-aligned">Der
+                        Herausgeber.</hi>
+                            </p>
+                  </div>
+                    </rdg>
             </app>
          </div>
          <div n="6">
             <head>Hoch komplexes Beispiel mit Strukturapparat un tei:milestone</head>
             <app type="structural-variance">
-               <lem><seg xml:id="var_1_19_p1">Alles bisher <app>
+               <lem>
+                        <seg xml:id="var_1_19_p1">Alles bisher <app>
                   <lem>gesagte</lem>
                   <rdg wit="#c" type="v">Gesagte</rdg>
                </app> §. <app>
-                  <lem><ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19</ref>
+                  <lem>
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19</ref>
                      <app>
                         <lem>kan</lem>
                         <rdg wit="#a" type="v">kann</rdg>
-                     </app></lem>
-                  <rdg wit="#c" type="pp"><ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19.</ref>
+                     </app>
+                                </lem>
+                  <rdg wit="#c" type="pp">
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19.</ref>
                      kann</rdg>
                </app> dazu dienen, angehenden Theologen Liebe und Achtung gegen
                   den Stand, dem sie sich widmen, <app>
@@ -534,38 +594,60 @@
                   </app>, und sie von ihrer wahren Bestimmung zu belehren.</seg>
                   <app>
                      <lem/>
-                     <rdg wit="#c" type="ptl"><milestone edRef="#c" type="structure" unit="p"/><seg xml:id="var_1_19_p2">{Dieß ist um so mehr
+                     <rdg wit="#c" type="ptl">
+                                <milestone edRef="#c" type="structure" unit="p"/>
+                                <seg xml:id="var_1_19_p2">{Dieß ist um so mehr
                         gleich bei dem [...] diesem Stande gewachsen
-                        seyn werden.} <hi rend="right-aligned"><choice>
+                        seyn werden.} <hi rend="right-aligned">
+                                        <choice>
                            <abbr>A. d. H.</abbr>
                            <expan>Anmerkung des Herausgebers</expan>
-                        </choice></hi></seg></rdg>
-                  </app></lem>
-               <rdg type="var-structure" wit="#c"><p copyOf="#var_1_19_p1"/>
-                  <p copyOf="#var_1_19_p2"/></rdg>
+                        </choice>
+                                    </hi>
+                                </seg>
+                            </rdg>
+                  </app>
+                    </lem>
+               <rdg type="var-structure" wit="#c">
+                        <p copyOf="#var_1_19_p1"/>
+                  <p copyOf="#var_1_19_p2"/>
+                    </rdg>
             </app>
          </div>
-         <div type="section-group"><div n="7">
+         <div type="section-group">
+                <div n="7">
             <head>Komplexes Beispiel mit tei:rdg[@type='ppl'] und ineinandergeschachtelten Apparaten</head>
-            <p><app>
+            <p>
+                        <app>
                <lem>könnte; und der hier angegebene scheint mit dem Sprachgebrauch am
                   meisten <app>
                      <lem>überein zu kommen</lem>
                      <rdg wit="#c" type="pp">übereinzukommen</rdg>
                   </app>, weil dadurch wirklich [...] Bequemlichkeit und Vergnügen, so wie mechanische
                   und bildende Künste, um Bildung des Geistes zu befördern. <list>
-                     <item><choice>
+                     <item>
+                                        <choice>
                         <abbr>S.</abbr>
                         <expan>Siehe</expan>
                      </choice>
                         <hi>Philosophische Blicke auf Wissenschaften und
                            Menschenleben</hi>, von <index indexName="persons">
                               <term>Heinzelmann, Johann Christian Friedrich</term>
-                           </index><hi><persName ref="#textgrid:24kqp">Heinzelmann</persName></hi> und <app>
-                              <lem><index indexName="persons">
+                           </index>
+                                        <hi>
+                                            <persName ref="#textgrid:24kqp">Heinzelmann</persName>
+                                        </hi> und <app>
+                              <lem>
+                                                <index indexName="persons">
                                  <term>Voss, Christian Daniel</term>
-                              </index><hi><persName ref="#textgrid:24kqn">Voss</persName></hi>, Band.</lem>
-                              <rdg wit="#c" type="pp"><hi><persName>Voß</persName></hi>, Band</rdg>
+                              </index>
+                                                <hi>
+                                                    <persName ref="#textgrid:24kqn">Voss</persName>
+                                                </hi>, Band.</lem>
+                              <rdg wit="#c" type="pp">
+                                                <hi>
+                                                    <persName>Voß</persName>
+                                                </hi>, Band</rdg>
                            </app> 1.<!--<ptr target="#textgrid:24kqr"/>-->
                         <choice>
                            <abbr>S.</abbr>
@@ -573,22 +655,28 @@
                         </choice> 10 <choice>
                            <abbr>f.</abbr>
                            <expan>folgend</expan>
-                        </choice></item>
+                        </choice>
+                                    </item>
                   </list>
                </lem>
                <rdg wit="#a" type="ppl">könnte. <ptr xml:id="klasse"/>Er hat den <index indexName="subjects">
                   <term>Sprachgebrauch</term>
                </index>Sprachgebrauch so gut [...] secundis tertiisque
                   consistere. <index indexName="classical-authors">
-                     <term><persName>Cicero, Marcus Tullius</persName>
+                     <term>
+                                        <persName>Cicero, Marcus Tullius</persName>
                         <title>Orator.</title>
-                        <measure>1</measure></term>
-                  </index><persName ref="#textgrid:24gxq">Cicero</persName> Orator. <choice>
+                        <measure>1</measure>
+                                    </term>
+                  </index>
+                                <persName ref="#textgrid:24gxq">Cicero</persName> Orator. <choice>
                      <abbr>cap.</abbr>
                      <expan>caput/capitulum</expan>
                   </choice> 1.</rdg>
-            </app></p>
-         </div></div>
+            </app>
+                    </p>
+         </div>
+            </div>
          <div>
             <p>
                <app>

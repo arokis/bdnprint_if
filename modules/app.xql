@@ -1,9 +1,9 @@
 xquery version "3.1";
 
-module namespace app="http://bdn-edition.de/apps/interformat/templates";
+module namespace app="http://bdn-edition.de/intermediate_format/templates";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
-import module namespace config="http://bdn-edition.de/apps/interformat/config" at "config.xqm";
+import module namespace config="http://bdn-edition.de/intermediate_format/config" at "config.xqm";
 
 (:~
  : This is a sample templating function. It will be called by the templating module if

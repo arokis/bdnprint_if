@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <text>
@@ -10,7 +9,9 @@
                <head>
                   <item> 
                      <hi>
-                        <item><hi>Überschrift</hi></item>
+                        <item>
+                                    <hi>Überschrift</hi>
+                                </item>
                      </hi>
                   </item> <hi>1</hi>
                </head>
@@ -33,7 +34,7 @@
                </p>
             </div>
          </lem>
-         <rdg wit="#z" type="om"></rdg>
+         <rdg wit="#z" type="om"/>
          <rdg wit="#t" type="ppl">
             <p>Erster Paragraph in T</p>
             <p>Zweiter Paragraph in T</p>
@@ -47,7 +48,7 @@
          <lem>
             <div>APP2</div>
          </lem>
-         <rdg wit="#z" type="om"></rdg>
+         <rdg wit="#z" type="om"/>
          <rdg wit="#t" type="ppl">
             <p>Erster Paragraph in T</p>
             <p>Zweiter Paragraph in T</p>
@@ -57,7 +58,7 @@
          <lem>
             <div>
                <app>
-                  <lem></lem>
+                  <lem/>
                   <rdg wit="#h" type="ppl">
                      <p>Erster Paragraph in H</p>
                      <p>Zweiter Paragraph in H</p>
@@ -106,12 +107,14 @@
                <p>
                   <app>
                      <lem>Zweiter Absatz von Test 2</lem>
-                     <rdg wit="#b" type="pp"><hi>Zweiter Absatz von Test 2</hi></rdg>
+                     <rdg wit="#b" type="pp">
+                                <hi>Zweiter Absatz von Test 2</hi>
+                            </rdg>
                   </app>
                </p>
             </div>
          </lem>
-         <rdg wit="#z" type="om"></rdg>
+         <rdg wit="#z" type="om"/>
       </app>
       <app n="TEST3">
          <lem>
@@ -139,11 +142,11 @@
                </p>
             </div>
          </lem>
-         <rdg wit="#a" type="om"></rdg>
+         <rdg wit="#a" type="om"/>
          <rdg wit="#b #e" type="ptl">
             <div>
                <app>
-                  <lem />
+                  <lem/>
                   <rdg wit="#e" type="ppl">
                      <p>PPL P in E</p>
                   </rdg>
