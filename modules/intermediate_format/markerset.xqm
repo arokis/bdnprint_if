@@ -41,10 +41,21 @@ declare function markerset:collect-markers
             )
         )
         else if ($reading[self::rdg]) then (
-            element {name($reading)} {
-                $reading/@*,
-                attribute {"context"}{"rdg"}
-            }
+            if ($reading[@type = "ppl" or @type = "pp"][descendant::lem[@wit]]) then (
+                let $children-readings := $reading/descendant::rdg
+                return(
+                    element {name($reading)} {
+                        $reading/@*,
+                        attribute {"context"}{"changed-lem ", data($children-readings/@wit)}
+                    }
+                )
+            ) 
+            else (
+                element {name($reading)} {
+                    $reading/@*,
+                    attribute {"context"}{"rdg"}
+                }
+            )
         )
         else ()
     )
@@ -105,16 +116,14 @@ declare function markerset:merge-markers
  :)
 declare function markerset:marker
     ($name as xs:string, $type as xs:string, $reading as node()) as element(){
-    if($type = 'open' and data($reading/@type) = 'v' and $reading/@context = 'rdg')
-    then ()
-    else (element {$name} {
+    element {$name} {
         (:attribute bdnp_parent {$node/parent::node()/name()}, :)
         attribute wit { replace(data($reading/@wit), '#', '') },
         attribute type { data($reading/@type) },
         attribute ref { data($reading/@id) },
         attribute mark { $type },
         attribute context { $reading/@context }
-    })
+    }
 };
 
 
