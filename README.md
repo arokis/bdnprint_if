@@ -28,8 +28,8 @@ Scripts to convert bdn-TEI into an intermediate-format dealing with reading mark
   - place it in your app somewhere or as suggested here in a subfolder /rest
 
 # Running the conversion
-  - call intermediate_format.xql via REST with the GET-Parameter "path" (exemplary call: "http://localhost:8080/exist/rest/apps/YOUR_APP/rest/intermediate_format.xql?path=/db/apps/bdn/data/samples/griesbach_full.xml")
-  - "path" must be a XML-URI existing in your app context (There is no existence-check yet)
+  - call intermediate_format.xql via REST with the GET-Parameter "path" (exemplary call: http://localhost:8080/exist/apps/interformat/rest/intermediate_format.xql?path=/db/apps/interformat/data/samples/samples4.xml")
+  - "path" must be a XML-URI existing in your eXist-instance context (There is no existence-check yet)
   - wait
 
 # Changes of the Intermediate Format
