@@ -303,9 +303,9 @@ declare function ident:identify-targets
  : @param $reading-sequence sequence holding the evaluation reports of the relevant readings in the nodes' context
  : @return converted node
  : 
- : @version 2.1 (2018-02-20)
+ : @version 2.2 (2018-02-21)
  : @status working
- : @author Uwe Sikora
+ : @author Uwe Sikora, Michelle Rodzis
  :)
 declare function ident:walk
     ( $nodes as node()*, $reading-sequence as item()* ) as item()* {
@@ -322,9 +322,16 @@ declare function ident:walk
             )
             case element(teiHeader) return ( $node )
             
-            (: considering all tei:rdg except structural-variances and textcritical tei:rdg[@type="v"]:)
+            (: 
+                considering all tei:rdg except structural-variances and textcritical tei:rdg[@type="v"]
+                Also ignore tei:rdg with types "typo_corr", "invisible-ref", "varying-target" - They don't need Markers 
+            :)
             case element(rdg) return (
-                if ( not($node/parent::app[ @type eq "structural-variance" ] or $node[@type="v"]) ) then (
+                if ( not(
+                        $node/parent::app[ @type eq "structural-variance" ] or 
+                        $node[@type="v" or @type="typo_corr" or @type="invisible-ref" or @type="varying-target"]
+                        ) 
+                    ) then (
                     let $identified-targets := ident:identify-targets($node)
                     return ident:mark-node( $node, ($reading-sequence, ident:identify-targets($node)) )
                 ) else (

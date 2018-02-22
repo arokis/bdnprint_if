@@ -4,9 +4,9 @@ xquery version "3.0";
  : *******************************************************************************************
  : This module is a helper module and defines functions to collect and construct reading markers
  :
- : @version 2.0 (2018-01-29)
+ : @version 2.1 (2018-02-21)
  : @status working
- : @author Uwe Sikora
+ : @author Uwe Sikora, Michelles Rodzis
  :)
 module namespace markerset="http://bdn.edition.de/intermediate_format/markerset";
 declare default element namespace "http://www.tei-c.org/ns/1.0";
@@ -22,17 +22,18 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
  : @param $reading the reading node to collect readings for
  : @return node() representing a markerset of readings for the given node
  :
- : @version 2.0 (2018-01-29)
+ : @version 2.1 (2018-02-21)
  : @status working
- : @author Uwe Sikora
+ : @author Uwe Sikora, Michelle Rodzis
  :)
 declare function markerset:collect-markers
     ( $reading as node()* ) as item() {
 
     let $markers := (
         if ($reading[self::lem]) then (
+            (: In case of tei:lem ignore all siglae for types "typo_corr", "invisible-ref", "varying-target" :)
             attribute {"count"}{count($reading/following-sibling::rdg)},
-            for $sibling in $reading/following-sibling::rdg
+            for $sibling in $reading/following-sibling::rdg[ not(@type="typo_corr" or @type="invisible-ref" or @type="varying-target") ]
             return(
                 element {name($sibling)} {
                     $sibling/@*,
@@ -41,6 +42,7 @@ declare function markerset:collect-markers
             )
         )
         else if ($reading[self::rdg]) then (
+            (: Preparing "Leittextwechsel" :)
             if ($reading[@type = "ppl" or @type = "pp"][descendant::lem[@wit]]) then (
                 let $children-readings := $reading/descendant::rdg
                 return(

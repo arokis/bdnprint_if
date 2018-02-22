@@ -2,20 +2,208 @@
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader xml:id="gr_header">
+        <!-- Dateibeschreibung -->
+        <fileDesc>
+            <!-- Titelbeschreibung -->
+            <titleStmt>
+                <title level="s">
+                    <title type="main">Bibliothek der Neologie (BdN)</title>
+                    <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+                </title>
+                <title level="a">BdN III: Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik
+                    (1. Aufl. 1779; 2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789), <date>Juni 2018</date>
+                </title>
+                <title type="condensed">Anleitung zum Studium der populären Dogmatik</title>
+                <author>
+                    <persName>
+                        <ref target="#textgrid:2r5h7">Griesbach, Johann Jakob</ref>
+                    </persName>
+                </author>
+                <principal>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                </principal>
+                <respStmt>
+                    <resp>Herausgeber</resp>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Unter Mitarbeit von</resp>
+                    <persName>Figgen, Larissa</persName>
+                    <persName>Huck, Johannes</persName>
+                    <persName>Lemitz, Bastian</persName>
+                    <persName>Söntgerath, Olga</persName>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>TEI-Schema und Metadaten</resp>
+                    <persName>Sikora, Uwe</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Visualisierung und Portal</resp>
+                    <persName>Rodzis, Michelle</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Principal</resp>
+                    <persName>
+                        <ref target="#textgrid:2r5z5">Neuroth, Heike</ref>
+                    </persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Editor</resp>
+                    <persName>Goormann, Lena</persName>
+                    <persName>Meier, Lars-Steffen</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2014">Visualisierung und Portal</resp>
+                    <persName>Göbel, Matthias</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Visualisierung und Portal</resp>
+                    <persName>Riebl, Hannes</persName>
+                </respStmt>
+                <sponsor>Deutsche Forschungsgemeinschaft (DFG)</sponsor>
+            </titleStmt>
+
+            <!-- Editionsbeschreibung -->
+            <editionStmt>
+                <edition>Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik (1. Aufl. 1779;
+                    2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789), hg. v. Marco Stallmann (BdN III),
+                        <date>2018</date>
+                </edition>
+            </editionStmt>
+
+
+            <!-- Publikationsbeschreibung -->
+            <publicationStmt>
+                <publisher>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische Auswahledition in zehn
+                    Bänden", Seminar für Kirchengeschichte II, Evangelisch-Theologische Fakultät, Westfälische
+                    Wilhelms-Universität Münster</publisher>
+                <publisher>Niedersächsische Staats- und Universitätsbibliothek Göttingen, Abteilungen:
+                    Forschung und Entwicklung, Informations- und Literaturversorgung Zentrale Erwerbung und
+                    Erschließung (Gruppe Metadaten und Datenkonversion)</publisher>
+                <distributor>
+                    <persName>Stallmann, Marco</persName>
+                </distributor>
+                <authority>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z6">Blümm, Mirjam</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z3">Söntgerath, Olga</ref>
+                    </persName>
+                </authority>
+                <date>Juni 2018</date>
+                <availability status="free">
+                    <licence target="https://creativecommons.org/licenses/by-sa/3.0/legalcode">
+                        <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p>
+                    </licence>
+                </availability>
+            </publicationStmt>
+
+            <!-- Reihenbeschreibung -->
+            <seriesStmt>
+                <title level="s">
+                    <title type="main">Bibliothek der Neologie (BdN)</title>
+                    <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+                </title>
+                <title level="a">BdN III: Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik
+                    (1. Aufl. 1779; 2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789)</title>
+                <respStmt>
+                    <resp>Reihenherausgeber</resp>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z3">Söntgerath, Olga</ref>
+                    </persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Bandherausgeber</resp>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+            </seriesStmt>
+
+
+            <!-- Quellenbeschreibung -->
+            <sourceDesc>
+                <listWit>
+                    <witness xml:id="a">
+                        <desc>1. Aufl. 1779</desc>
+                        <bibl>D. Johann Jakob Griesbach's Anleitung zur gelehrten Kenntnis der populären
+                            Dogmatik. Jena, mit Hellers Schriften, 1779</bibl>
+                    </witness>
+                    <witness xml:id="b">
+                        <desc>2. Aufl. 1786</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Zweite stark vermehrte
+                            Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                            Cunoischen Erben. 1786</bibl>
+                    </witness>
+                    <witness xml:id="c">
+                        <desc type="base-text">3. Aufl. 1787</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Dritte verbesserte
+                            Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                            Cunoischen Erben. 1787</bibl>
+                    </witness>
+                    <witness xml:id="d">
+                        <desc>4. Aufl. 1789</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Vierte neu
+                            durchgesehene Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, bei
+                            Christ. Heinr. Cuno's Erben. 1789.</bibl>
+                    </witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+
+        <!-- Beschreibung der Editionsrichtlinien -->
+        <encodingDesc>
+            <projectDesc>
+                <p>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische Auswahledition in zehn
+                    Bänden", Seminar für Kirchengeschichte II, Evangelisch-Theologische Fakultät, Westfälische
+                    Wilhelms-Universität Münster</p>
+            </projectDesc>
+            <editorialDecl>
+                <p>Eine umfassende Beschreibung der Editionsrichtlinien wird auf dem Portal des Projekts
+                    veröffentlicht: <ref target="http://www.bdn-edition.de">http://www.bdn-edition.de</ref>.</p>
+            </editorialDecl>
+        </encodingDesc>
+
+        <revisionDesc>
+            <change/>
+        </revisionDesc>
+
+    </teiHeader>
    <text>
       <app n="1">
          <lem>
             <div>
                <head>
-                  <item>
-                     <hi>
-                        <item>
-                                    <hi>ÜberschriftT</hi>
-                                </item>
-                     </hi>
-                  </item>
+                  <div>
+                  <head>tr</head>
+                      <item>
+                         <hi>
+                            <item>
+                                        <hi>ÜberschriftT</hi>
+                                    </item>
+                         </hi>
+                      </item>
+                    </div>
                   <hi>1</hi>
                </head>
+               <div>
+                        <head>3</head>
+                    </div>
                <p>Erster Paragraph</p>
                <p>
                   <hi>
@@ -227,5 +415,17 @@
                 <rdg wit="#b" type="v">eingeschränkt</rdg>
             </app>, oder wieder aufgehoben worden ist:</rdg>
         </app>
+        <app>     
+             <lem>      
+                <aligned>                              
+                   <pb edRef="#c" type="sp" n="I"/>    
+                   <hi>LEM Überschrift</hi>
+                </aligned>
+                    </lem>
+             <rdg wit="#a" type="typo_corr">A Überschrift</rdg>
+             <rdg wit="#b" type="invisible-ref">
+                <di>A Überschrift</di>
+            </rdg>
+          </app>
    </text>
 </TEI>
