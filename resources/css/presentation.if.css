@@ -2,7 +2,11 @@
 
 .ble {
     display: block;
-    background: #E9E8E9;
+    /*background: #E9E8E9;*/
+}
+
+span.aligned {
+    display: block;
 }
 
 span.label {
@@ -22,4 +26,43 @@ span.rdgMarker .om.open::before, span.rdgMarker .om.closeing::after {
     font-size: 70%;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+/****************************************/
+/*      Textcritical elements           */
+/****************************************/
+.app::before {
+    content: "tei:app";
+    display: block;
+    font-family: consolas;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 0 2px 0;
+}
+
+.app {
+    display: block;
+    padding: 8px;
+}
+
+.lem::before, .rdg::before {
+    display: block;
+    font-family: consolas;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 0 2px 0;
+}
+
+.lem::before {
+    content: "tei:lem";
+}
+
+.rdg::before {
+    content: "tei:rdg";
+}
+
+.lem, .rdg {
+    border: 1px solid #E9E8E9;
+    display: block;
+    padding: 8px;
 }

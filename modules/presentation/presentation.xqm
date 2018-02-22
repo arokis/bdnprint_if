@@ -42,14 +42,16 @@ declare function presentation:tei-body
             
             case element(tei:aligned) return (
                 element{"span"}{
-                    attribute {"style"}{"display:block"},
                     attribute {"class"}{"aligned ble"},
                     presentation:tei-body($node/node())
                 }
             )
             
             case element(tei:app) return (
-                presentation:tei-body($node/node())
+                element{"span"}{
+                    attribute {"class"}{"app"},
+                    presentation:tei-body($node/node())
+                }
             )
             
             case element(tei:body) return (
@@ -158,7 +160,10 @@ declare function presentation:tei-body
             )
             
             case element(tei:lem) return (
-                presentation:tei-body($node/node())
+                element{"span"}{
+                    attribute {"class"}{"lem"},
+                    presentation:tei-body($node/node())
+                }
             )
             
             case element(tei:list) return (
@@ -180,7 +185,7 @@ declare function presentation:tei-body
             )
             
             case element(tei:p) return (
-                element{"p"}{
+                element{"span"}{
                     attribute {"class"}{"p ble"},
                     presentation:tei-body($node/node())
                 }
@@ -198,7 +203,11 @@ declare function presentation:tei-body
             )
             
             case element(tei:rdg) return (
-                presentation:rdg($node)
+(:                presentation:rdg($node):)
+                element{"span"}{
+                    attribute {"class"}{"rdg"},
+                    presentation:tei-body($node/node())
+                }
             )
             
             case element(tei:rdgMarker) return (
