@@ -16,6 +16,11 @@ else if ($exist:path eq "/") then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="index.html"/>
     </dispatch>
+else if ($exist:path eq "/convert/uri=") then
+    (: forward root path to index.xql :)
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="../rest/intermediate_format.xql?path={substring-after($exist:path, '/convert/uri=')}"/>
+    </dispatch>
 else if (ends-with($exist:resource, ".html")) then
     (: the html page is run through view.xql to expand templates :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
