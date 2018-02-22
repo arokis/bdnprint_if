@@ -1,0 +1,25 @@
+/* Intermediate formate presentation styles go here */
+
+.ble {
+    display: block;
+    background: #E9E8E9;
+}
+
+span.label {
+    font-size: 100%;
+    color: #000000;
+}
+
+span.rdgMarker {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+span.rdgMarker .om.open::before, span.rdgMarker .om.closeing::after {
+    content: "om";
+    background: #FA81FE;
+    vertical-align: super;
+    font-size: 70%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
