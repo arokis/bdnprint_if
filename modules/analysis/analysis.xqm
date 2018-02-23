@@ -8,15 +8,15 @@ xquery version "3.0";
  : @status development
  : @author Uwe Sikora
  :)
-module namespace presentation="http://bdn-edition.de/intermediate_format/presentation";
+module namespace analysis="http://bdn-edition.de/intermediate_format/analysis";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
-
+import module namespace console="http://exist-db.org/xquery/console";
 
 (:############################# Modules Functions #############################:)
 
 (:~
- : presentation:html
+ : analysis:html
  : html presentation of an intermediate-format xml document
  :
  : @param $nodes the nodes to be converted
@@ -26,7 +26,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  : @status working
  : @author Uwe Sikora
  :)
-declare function presentation:tei-body
+declare function analysis:tei-body
     ($nodes as node()*) as item()* {
 
     for $node in $nodes
@@ -35,7 +35,7 @@ declare function presentation:tei-body
             case processing-instruction() return ()
             case comment() return ( $node )
             case text() return (
-                $node
+                translate($node, "@", " ")
             )
 
             case element(tei:abbr) return ()
@@ -43,67 +43,67 @@ declare function presentation:tei-body
             case element(tei:aligned) return (
                 element{"span"}{
                     attribute {"class"}{"aligned ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:app) return (
                 element{"span"}{
                     attribute {"class"}{"app"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:body) return (
                 element{"div"}{
                     attribute {"class"}{"body"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:byline) return (
                 element{"div"}{
                     attribute {"class"}{"byline"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:choice) return (
-                presentation:tei-body($node/node())
+                analysis:tei-body($node/node())
             )
             
             case element(tei:div) return (
                 element{"div"}{
                     attribute {"class"}{"div ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:docAuthor) return (
                 element{"div"}{
                     attribute {"class"}{"docAuthor ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:docDate) return (
                 element{"span"}{
                     attribute {"class"}{"docDate"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:docEdition) return (
                 element{"div"}{
                     attribute {"class"}{"docEdition ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:docImprint) return (
                 element{"div"}{
                     attribute {"class"}{"docImprint ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
@@ -111,7 +111,7 @@ declare function presentation:tei-body
                 element{"span"}{
                     attribute {"class"}{"expan"},
 (:                    attribute {"data-tooltip"}{data($node/following-sibling::tei:abbr)},:)
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
@@ -121,14 +121,14 @@ declare function presentation:tei-body
                 return
                 element{concat("h", $count)}{
                     attribute {"class"}{"head ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:hi) return (
                 element{"span"}{
                     attribute {"class"}{"hi"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
@@ -137,21 +137,21 @@ declare function presentation:tei-body
             case element(tei:item) return (
                 element{"li"}{
                     attribute {"class"}{"item ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:l) return (
                 element{"span"}{
                     attribute {"class"}{"l"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:label) return (
                 element{"span"}{
                     attribute {"class"}{"label"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
@@ -160,34 +160,34 @@ declare function presentation:tei-body
             )
             
             case element(tei:lem) return (
-                element{"span"}{
-                    attribute {"class"}{"lem"},
-                    presentation:tei-body($node/node())
-                }
+                if ($node/parent::tei:app[@type = "structural-variance"]) then (
+                    analysis:tei-body($node/node())
+                ) 
+                else(analysis:lem($node)) 
             )
             
             case element(tei:list) return (
                 element{"ul"}{
                     attribute {"class"}{"list ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:milestone) return (
-                presentation:tei-body($node/node())
+                analysis:tei-body($node/node())
             )
 
             case element(tei:note) return (
                 element{"p"}{
                     attribute {"class"}{"note ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:p) return (
                 element{"span"}{
                     attribute {"class"}{"p ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
@@ -198,57 +198,56 @@ declare function presentation:tei-body
             case element(tei:persName) return (
                 element{"span"}{
                     attribute {"class"}{"persName"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:rdg) return (
-(:                presentation:rdg($node):)
-                element{"span"}{
-                    attribute {"class"}{"rdg"},
-                    presentation:tei-body($node/node())
-                }
+                if ($node/parent::tei:app[@type = "structural-variance"]) then (
+                    analysis:tei-body($node/node())
+                ) 
+                else(analysis:rdg($node))
             )
             
             case element(tei:rdgMarker) return (
                 element {"span"}{
                     attribute {"class"}{"rdgMarker"},
-                    presentation:rdgMarker($node)
+                    analysis:rdgMarker($node)
                 }
             )
             
             case element(tei:seg) return (
                 element{"span"}{
                     attribute {"class"}{"seg"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:text) return (
                 element{"div"}{
                     attribute {"class"}{"text"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:TEI) return (
                 element{"div"}{
                     attribute {"class"}{"tei"},
-                    presentation:tei-body($node/tei:text)
+                    analysis:tei-body($node/tei:text)
                 }
             )
             
             case element(tei:titlePage) return (
                 element{"div"}{
                     attribute {"class"}{"titlePage"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
             
             case element(tei:titlePart) return (
                 element{"div"}{
                     attribute {"class"}{"titlePart ble"},
-                    presentation:tei-body($node/node())
+                    analysis:tei-body($node/node())
                 }
             )
 
@@ -258,7 +257,7 @@ declare function presentation:tei-body
                     $node/name(), ": ",
                     element{$node/name()}{
                         $node/@*,
-                        presentation:tei-body($node/node())
+                        analysis:tei-body($node/node())
                     }
                 }
             )
@@ -266,7 +265,7 @@ declare function presentation:tei-body
 
 
 (:~
- : presentation:rdgMarker
+ : analysis:rdgMarker
  : html presentation of an intermediate-format xml document
  :
  : @param $nodes the nodes to be converted
@@ -276,7 +275,7 @@ declare function presentation:tei-body
  : @status working
  : @author Uwe Sikora
  :)
-declare function presentation:rdgMarker
+declare function analysis:rdgMarker
     ( $marker as node() ) as item()* {
         
     let $wit := replace( $marker/string(@wit), " ", "" )
@@ -287,20 +286,20 @@ declare function presentation:rdgMarker
     return
         if ( $marker[@type="pt" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="pt open lem">{concat("/", $wit)}</span>
+                <span class="pt open">{concat("/", $wit)}</span>
             ) 
             else (
-                <span class="pt closeing lem">{concat($wit, "\")}</span>
+                <span class="pt closeing">{concat($wit, "\")}</span>
             )
                
         )
         
         else if ( $marker[@type="ptl" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="ptl open lem">{concat("/", $wit)}</span>
+                <span class="ptl open">{concat("/", $wit)}</span>
             ) 
             else (
-                <span class="ptl closeing lem">{concat($wit, "\||", $wit)}</span>
+                <span class="ptl closeing">{concat($wit, "\||", $wit)}</span>
             )
                
         )
@@ -317,20 +316,20 @@ declare function presentation:rdgMarker
         
         else if ( $marker[@type="pp" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="pp open lem">{concat("~/", $wit)}</span>
+                <span class="pp open">{concat("~/", $wit)}</span>
             ) 
             else (
-                <span class="pp closeing lem">{concat($wit, "\~")}</span>
+                <span class="pp closeing">{concat($wit, "\~")}</span>
             )
                
         )
         
         else if ( $marker[@type="ppl" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="ppl open lem">{concat("~/", $wit)}</span>
+                <span class="ppl open">{concat("~/", $wit)}</span>
             ) 
             else (
-                <span class="ppl closeing lem">{concat($wit, "\~||", $wit)}</span>
+                <span class="ppl closeing">{concat($wit, "\~||", $wit)}</span>
             )  
         )
         
@@ -369,7 +368,7 @@ declare function presentation:rdgMarker
                 $marker/name(), ": ",
                 element{$marker/name()}{
                     $marker/@*,
-                    presentation:tei-body($marker/node())
+                    analysis:tei-body($marker/node())
                 }
             }
         )
@@ -377,7 +376,7 @@ declare function presentation:rdgMarker
 
 
 (:~
- : presentation:rdgMarker
+ : analysis:rdgMarker
  : html presentation of an intermediate-format xml document
  :
  : @param $nodes the nodes to be converted
@@ -387,21 +386,81 @@ declare function presentation:rdgMarker
  : @status working
  : @author Uwe Sikora
  :)
-declare function presentation:rdg
+declare function analysis:rdg
     ( $rdg as node() ) as item()* {
 
-    if ( $rdg[@type = "pt" or @type = "pp" or @type = "v" or @type="om"] ) then (   
+    let $id := data($rdg[@id])
+    let $errors := if ( $rdg[@type = "v" or @type="om"] ) then () else (analysis:check-rdg-markers($id, $rdg))
+    return (
+        element {"span"}{
+            attribute {"class"}{"reading rdg " || data($rdg/@type)},
+            <span class="reading-term">tei:rdg</span>,
+            <span class="error-status">
+                { if ($errors) then (<span style="color: red">&#10007;</span>, console:log($errors)) else (<span style="color: green">&#10004;</span>) }
+            </span>,
+            <span class="reading-content">{ analysis:tei-body( $rdg/node() ) }</span>
+        }
     )
+};
+
+
+declare function analysis:check-rdg-markers
+    ( $id as xs:string, $reading as node() ) as item()* {
     
-    else (
-        presentation:tei-body($rdg/node())
+    let $open-marker := $reading//tei:rdgMarker[@mark = "open"][@ref = $id]
+    let $close-marker := $reading//tei:rdgMarker[@mark = "close"][@ref = $id]
+    let $error := (
+        if ( not($open-marker) or not($close-marker ) ) then ($open-marker, $close-marker)
+        else ()
     )
+    return $error
+};
+
+
+(:~
+ : analysis:lem
+ :
+ : @param $nodes the nodes to be converted
+ : @return item()* representing the converted node
+ :
+ : @version 1.2 (2017-10-15)
+ : @status working
+ : @author Uwe Sikora
+ :)
+declare function analysis:lem
+    ( $lem as node() ) as item()* {
+
+    let $sibling-readings := $lem/following-sibling::tei:rdg[not(@type="typo_corr" or @type="invisible-ref")]
+    let $ids := distinct-values($sibling-readings/@id)
+    let $errors := ( if ($lem[@type="om"] or count($lem/node()) = 0) then () else (for $id in $ids return analysis:check-lem-markers($id, $lem)) )
+    return (
+        element {"span"}{
+            attribute {"class"}{"reading lem"},
+            <span class="reading-term">tei:lem</span>,
+            console:log($errors),
+            <span class="error-status">{ if ($errors) then (<span style="color: red">&#10007;</span>) else (<span style="color: green">&#10004;</span>) }</span>,
+            <span class="reading-content">{ analysis:tei-body( $lem/node() ) }</span>
+        }
+    )
+};
+
+
+declare function analysis:check-lem-markers
+    ( $id as xs:string, $reading as node() ) as item()* {
+        
+    let $open-marker := $reading//tei:rdgMarker[@mark = "open" and @context = "lem"][tokenize(@ref, " ") = $id]
+    let $close-marker := $reading//tei:rdgMarker[@mark = "close" and @context = "lem"][tokenize(@ref, " ") = $id]
+    let $error := (
+        if ( not($open-marker) or not($close-marker ) ) then ("ERROR")
+        else ()
+    )
+    return $error
 };
 
 
 
 (:~
- : presentation:html
+ : analysis:html
  : html presentation of an intermediate-format xml document
  :
  : @param $nodes the nodes to be converted
@@ -411,7 +470,7 @@ declare function presentation:rdg
  : @status working
  : @author Uwe Sikora
  :)
-declare function presentation:tei-header
+declare function analysis:tei-header
     ($nodes as node()*) as item()* {
 
     for $node in $nodes
@@ -424,25 +483,25 @@ declare function presentation:tei-header
             )
             
             case element(tei:teiHeader) return (
-                presentation:tei-header($node/node())
+                analysis:tei-header($node/node())
             )
             
             case element(tei:fileDesc) return (
-                presentation:tei-header($node/node())
+                analysis:tei-header($node/node())
             )
 
             case element(tei:titleStmt) return (
-                presentation:tei-header($node/node())
+                analysis:tei-header($node/node())
             )
             
             case element(tei:title) return (
                 if ($node[@level]) then (
                     <div class="value">
                         <div><strong>title:</strong></div>
-                        <div>{ presentation:tei-header($node/node()) }</div>
+                        <div>{ analysis:tei-header($node/node()) }</div>
                     </div>
                 ) else (
-                    presentation:tei-header($node/node())
+                    analysis:tei-header($node/node())
                 )
             )
 

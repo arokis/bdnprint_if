@@ -31,38 +31,29 @@ span.rdgMarker .om.open::before, span.rdgMarker .om.closeing::after {
 /****************************************/
 /*      Textcritical elements           */
 /****************************************/
-.app::before {
-    content: "tei:app";
-    display: block;
-    font-family: consolas;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 0 2px 0;
-}
-
 .app {
     display: block;
     padding: 8px;
 }
 
-.lem::before, .rdg::before {
-    display: block;
+.reading .reading-term {
     font-family: consolas;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     padding: 2px 0 2px 0;
 }
 
-.lem::before {
-    content: "tei:lem";
+.reading .error-status {
+    padding: 0px 4px 0px 4px;
 }
 
-.rdg::before {
-    content: "tei:rdg";
-}
 
-.lem, .rdg {
+.reading-content {
     border: 1px solid #E9E8E9;
     display: block;
     padding: 8px;
+}
+
+.v .reading-content, .pp .reading-content, .pt .reading-content{
+    color: #BFBEBE;
 }

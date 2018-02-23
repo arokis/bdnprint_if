@@ -5,7 +5,7 @@ declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://bdn-edition.de/intermediate_format/config" at "config.xqm";
-import module namespace presentation="http://bdn-edition.de/intermediate_format/presentation" at "presentation/presentation.xqm";
+import module namespace analysis="http://bdn-edition.de/intermediate_format/analysis" at "analysis/analysis.xqm";
 import module namespace pre="http://bdn.edition.de/intermediate_format/preprocessing" at "intermediate_format/preprocessing.xqm";
 import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "intermediate_format/identification.xqm";
 
@@ -26,7 +26,7 @@ declare function app:test($node as node(), $model as map(*)) {
 
 declare 
     %templates:wrap
-    %templates:default("doc", "/db/apps/interformat/data/samples/samples4.xml")
+    %templates:default("doc", "/db/apps/interformat/data/samples/samples.xml")
 function app:present($node as node(), $model as map(*), $doc) {
     <div class="serialisation">
         {   
@@ -34,7 +34,7 @@ function app:present($node as node(), $model as map(*), $doc) {
             let $preprocessed-data := pre:preprocessing($nodes/tei:TEI)
             let $intermediate-format := ident:walk($preprocessed-data, ())
             return
-                presentation:tei-body($intermediate-format)
+                analysis:tei-body($intermediate-format)
         }
     </div>
 };
@@ -42,7 +42,7 @@ function app:present($node as node(), $model as map(*), $doc) {
 
 declare 
     %templates:wrap
-    %templates:default("doc", "/db/apps/interformat/data/samples/samples4.xml")
+    %templates:default("doc", "/db/apps/interformat/data/samples/samples.xml")
 function app:tei-metadata($node as node(), $model as map(*), $doc) {
     let $tei-header := doc($doc)//tei:teiHeader
     return
@@ -51,6 +51,6 @@ function app:tei-metadata($node as node(), $model as map(*), $doc) {
                 <div><strong>uri:</strong></div>
                 <div>{ base-uri(doc($doc)) }</div>
             </div>
-            {presentation:tei-header($tei-header)}
+            {analysis:tei-header($tei-header)}
         </div>
 };
