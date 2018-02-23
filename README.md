@@ -1,12 +1,17 @@
-# bdn:IntermediateFormat.v2
-Scripts to convert bdn-TEI into an intermediate-format dealing with reading markers
+# bdn:IntermediateFormat.v2 - eXistDB Application
 
-# Notes in Advance
-  - The Directory "stable_old" contains the old version and is just of documentary nature
-  - The Directory "oxygen" contains files for the Development in oxygen
-  - The Directories "modules" and "rest" hold all files of the new Intermediate-Format version
+This repos contains the BdN IntermediateFormat-conversion Application to produce several kinds of intermediate formats of the XML-Data of the DFG-Project "Bibliothek der Neologie" 
 
-# setup and description
+# Requirements
+
+`ant`
+
+# Setup
+
+- Call `ant` to build the app as `build/interformat.{VERSION}.xar` 
+- integrate it into your eXistDB instance
+
+# Modules
 ## modules/intermediate_format/identification.xqm
   - This is the main module integrating the main conversion and node identification functions
   - place it in your app modules path: "/modules/intermediate_format/inter_form.xqm" 
@@ -27,7 +32,7 @@ Scripts to convert bdn-TEI into an intermediate-format dealing with reading mark
   - This is the REST script running the conversion on a given document within eXist-DB
   - place it in your app somewhere or as suggested here in a subfolder /rest
 
-# Running the conversion
+# Use
   - call intermediate_format.xql via REST with the GET-Parameter "path" (exemplary call: http://localhost:8080/exist/apps/interformat/rest/intermediate_format.xql?path=/db/apps/interformat/data/samples/samples4.xml")
   - "path" must be a XML-URI existing in your eXist-instance context (There is no existence-check yet)
   - wait
