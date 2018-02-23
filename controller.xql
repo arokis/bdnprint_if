@@ -6,6 +6,8 @@ declare variable $exist:controller external;
 declare variable $exist:prefix external;
 declare variable $exist:root external;
 
+import module namespace console="http://exist-db.org/xquery/console";
+
 if ($exist:path eq '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{request:get-uri()}/"/>
@@ -16,11 +18,22 @@ else if ($exist:path eq "/") then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="index.html"/>
     </dispatch>
-else if ($exist:path eq "/convert/uri=") then
-    (: forward root path to index.xql :)
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="../rest/intermediate_format.xql?path={substring-after($exist:path, '/convert/uri=')}"/>
-    </dispatch>
+else if ( starts-with($exist:path, "/rest/convert") ) then 
+    (: forwards to the intermediate_format.xql in the rest-dir :)
+    let $resource := request:get-parameter("resource", ())
+    let $uri := request:get-parameter("uri", ())
+    let $mode := request:get-parameter("mode", ())
+    let $log := (<log root="/rest/convert"><resource>{$resource}</resource><uri>{$uri}</uri><mode>{$mode}</mode></log>)
+    return (
+        console:log($log),
+        <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+            <forward url="{$exist:controller}/rest/intermediate_format.xql"/>
+            <set-attribute name="resource" value="{$resource}"/>
+            <set-attribute name="uri" value="{$uri}"/>
+            <set-attribute name="mode" value="{$mode}"/>
+        </dispatch>
+    )
+    
 else if (ends-with($exist:resource, ".html")) then
     (: the html page is run through view.xql to expand templates :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -43,7 +56,7 @@ else if (contains($exist:path, "/$shared/")) then
 else if (contains($exist:path, "/$resources/")) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/resources/{substring-after($exist:path, '/$resources/')}">
-            <set-header name="Cache-Control" value="max-age=3600, must-revalidate"/>
+            <set-header name="Cache-Control" value="max-age=0, must-revalidate"/>
         </forward>
     </dispatch>
 else
