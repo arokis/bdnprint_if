@@ -33,9 +33,13 @@ This repos contains the BdN IntermediateFormat-conversion Application to produce
   - place it in your app somewhere or as suggested here in a subfolder /rest
 
 # Use
-  - call intermediate_format.xql via REST with the GET-Parameter "path" (exemplary call: http://localhost:8080/exist/apps/interformat/rest/intermediate_format.xql?path=/db/apps/interformat/data/samples/samples4.xml")
-  - "path" must be a XML-URI existing in your eXist-instance context (There is no existence-check yet)
-  - wait
+  - call the IntermediateFormat API with GET -Parameter `resource`: http://localhost:{PORT}/exist/apps/interformat/rest/convert?resource={RESOURCE-URI}
+  OR
+  - call intermediate_format.xql via REST with the GET-Parameter `resource`: http://localhost:{PORT}/exist/rest/apps/interformat/rest/intermediate_format.xql?resource={RESOURCE-URI}
+
+  - the resource must be from your eXist-instance context
+  - If you like to store the result add method=store as get-parameter
+  
 
 # Changes of the Intermediate Format
   - note: All changes are done (not quite right) in the tei-namespace!
