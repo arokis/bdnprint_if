@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader xml:id="gr_header">
+        <!-- Dateibeschreibung -->
+        <fileDesc>
+            <!-- Titelbeschreibung -->
+            <titleStmt>
+                <title level="s">
+                    <title type="main">Bibliothek der Neologie (BdN)</title>
+                    <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+                </title>
+                <title level="a">BdN III: Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik
+                    (1. Aufl. 1779; 2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789), <date>Juni 2018</date>
+                </title>
+                <title type="condensed">Anleitung zum Studium der populären Dogmatik</title>
+                <author>
+                    <persName>
+                        <ref target="#textgrid:2r5h7">Griesbach, Johann Jakob</ref>
+                    </persName>
+                </author>
+                <principal>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                </principal>
+                <respStmt>
+                    <resp>Herausgeber</resp>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Unter Mitarbeit von</resp>
+                    <persName>Figgen, Larissa</persName>
+                    <persName>Huck, Johannes</persName>
+                    <persName>Lemitz, Bastian</persName>
+                    <persName>Söntgerath, Olga</persName>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>TEI-Schema und Metadaten</resp>
+                    <persName>Sikora, Uwe</persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Visualisierung und Portal</resp>
+                    <persName>Rodzis, Michelle</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Principal</resp>
+                    <persName>
+                        <ref target="#textgrid:2r5z5">Neuroth, Heike</ref>
+                    </persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Editor</resp>
+                    <persName>Goormann, Lena</persName>
+                    <persName>Meier, Lars-Steffen</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2014">Visualisierung und Portal</resp>
+                    <persName>Göbel, Matthias</persName>
+                </respStmt>
+                <respStmt>
+                    <resp key="former" from="2014" to="2015">Visualisierung und Portal</resp>
+                    <persName>Riebl, Hannes</persName>
+                </respStmt>
+                <sponsor>Deutsche Forschungsgemeinschaft (DFG)</sponsor>
+            </titleStmt>
+
+            <!-- Editionsbeschreibung -->
+            <editionStmt>
+                <edition>Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik (1. Aufl. 1779;
+                    2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789), hg. v. Marco Stallmann (BdN III),
+                        <date>2018</date>
+                </edition>
+            </editionStmt>
+
+
+            <!-- Publikationsbeschreibung -->
+            <publicationStmt>
+                <publisher>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische Auswahledition in zehn
+                    Bänden", Seminar für Kirchengeschichte II, Evangelisch-Theologische Fakultät, Westfälische
+                    Wilhelms-Universität Münster</publisher>
+                <publisher>Niedersächsische Staats- und Universitätsbibliothek Göttingen, Abteilungen:
+                    Forschung und Entwicklung, Informations- und Literaturversorgung Zentrale Erwerbung und
+                    Erschließung (Gruppe Metadaten und Datenkonversion)</publisher>
+                <distributor>
+                    <persName>Stallmann, Marco</persName>
+                </distributor>
+                <authority>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z6">Blümm, Mirjam</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z3">Söntgerath, Olga</ref>
+                    </persName>
+                </authority>
+                <date>Juni 2018</date>
+                <availability status="free">
+                    <licence target="https://creativecommons.org/licenses/by-sa/3.0/legalcode">
+                        <p>Creative Commons Attribution-ShareAlike 3.0 Unported License</p>
+                    </licence>
+                </availability>
+            </publicationStmt>
+
+            <!-- Reihenbeschreibung -->
+            <seriesStmt>
+                <title level="s">
+                    <title type="main">Bibliothek der Neologie (BdN)</title>
+                    <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+                </title>
+                <title level="a">BdN III: Johann Jakob Griesbach, Anleitung zum Studium der populären Dogmatik
+                    (1. Aufl. 1779; 2. Aufl. 1786; 3. Aufl. 1787; 4. Aufl. 1789)</title>
+                <respStmt>
+                    <resp>Reihenherausgeber</resp>
+                    <persName>
+                        <ref target="#textgrid:24gvr">Beutel, Albrecht</ref>
+                    </persName>
+                    <persName>
+                        <ref target="#textgrid:2r5z3">Söntgerath, Olga</ref>
+                    </persName>
+                </respStmt>
+                <respStmt>
+                    <resp>Bandherausgeber</resp>
+                    <persName>Stallmann, Marco</persName>
+                </respStmt>
+            </seriesStmt>
+
+
+            <!-- Quellenbeschreibung -->
+            <sourceDesc>
+                <listWit>
+                    <witness xml:id="a">
+                        <desc>1. Aufl. 1779</desc>
+                        <bibl>D. Johann Jakob Griesbach's Anleitung zur gelehrten Kenntnis der populären
+                            Dogmatik. Jena, mit Hellers Schriften, 1779</bibl>
+                    </witness>
+                    <witness xml:id="b">
+                        <desc>2. Aufl. 1786</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Zweite stark vermehrte
+                            Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                            Cunoischen Erben. 1786</bibl>
+                    </witness>
+                    <witness xml:id="c">
+                        <desc type="base-text">3. Aufl. 1787</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Dritte verbesserte
+                            Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                            Cunoischen Erben. 1787</bibl>
+                    </witness>
+                    <witness xml:id="d">
+                        <desc>4. Aufl. 1789</desc>
+                        <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                            Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                            populären Dogmatik, besonders für künftige Religionslehrer. Vierte neu
+                            durchgesehene Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, bei
+                            Christ. Heinr. Cuno's Erben. 1789.</bibl>
+                    </witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+
+        <!-- Beschreibung der Editionsrichtlinien -->
+        <encodingDesc>
+            <projectDesc>
+                <p>DFG-Projekt "Bibliothek der Neologie. Kommentierte kritische Auswahledition in zehn
+                    Bänden", Seminar für Kirchengeschichte II, Evangelisch-Theologische Fakultät, Westfälische
+                    Wilhelms-Universität Münster</p>
+            </projectDesc>
+            <editorialDecl>
+                <p>Eine umfassende Beschreibung der Editionsrichtlinien wird auf dem Portal des Projekts
+                    veröffentlicht: <ref target="http://www.bdn-edition.de">http://www.bdn-edition.de</ref>.</p>
+            </editorialDecl>
+        </encodingDesc>
+
+        <revisionDesc>
+            <change/>
+        </revisionDesc>
+
+    </teiHeader>
+    <text>
+        <app n="1" break-after="yes">
+            <lem id="N3.4.2.3">
+                <div>
+                    <head>
+                        <div break-after="yes">
+                            <head>
+                                <rdgMarker wit="z" type="om" ref="N3.4.2.5" mark="open" context="lem"/>
+                                <rdgMarker wit="t r" type="ppl" ref="N3.4.2.7 N3.4.2.9" mark="open" context="lem"/>tr</head>
+                            <item>
+                                <hi>
+                                    <item>
+                                        <hi>ÜberschriftT</hi>
+                                    </item>
+                                </hi>
+                            </item>
+                        </div>
+                        <hi>1</hi>
+                    </head>
+                    <div>
+                        <head>3</head>
+                    </div>
+                    <p>Erster@Paragraph</p>
+                    <p>
+                        <hi>
+                            <aligned>
+                                <app>
+                                    <lem id="N3.4.2.3.2.8.2.2.2.2">
+                                        <rdgMarker wit="b" type="ppl" ref="N3.4.2.3.2.8.2.2.2.6" mark="open" context="lem"/>
+                                        <rdgMarker wit="a c" type="v" ref="N3.4.2.3.2.8.2.2.2.4 N3.4.2.3.2.8.2.2.2.8" mark="open" context="lem"/>
+                                        <l>
+                                            <label>Zweiter@Paragraph</label>
+                                        </l>
+                                        <rdgMarker wit="a c" type="v" ref="N3.4.2.3.2.8.2.2.2.4 N3.4.2.3.2.8.2.2.2.8" mark="close" context="lem"/>
+                                        <rdgMarker wit="b" type="ppl" ref="N3.4.2.3.2.8.2.2.2.6" mark="close" context="lem"/>
+                                        <rdgMarker wit="t r" type="ppl" ref="N3.4.2.7 N3.4.2.9" mark="close" context="lem"/>
+                                        <rdgMarker wit="z" type="om" ref="N3.4.2.5" mark="close" context="lem"/>
+                                    </lem>
+                                    <rdg type="v" wit="#a" id="N3.4.2.3.2.8.2.2.2.4">Erste@V@zu@Zweiter@Paragraph</rdg>
+                                    <rdg type="ppl" wit="#b" id="N3.4.2.3.2.8.2.2.2.6">
+                                        <rdgMarker wit="b" type="ppl" ref="N3.4.2.3.2.8.2.2.2.6" mark="open" context="rdg"/>PPL@zu@Zweiter@Paragraph<rdgMarker wit="b" type="ppl" ref="N3.4.2.3.2.8.2.2.2.6" mark="close" context="rdg"/>
+                                    </rdg>
+                                    <rdg type="v" wit="#c" id="N3.4.2.3.2.8.2.2.2.8">Zweite@V@zu@Zweiter@Paragraph</rdg>
+                                </app>
+                            </aligned>
+                        </hi>
+                    </p>
+                </div>
+            </lem>
+            <rdg wit="#z" type="om" id="N3.4.2.5"/>
+            <rdg wit="#t" type="ppl" id="N3.4.2.7">
+                <p>
+                    <rdgMarker wit="t" type="ppl" ref="N3.4.2.7" mark="open" context="rdg"/>Erster@Paragraph@in@T</p>
+                <p>Zweiter@Paragraph@in@T<rdgMarker wit="t" type="ppl" ref="N3.4.2.7" mark="close" context="rdg"/>
+                </p>
+            </rdg>
+            <rdg wit="#r" type="ppl" id="N3.4.2.9">
+                <p>
+                    <rdgMarker wit="r" type="ppl" ref="N3.4.2.9" mark="open" context="rdg"/>Erster@Paragraph@in@R</p>
+                <p>Zweiter@Paragraph@in@R<rdgMarker wit="r" type="ppl" ref="N3.4.2.9" mark="close" context="rdg"/>
+                </p>
+            </rdg>
+        </app>
+        <app break-after="yes">
+            <lem id="N3.4.4.2">
+                <div>
+                    <rdgMarker wit="z" type="om" ref="N3.4.4.4" mark="open" context="lem"/>
+                    <rdgMarker wit="t" type="ppl" ref="N3.4.4.6" mark="open" context="lem"/>APP2<rdgMarker wit="t" type="ppl" ref="N3.4.4.6" mark="close" context="lem"/>
+                    <rdgMarker wit="z" type="om" ref="N3.4.4.4" mark="close" context="lem"/>
+                </div>
+            </lem>
+            <rdg wit="#z" type="om" id="N3.4.4.4"/>
+            <rdg wit="#t" type="ppl" id="N3.4.4.6">
+                <p>
+                    <rdgMarker wit="t" type="ppl" ref="N3.4.4.6" mark="open" context="rdg"/>Erster@Paragraph@in@T</p>
+                <p>Zweiter@Paragraph@in@T<rdgMarker wit="t" type="ppl" ref="N3.4.4.6" mark="close" context="rdg"/>
+                </p>
+            </rdg>
+        </app>
+        <app break-after="yes">
+            <lem id="N3.4.6.2">
+                <div>
+                    <app>
+                        <lem id="N3.4.6.2.2.2.2"/>
+                        <rdg wit="#h" type="ppl" id="N3.4.6.2.2.2.4">
+                            <p>
+                                <rdgMarker wit="g" type="ppl" ref="N3.4.6.4" mark="open" context="lem"/>
+                                <rdgMarker wit="h" type="ppl" ref="N3.4.6.2.2.2.4" mark="open" context="rdg"/>Erster@Paragraph@in@H</p>
+                            <p>Zweiter@Paragraph@in@H<rdgMarker wit="h" type="ppl" ref="N3.4.6.2.2.2.4" mark="close" context="rdg"/>
+                                <rdgMarker wit="g" type="ppl" ref="N3.4.6.4" mark="close" context="lem"/>
+                            </p>
+                        </rdg>
+                    </app>
+                </div>
+            </lem>
+            <rdg wit="#g" type="ppl" id="N3.4.6.4">
+                <p>
+                    <rdgMarker wit="g" type="ppl" ref="N3.4.6.4" mark="open" context="rdg"/>Erster@Paragraph@in@G<rdgMarker wit="g" type="ppl" ref="N3.4.6.4" mark="close" context="rdg"/>
+                </p>
+            </rdg>
+        </app>
+        <app n="TEST1" break-after="yes">
+            <lem id="N3.4.8.3">
+                <seg>
+                    <div>
+                        <list>
+                            <item>
+                                <rdgMarker wit="g" type="ppl" ref="N3.4.8.5" mark="open" context="lem"/>Item@1</item>
+                            <item>Item@2</item>
+                        </list>
+                        <note>
+                            <seg>Anmerkung@1</seg>
+                            <rdgMarker wit="g" type="ppl" ref="N3.4.8.5" mark="close" context="lem"/>
+                        </note>
+                    </div>
+                </seg>
+            </lem>
+            <rdg wit="#g" type="ppl" id="N3.4.8.5">
+                <rdgMarker wit="g" type="ppl" ref="N3.4.8.5" mark="open" context="rdg"/>
+                <seg break-after="yes">Erstes@SEG@in@G</seg>
+                <seg>
+                    <p>
+                        <app>
+                            <lem id="N3.4.8.5.6.2.2.2">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.8.5.6.2.2.4" mark="open" context="lem"/>Erster@Absatz@in@lem<rdgMarker wit="b" type="pp" ref="N3.4.8.5.6.2.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#b" type="pp" id="N3.4.8.5.6.2.2.4">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.8.5.6.2.2.4" mark="open" context="rdg"/>Erster@Absatz@in@rdg<rdgMarker wit="b" type="pp" ref="N3.4.8.5.6.2.2.4" mark="close" context="rdg"/>
+                            </rdg>
+                        </app>
+                    </p>
+                    <p>@Zweiter@Absatz@in@<hi>HI</hi>
+                        <rdgMarker wit="g" type="ppl" ref="N3.4.8.5" mark="close" context="rdg"/>
+                    </p>
+                </seg>
+            </rdg>
+        </app>
+        <app n="TEST2" break-after="yes">
+            <lem id="N3.4.10.3">
+                <div>
+                    <head>
+                        <rdgMarker wit="z" type="om" ref="N3.4.10.5" mark="open" context="lem"/>Test@2</head>
+                    <p>Erste@Absatz@von@Test@2</p>
+                    <p>
+                        <app>
+                            <lem id="N3.4.10.3.2.6.2.2">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.10.3.2.6.2.4" mark="open" context="lem"/>Zweiter@Absatz@von@Test@2<rdgMarker wit="b" type="pp" ref="N3.4.10.3.2.6.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#b" type="pp" id="N3.4.10.3.2.6.2.4">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.10.3.2.6.2.4" mark="open" context="rdg"/>
+                                <hi>Zweiter@Absatz@von@Test@2</hi>
+                                <rdgMarker wit="b" type="pp" ref="N3.4.10.3.2.6.2.4" mark="close" context="rdg"/>
+                            </rdg>
+                        </app>
+                        <rdgMarker wit="z" type="om" ref="N3.4.10.5" mark="close" context="lem"/>
+                    </p>
+                </div>
+            </lem>
+            <rdg wit="#z" type="om" id="N3.4.10.5"/>
+        </app>
+        <app n="TEST3">
+            <lem id="N3.4.12.3">
+                <div>
+                    <head>
+                        <rdgMarker wit="a" type="om" ref="N3.4.12.5" mark="open" context="lem"/>
+                        <rdgMarker wit="b" type="ptl" ref="N3.4.12.7" mark="open" context="lem"/>
+                        <app>
+                            <lem id="N3.4.12.3.2.2.2.2">
+                                <rdgMarker wit="c" type="ptl" ref="N3.4.12.3.2.2.2.4" mark="open" context="lem"/>
+                                <hi>Test@3@in@lem</hi>
+                                <rdgMarker wit="c" type="ptl" ref="N3.4.12.3.2.2.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#c" type="ptl" id="N3.4.12.3.2.2.2.4">
+                                <aligned>
+                                    <rdgMarker wit="c" type="ptl" ref="N3.4.12.3.2.2.2.4" mark="open" context="rdg"/>Test@3@(aligned@in@rdg)<rdgMarker wit="c" type="ptl" ref="N3.4.12.3.2.2.2.4" mark="close" context="rdg"/>
+                                </aligned>
+                            </rdg>
+                        </app>
+                    </head>
+                    <p>@Erster@Absatz@in@Test@3@<aligned>
+                            <app>
+                                <lem id="N3.4.12.3.2.4.2.2.2">
+                                    <rdgMarker wit="c" type="v" ref="N3.4.12.3.2.4.2.2.4" mark="open" context="lem"/>
+                                    <hi>Aligned@im@ersten@Absatz@im@lem</hi>
+                                    <rdgMarker wit="c" type="v" ref="N3.4.12.3.2.4.2.2.4" mark="close" context="lem"/>
+                                    <rdgMarker wit="b" type="ptl" ref="N3.4.12.7" mark="close" context="lem"/>
+                                    <rdgMarker wit="a" type="om" ref="N3.4.12.5" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#c" type="v" id="N3.4.12.3.2.4.2.2.4">Aligned@im@ersten@Absatz@im@rdg[v]</rdg>
+                            </app>
+                        </aligned>
+                    </p>
+                </div>
+            </lem>
+            <rdg wit="#a" type="om" id="N3.4.12.5"/>
+            <rdg wit="#b" type="ptl" id="N3.4.12.7">
+                <div>
+                    <app>
+                        <lem id="N3.4.12.7.4.2.2"/>
+                        <rdg wit="#e" type="ppl" id="N3.4.12.7.4.2.4">
+                            <p>
+                                <rdgMarker wit="b" type="ptl" ref="N3.4.12.7" mark="open" context="rdg"/>
+                                <rdgMarker wit="e" type="ppl" ref="N3.4.12.7.4.2.4" mark="open" context="rdg"/>PPL@P@in@E<rdgMarker wit="e" type="ppl" ref="N3.4.12.7.4.2.4" mark="close" context="rdg"/>
+                            </p>
+                        </rdg>
+                        <rdg wit="#d" type="ppl" id="N3.4.12.7.4.2.6">
+                            <note>
+                                <rdgMarker wit="d" type="ppl" ref="N3.4.12.7.4.2.6" mark="open" context="rdg"/>PPL@NOTE@in@d</note>
+                            <note type="authorial">PPL@//text()[matches(.,@"[\n\r\t]")]@NOTE@in@d<rdgMarker wit="d" type="ppl" ref="N3.4.12.7.4.2.6" mark="close" context="rdg"/>
+                                <rdgMarker wit="b" type="ptl" ref="N3.4.12.7" mark="close" context="rdg"/>
+                            </note>
+                        </rdg>
+                    </app>
+                </div>
+            </rdg>
+        </app>
+        <div>
+            <p>
+                <app>
+                    <lem id="N3.4.14.2.2.2">
+                        <rdgMarker wit="a" type="pp" ref="N3.4.14.2.2.4" mark="open" context="lem"/>bloß@<app>
+                            <lem id="N3.4.14.2.2.2.2.2">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.14.2.2.2.2.4" mark="open" context="lem"/>gewißen,@zumal@ältern@und@nur@die@theologischen@Systeme@betreffenden%%<rdgMarker wit="b" type="pp" ref="N3.4.14.2.2.2.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#b" type="pp" id="N3.4.14.2.2.2.2.4">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.14.2.2.2.2.4" mark="open" context="rdg"/>gewissen<rdgMarker wit="b" type="pp" ref="N3.4.14.2.2.2.2.4" mark="close" context="rdg"/>
+                            </rdg>
+                        </app>@@<rdgMarker wit="a" type="pp" ref="N3.4.14.2.2.4" mark="close" context="lem"/>
+                    </lem>
+                    <rdg wit="#a" type="pp" id="N3.4.14.2.2.4">
+                        <rdgMarker wit="a" type="pp" ref="N3.4.14.2.2.4" mark="open" context="rdg"/>blos@gewissen<rdgMarker wit="a" type="pp" ref="N3.4.14.2.2.4" mark="close" context="rdg"/>
+                    </rdg>
+                </app>
+            </p>
+        </div>
+        <div>
+            <p>
+                <app>
+                    <lem id="N3.4.16.2.2.2">
+                        <rdgMarker wit="a" type="pp" ref="N3.4.16.2.2.4" mark="open" context="lem"/>bloß@<app>
+                            <lem id="N3.4.16.2.2.2.2.2">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.16.2.2.2.2.4" mark="open" context="lem"/>gewißen,@zumal@ältern@und@nur@die@theologischen@Systeme@betreffenden<rdgMarker wit="b" type="pp" ref="N3.4.16.2.2.2.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#b" type="pp" id="N3.4.16.2.2.2.2.4">
+                                <rdgMarker wit="b" type="pp" ref="N3.4.16.2.2.2.2.4" mark="open" context="rdg"/>gewissen<rdgMarker wit="b" type="pp" ref="N3.4.16.2.2.2.2.4" mark="close" context="rdg"/>
+                            </rdg>
+                        </app>
+                        <rdgMarker wit="a" type="pp" ref="N3.4.16.2.2.4" mark="close" context="lem"/>
+                    </lem>
+                    <rdg wit="#a" type="pp" id="N3.4.16.2.2.4">
+                        <rdgMarker wit="a" type="pp" ref="N3.4.16.2.2.4" mark="open" context="rdg"/>blos@gewissen<rdgMarker wit="a" type="pp" ref="N3.4.16.2.2.4" mark="close" context="rdg"/>
+                    </rdg>
+                </app>
+            </p>
+        </div>
+        <div break-after="yes">
+            <head>
+                <app>
+                    <lem id="N3.4.18.2.2.2">
+                        <app>
+                            <lem id="N3.4.18.2.2.2.2.2">
+                                <aligned>
+                                    <rdgMarker wit="a" type="v" ref="N3.4.18.2.2.4" mark="open" context="lem"/>
+                                    <rdgMarker wit="a" type="v" ref="N3.4.18.2.2.2.2.4" mark="open" context="lem"/>
+                                    <pb edRef="#c" type="sp" n="I" break-before="yes" break-after="yes"/>
+                                    <hi>LEM@Überschrift</hi>
+                                    <rdgMarker wit="a" type="v" ref="N3.4.18.2.2.2.2.4" mark="close" context="lem"/>
+                                    <rdgMarker wit="a" type="v" ref="N3.4.18.2.2.4" mark="close" context="lem"/>
+                                </aligned>
+                            </lem>
+                            <rdg wit="#a" type="v" id="N3.4.18.2.2.2.2.4">A@Überschrift</rdg>
+                        </app>
+                    </lem>
+                    <rdg wit="#a" type="v" id="N3.4.18.2.2.4">überschrift</rdg>
+                </app>
+            </head>
+            <p>Ers<pb break="no"/>ter@Absatz</p>
+            <p>
+                <pb break-before="yes"/>Zweiter@<pb/>@Absatz<pb break-after="yes"/>
+            </p>
+            <p>
+                <pb break-before="yes" break-after="yes"/>
+                <docAuthor>bhab<pb break="no"/>shabsjh</docAuthor>
+            </p>
+            <p>Dritter@<pb/>Absatz@<hi>mit</hi>
+                <pb break-before="yes" break-after="yes"/>
+                <hi>Highli<pb type="no-break" break="no"/>ghting</hi>.<pb break-after="yes"/>
+            </p>
+            <pb edRef="#d" type="sp" n="XV" break-before="yes" break-after="yes"/>
+            <app>@<lem id="N3.4.18.14.2">Inhalt.</lem>
+            </app>
+        </div>
+        <app break-after="yes">
+            <lem id="N3.4.20.2">
+                <rdgMarker wit="a" type="ppl" ref="N3.4.20.4" mark="open" context="lem"/>die@christliche@Religion,@deren@einzige@authentische@Erkenntnißquelle@das@N.@T.@ist,@(§.17.)@die@Merkmale@ihrer@Wahrheit@und@Göttlichkeit@immerfort@an@sich@trägt,@und@ihre@für@alle@Menschenwohlthätige@Natur@nicht@verändert@hat:<rdgMarker wit="a" type="ppl" ref="N3.4.20.4" mark="close" context="lem"/>
+            </lem>
+            <rdg wit="#a" type="ppl" id="N3.4.20.4">
+                <rdgMarker wit="a" type="ppl" ref="N3.4.20.4" mark="open" context="changed-lem  #b #b"/>die@Verpflichtung,@daß@alle,@die@des@Unterrichts@der@Apostel@theilhaftig@werden@würden,@denselben@annehmen@und@befolgen@sollen,@Marc.@16,@<app>
+                    <lem wit="#a" id="N3.4.20.4.4.2">
+                        <rdgMarker wit="b" type="v" ref="N3.4.20.4.4.4" mark="open" context="lem"/>15,<rdgMarker wit="b" type="v" ref="N3.4.20.4.4.4" mark="close" context="lem"/>
+                    </lem>
+                    <rdg wit="#b" type="v" id="N3.4.20.4.4.4">15.</rdg>
+                </app>@16.@(vergl.@§.@15.@b.)@nie@auf@gewisse@Zeitenund@Menschen@<app>
+                    <lem wit="#a" id="N3.4.20.4.6.2">
+                        <rdgMarker wit="b" type="v" ref="N3.4.20.4.6.4" mark="open" context="lem"/>eingeschränckt<rdgMarker wit="b" type="v" ref="N3.4.20.4.6.4" mark="close" context="lem"/>
+                    </lem>
+                    <rdg wit="#b" type="v" id="N3.4.20.4.6.4">eingeschränkt</rdg>
+                </app>,@oder@wieder@aufgehoben@worden@ist:<rdgMarker wit="a" type="ppl" ref="N3.4.20.4" mark="close" context="changed-lem  #b #b"/>
+            </rdg>
+        </app>
+        <app>
+            <lem id="N3.4.22.2">
+                <aligned>
+                    <pb edRef="#c" type="sp" n="I" break-before="yes" break-after="yes"/>
+                    <hi>LEM@Überschrift</hi>
+                </aligned>
+            </lem>
+            <rdg wit="#a" type="typo_corr" id="N3.4.22.4">A@Überschrift</rdg>
+            <rdg wit="#b" type="invisible-ref" id="N3.4.22.6">
+                <di>A@Überschrift</di>
+            </rdg>
+        </app>
+    </text>
+    <editorialNotes/>
+</TEI>

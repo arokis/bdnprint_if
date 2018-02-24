@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title level="s">
+                    <title type="main">Bibliothek der Neologie (BdN)</title>
+                    <title type="sub">Kommentierte kritische Auswahledition in zehn Bänden</title>
+                </title>
+            <title level="a">Samplefile to build the INtermediateFormat from</title>
+        </titleStmt>
+        <sourceDesc>
+            <listWit>
+                <witness xml:id="a">
+                    <desc>1. Aufl. 1786/89</desc>
+                </witness>
+                <witness xml:id="b">
+                    <desc type="base-text">2. Aufl. 1791</desc>
+                </witness>
+                <witness xml:id="c">
+                    <desc>3. Aufl. 1818/19</desc>
+                </witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div n="0">
+                <app>
+                    <lem id="N3.4.2.2.3.2">
+                        <titlePage>
+                            <titlePart type="main">
+                                <rdgMarker wit="a c" type="ppl" ref="N3.4.2.2.3.4 N3.4.2.2.3.6" mark="open" context="lem"/>
+                                <pb edRef="#b" type="sp" n="I" break-before="yes" break-after="yes"/>
+                                <choice>
+                                    <orig break-after="yes">Anweisung@<lb/>zur@<lb/>Bildung@<lb/>angehender@Theologen,</orig>
+                                    <seg type="toc-item">Anweisung@zur@Bildung@angehender@Theologen</seg>
+                                </choice>
+                            </titlePart>
+                            <lb/>
+                            <byline>von@<lb/>
+                                <docAuthor>
+                                    <choice break-after="yes">
+                                        <abbr>D.</abbr>
+                                        <expan>Doctor</expan>
+                                    </choice>
+                                    <index indexName="persons">
+                                        <term>Nösselt,@Johann@August</term>
+                                    </index>
+                                    <persName ref="#textgrid:24gvc">Johann@August@Nösselt</persName>
+                                </docAuthor>.</byline>
+                            <lb/>
+                            <titlePart type="volume">
+                                <choice>
+                                    <orig break-after="yes">Erster@Band.</orig>
+                                    <seg type="toc-item">Erster@Band</seg>
+                                </choice>
+                            </titlePart>
+                            <lb/>
+                            <docEdition>Zweyte@vermehrte@und@verbesserte@Auflage.</docEdition>
+                            <lb/>
+                            <docImprint>Halle,@<lb/>bey@<index indexName="persons">
+                                    <term>Curt,@Johann@Jacob</term>
+                                </index>
+                                <persName ref="#textgrid:24gvp" break-after="yes">Joh.@Jac.@Curts</persName>
+                                <persName ref="#textgrid:24gvq">Wittwe</persName>.@<docDate>1791.<ptr target="#textgrid:24h5d"/>
+                                </docDate>
+                            </docImprint>
+                        </titlePage>
+                        <pb edRef="#b" type="sp" n="II" break-before="yes" break-after="yes"/>
+                        <rdgMarker wit="a c" type="ppl" ref="N3.4.2.2.3.4 N3.4.2.2.3.6" mark="close" context="lem"/>
+                    </lem>
+                    <rdg wit="#a" type="ppl" id="N3.4.2.2.3.4">
+                        <titlePage>
+                            <titlePart type="main">
+                                <rdgMarker wit="a" type="ppl" ref="N3.4.2.2.3.4" mark="open" context="rdg"/>
+                                <pb edRef="#a" type="sp" n="I" break-before="yes"/>@Anweisung@<lb/>zur@<lb/>Bildung@<lb/>angehender@Theologen.</titlePart>
+                            <lb/>
+                            <byline>von@<lb/>
+                                <docAuthor>
+                                    <choice break-after="yes">
+                                        <abbr>D.</abbr>
+                                        <expan>Doctor</expan>
+                                    </choice>
+                                    <index indexName="persons">
+                                        <term>Nösselt,@Johann@August</term>
+                                    </index>
+                                    <persName>Johann@August@Nösselt</persName>
+                                </docAuthor>.</byline>
+                            <lb/>
+                            <titlePart type="volume">Erster@Theil.</titlePart>
+                            <lb/>
+                            <docImprint>Halle,@<lb/>bey@<index indexName="persons">
+                                    <term>Curt,@Johann@Jacob</term>
+                                </index>
+                                <persName>Joh.@Jac.@Curts</persName>@Wittwe.@<docDate>1786.<ptr target="#textgrid:24gvh"/>
+                                </docDate>
+                            </docImprint>
+                        </titlePage>
+                        <pb edRef="#a" type="sp" n="II" break-before="yes" break-after="yes"/>
+                        <rdgMarker wit="a" type="ppl" ref="N3.4.2.2.3.4" mark="close" context="rdg"/>
+                    </rdg>
+                    <rdg wit="#c" type="ppl" id="N3.4.2.2.3.6">
+                        <titlePage>
+                            <titlePart type="main">
+                                <rdgMarker wit="c" type="ppl" ref="N3.4.2.2.3.6" mark="open" context="rdg"/>
+                                <pb edRef="#c" type="sp" n="I" break-before="yes"/>@Anweisung@<lb/>zur@<lb/>Bildung@<lb/>angehender@Theologen,</titlePart>
+                            <lb/>
+                            <byline>von@<lb/>
+                                <docAuthor>
+                                    <index indexName="persons">
+                                        <term>Nösselt,@Johann@August</term>
+                                    </index>
+                                    <persName>Johann@August@Nösselt</persName>,@<lb break-after="yes"/>
+                                    <choice break-after="yes">
+                                        <abbr>weil.</abbr>
+                                        <expan>weiland</expan>
+                                    </choice>
+                                    <choice>
+                                        <abbr>Königl.</abbr>
+                                        <expan>Königlich</expan>
+                                    </choice>@Preußischem@Gemeinderath,@Doctor@und@Professor@<lb/>der@Theologie@zu@Halle.</docAuthor>
+                                <lb/>Herausgegeben@<lb/>und@mit@Anmerkungen,@literarischen@Zusätzen@<lb/>und@Ergänzungen@begleitet@<lb/>von@<lb break-after="yes"/>
+                                <choice break-after="yes">
+                                    <abbr>D.</abbr>
+                                    <expan>Doctor</expan>
+                                </choice>
+                                <index indexName="persons">
+                                    <term>Niemeyer,@August@Hermann</term>
+                                </index>
+                                <persName role="editor" ref="#textgrid:24gvf">August@Hermann@Niemeyer</persName>,@<lb break-after="yes"/>
+                                <choice break-after="yes">
+                                    <abbr>Königl.</abbr>
+                                    <expan>Königlich</expan>
+                                </choice>
+                                <choice>
+                                    <abbr>Preuß.</abbr>
+                                    <expan>Preußisch</expan>
+                                </choice>@Oberkonsistorialrath,@Kanzler@und@Professor@der@Theo-<lb/>logie@auf@der@vereinigten@Friedrichsuniversität@Halle@und@Wittenberg,@<lb/>Director@der@Frankischen@Stiftungen,@auch@Ritter@<lb/>des@rothen@Adlerordens@dritter@Klasse.</byline>
+                            <lb/>
+                            <titlePart type="volume">Erster@Band.</titlePart>
+                            <lb/>
+                            <docEdition>Dritte@Auflage.</docEdition>
+                            <lb/>
+                            <docImprint>Halle,@<lb/>im@Verlage@der@<index indexName="persons">
+                                    <term>Curt,@Johann@Jacob</term>
+                                </index>
+                                <persName>Curtschen</persName>@Buchhandlung.@<lb/>
+                                <docDate>1818.<ptr target="#textgrid:25484"/>
+                                </docDate>
+                            </docImprint>
+                        </titlePage>
+                        <pb edRef="#c" type="sp" n="II" break-before="yes" break-after="yes"/>
+                        <rdgMarker wit="c" type="ppl" ref="N3.4.2.2.3.6" mark="close" context="rdg"/>
+                    </rdg>
+                </app>
+            </div>
+            <div n="1">
+                <head>Einfaches@Beispiel@mit@pp@und@v</head>
+                <p>[...]@was@sie@<hi>sollten</hi>,@ist@<app>
+                        <lem id="N3.4.2.4.5.4.2">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.4.5.4.4" mark="open" context="lem"/>die:@–<rdgMarker wit="c" type="pp" ref="N3.4.2.4.5.4.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#c" type="pp" id="N3.4.2.4.5.4.4">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.4.5.4.4" mark="open" context="rdg"/>die,<rdgMarker wit="c" type="pp" ref="N3.4.2.4.5.4.4" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>@daß@diese@so@selten@richtige@Begriffe@von@dem@<app>
+                        <lem id="N3.4.2.4.5.6.2">
+                            <rdgMarker wit="c" type="v" ref="N3.4.2.4.5.6.4" mark="open" context="lem"/>Umfang<rdgMarker wit="c" type="v" ref="N3.4.2.4.5.6.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#c" type="v" id="N3.4.2.4.5.6.4">Umfange</rdg>
+                    </app>,@dem@<app>
+                        <lem id="N3.4.2.4.5.8.2">
+                            <rdgMarker wit="c" type="v" ref="N3.4.2.4.5.8.4" mark="open" context="lem"/>Werth<rdgMarker wit="c" type="v" ref="N3.4.2.4.5.8.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg type="v" wit="#c" id="N3.4.2.4.5.8.4">Werthe</rdg>
+                    </app>@der@Wissenschaften,@[...]</p>
+            </div>
+            <div>
+                <head>Einfaches@Beispiel@mit@mehreren@parallelen@Varianten</head>
+                <p>
+                    <app>
+                        <lem id="N3.4.2.6.4.2.2">
+                            <rdgMarker wit="a c" type="v" ref="N3.4.2.6.4.2.4 N3.4.2.6.4.2.6" mark="open" context="lem"/>Andrer<rdgMarker wit="a c" type="v" ref="N3.4.2.6.4.2.4 N3.4.2.6.4.2.6" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#a" type="v" id="N3.4.2.6.4.2.4">andrer</rdg>
+                        <rdg wit="#c" type="v" id="N3.4.2.6.4.2.6">Anderer</rdg>
+                    </app>@leiten@<app>
+                        <lem id="N3.4.2.6.4.4.2">
+                            <rdgMarker wit="a c" type="v" ref="N3.4.2.6.4.4.4" mark="open" context="lem"/>laßen<rdgMarker wit="a c" type="v" ref="N3.4.2.6.4.4.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#a #c" type="v" id="N3.4.2.6.4.4.4">lassen</rdg>
+                    </app>,@gegen@die@sie@eine@gewisse@Vorliebe@haben;@kurz,@weil@sie@selten@selbst</p>
+            </div>
+            <div n="2">
+                <head>Einfaches@Beispiel@mit@NON@BLE@Tag@im@tei:lem</head>
+                <note>bla</note>
+                <div>
+                    <head>uk</head>
+                    <p>
+                        <app>
+                            <lem id="N3.4.2.8.7.4.2.2">
+                                <rdgMarker wit="a b" type="v" ref="N3.4.2.8.7.4.2.4" mark="open" context="lem"/>was<rdgMarker wit="a b" type="v" ref="N3.4.2.8.7.4.2.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#a #b" type="v" id="N3.4.2.8.7.4.2.4">
+                                <app>
+                                    <rdg wit="#a" id="N3.4.2.8.7.4.2.4.4.2">
+                                        <hi>was</hi>
+                                    </rdg>
+                                    <rdg wit="b" id="N3.4.2.8.7.4.2.4.4.4">WAS</rdg>
+                                </app>,</rdg>
+                        </app>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <head>Einfaches@Beispiel@mit@tei:lem[@type='om'],@tei:rdg[@type='om'@|@'pt']@und@tei:seg[@type='condensed']</head>
+                <head>
+                    <seg xml:id="var_1_vorrede_c_head" break-after="yes">
+                        <pb edRef="#a" type="sp" n="III" break-before="yes" break-after="yes"/>
+                        <pb edRef="#b" type="sp" n="III" break-before="yes" break-after="yes"/>
+                        <pb edRef="#c" n="XIII" break-before="yes" break-after="yes"/>
+                        <app break-after="yes">
+                            <lem id="N3.4.2.10.4.2.9.2">
+                                <rdgMarker wit="c" type="pp" ref="N3.4.2.10.4.2.9.4" mark="open" context="lem"/>Vorrede<rdgMarker wit="c" type="pp" ref="N3.4.2.10.4.2.9.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#c" type="pp" id="N3.4.2.10.4.2.9.4">
+                                <rdgMarker wit="c" type="pp" ref="N3.4.2.10.4.2.9.4" mark="open" context="rdg"/>Vorreden@des@Verfassers@bei<rdgMarker wit="c" type="pp" ref="N3.4.2.10.4.2.9.4" mark="close" context="rdg"/>
+                            </rdg>
+                        </app>
+                        <app>
+                            <lem id="N3.4.2.10.4.2.11.2">
+                                <rdgMarker wit="a" type="om" ref="N3.4.2.10.4.2.11.4" mark="open" context="lem"/>der@ersten@<app>
+                                    <lem id="N3.4.2.10.4.2.11.2.2.2"/>
+                                    <rdg wit="#c" type="pt" id="N3.4.2.10.4.2.11.2.2.4">
+                                        <rdgMarker wit="c" type="pt" ref="N3.4.2.10.4.2.11.2.2.4" mark="open" context="rdg"/>und@zweiten<rdgMarker wit="c" type="pt" ref="N3.4.2.10.4.2.11.2.2.4" mark="close" context="rdg"/>
+                                    </rdg>
+                                </app>@Ausgabe<rdgMarker wit="a" type="om" ref="N3.4.2.10.4.2.11.4" mark="close" context="lem"/>
+                            </lem>
+                            <rdg wit="#a" type="om" id="N3.4.2.10.4.2.11.4"/>
+                        </app>.</seg>
+                    <seg type="condensed">I.@Vorrede@der@ersten@Ausgabe</seg>
+                </head>
+            </div>
+            <div n="3">
+                <head>Komplexes@Beispiel@mit@tei:lem@in@tei:lem</head>
+                <p>ich@<app>
+                        <lem id="N3.4.2.12.5.2.2">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.2.4" mark="open" context="lem"/>durch<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.2.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#c" type="pp" id="N3.4.2.12.5.2.4">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.2.4" mark="open" context="rdg"/>bei@Abfassung<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.2.4" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>@dieses@<app>
+                        <lem id="N3.4.2.12.5.4.2">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.4.4" mark="open" context="lem"/>ganze@Buch<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.4.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#c" type="pp" id="N3.4.2.12.5.4.4">
+                            <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.4.4" mark="open" context="rdg"/>ganzen@Buchs<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.4.4" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>@vor@Augen@gehabt<app>
+                        <lem id="N3.4.2.12.5.6.2">
+                            <rdgMarker wit="a" type="om" ref="N3.4.2.12.5.6.4" mark="open" context="lem"/>,@und@mich@daher@bemüht,@theils@Manches@<app>
+                                <lem id="N3.4.2.12.5.6.2.2.2">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.6.2.2.4" mark="open" context="lem"/>hervor@zu@ziehen<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.6.2.2.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg type="pp" wit="#c" id="N3.4.2.12.5.6.2.2.4">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.6.2.2.4" mark="open" context="rdg"/>hervorzuziehen<rdgMarker wit="c" type="pp" ref="N3.4.2.12.5.6.2.2.4" mark="close" context="rdg"/>
+                                </rdg>
+                            </app>,@was@zu@sehr@<app>
+                                <lem id="N3.4.2.12.5.6.2.4.2">
+                                    <rdgMarker wit="c" type="v" ref="N3.4.2.12.5.6.2.4.4" mark="open" context="lem"/>bey<rdgMarker wit="c" type="v" ref="N3.4.2.12.5.6.2.4.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#c" type="v" id="N3.4.2.12.5.6.2.4.4">bei</rdg>
+                            </app>@dem@Studieren@der@Theologie@übersehen@wird,@theils@den@wahren@nur@zu@oft@verkannten@Werth@mancher@Studien@und@Uebungen,@besonders@durch@deutliche@<app>
+                                <lem id="N3.4.2.12.5.6.2.6.2">
+                                    <rdgMarker wit="c" type="v" ref="N3.4.2.12.5.6.2.6.4" mark="open" context="lem"/>Beyspiele<rdgMarker wit="c" type="v" ref="N3.4.2.12.5.6.2.6.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#c" type="v" id="N3.4.2.12.5.6.2.6.4">Beispiele</rdg>
+                            </app>,@einleuchtender@zu@machen<rdgMarker wit="a" type="om" ref="N3.4.2.12.5.6.4" mark="close" context="lem"/>
+                        </lem>
+                        <rdg wit="#a" type="om" id="N3.4.2.12.5.6.4"/>
+                    </app>.</p>
+            </div>
+            <div n="4">
+                <head>Einfaches@Beispiel@mit@tei:rdg[@type='ptl']</head>
+                <p>
+                    <app>
+                        <lem id="N3.4.2.14.5.2.2"/>
+                        <rdg wit="#a" type="ptl" id="N3.4.2.14.5.2.4">
+                            <rdgMarker wit="a" type="ptl" ref="N3.4.2.14.5.2.4" mark="open" context="rdg"/>Sollte@man@gerade@einige@der@neuesten@vermissen,@die@Empfehlung@verdient@hätten:@so@muß@ich@bemerken,@daß@ohngefehr@die@ersten@zwölf@Bogen@dieses@Buchs@schon@fast@vor@zwey@Jahren@ab<pb edRef="#a" type="sp" n="XIII" break="no"/>gedruckt@waren.<rdgMarker wit="a" type="ptl" ref="N3.4.2.14.5.2.4" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>
+                </p>
+            </div>
+            <div n="5">
+                <head break-after="yes">Komplexes@Beispiel@mit@tei:rdg[@type='ptl']@und@lehrem@tei:lem</head>
+                <app>
+                    <lem id="N3.4.2.16.5.2"/>
+                    <rdg wit="#c" type="ptl" id="N3.4.2.16.5.4">
+                        <div type="preface" xml:id="preface_1_1_c">
+                            <head>
+                                <rdgMarker wit="c" type="ptl" ref="N3.4.2.16.5.4" mark="open" context="rdg"/>
+                                <pb edRef="#c" type="sp" n="III" break-before="yes"/>@Vorrede@des@Herausgebers.<seg type="condensed">I.@Vorrede@des@Herausgebers@(c)</seg>
+                            </head>
+                            <p>Es@darf@in@einer@Zeit,@wo@die@unendliche@Menge@neuer@Schriften@so@leicht@die@älteren@in@Vergessenheit@bringt,@zu@den@erfreulichen@Erscheinungen@gerechnet@werden,@daß,@nachdem@<hi>sieben@und@zwanzig</hi>@Jahre@seit@der@<hi>letzten@Ausgabe</hi>@der@vorliegenden@Schrift@[...]@<hi>nebst@einer@Sammlung@seiner@zum@Theil@ungedruckten@Aufsätze,@Briefe@und@Fragmente</hi>,@erschienen@ist.</p>
+                            <p>Halle@den@15ten@März@1818.@<lb break-after="yes"/>
+                                <aligned rend="right-aligned">Der@Herausgeber.<rdgMarker wit="c" type="ptl" ref="N3.4.2.16.5.4" mark="close" context="rdg"/>
+                                </aligned>
+                            </p>
+                        </div>
+                    </rdg>
+                </app>
+            </div>
+            <div n="6">
+                <head break-after="yes">Hoch@komplexes@Beispiel@mit@Strukturapparat@un@tei:milestone</head>
+                <app type="structural-variance">
+                    <lem id="N3.4.2.18.5.3">
+                        <seg xml:id="var_1_19_p1" break-after="yes">Alles@bisher@<app>
+                                <lem id="N3.4.2.18.5.3.2.3.2">
+                                    <rdgMarker wit="c" type="v" ref="N3.4.2.18.5.3.2.3.4" mark="open" context="lem"/>gesagte<rdgMarker wit="c" type="v" ref="N3.4.2.18.5.3.2.3.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#c" type="v" id="N3.4.2.18.5.3.2.3.4">Gesagte</rdg>
+                            </app>@§.@<app>
+                                <lem id="N3.4.2.18.5.3.2.5.2">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.18.5.3.2.5.4" mark="open" context="lem"/>
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19" break-after="yes">19</ref>
+                                    <app>
+                                        <lem id="N3.4.2.18.5.3.2.5.2.6.2">
+                                            <rdgMarker wit="a" type="v" ref="N3.4.2.18.5.3.2.5.2.6.4" mark="open" context="lem"/>kan<rdgMarker wit="a" type="v" ref="N3.4.2.18.5.3.2.5.2.6.4" mark="close" context="lem"/>
+                                            <rdgMarker wit="c" type="pp" ref="N3.4.2.18.5.3.2.5.4" mark="close" context="lem"/>
+                                        </lem>
+                                        <rdg wit="#a" type="v" id="N3.4.2.18.5.3.2.5.2.6.4">kann</rdg>
+                                    </app>
+                                </lem>
+                                <rdg wit="#c" type="pp" id="N3.4.2.18.5.3.2.5.4">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.18.5.3.2.5.4" mark="open" context="rdg"/>
+                                    <ref target="#section_1_15">15</ref>–<ref target="#section_1_19">19.</ref>@kann<rdgMarker wit="c" type="pp" ref="N3.4.2.18.5.3.2.5.4" mark="close" context="rdg"/>
+                                </rdg>
+                            </app>@dazu@dienen,@angehenden@Theologen@Liebe@und@Achtung@gegen@den@Stand,@dem@sie@sich@widmen,@<app>
+                                <lem id="N3.4.2.18.5.3.2.7.2">
+                                    <rdgMarker wit="a c" type="v" ref="N3.4.2.18.5.3.2.7.4" mark="open" context="lem"/>einzuflössen<rdgMarker wit="a c" type="v" ref="N3.4.2.18.5.3.2.7.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#a #c" type="v" id="N3.4.2.18.5.3.2.7.4">einzuflößen</rdg>
+                            </app>,@und@sie@von@ihrer@wahren@Bestimmung@zu@belehren.</seg>
+                        <app>
+                            <lem id="N3.4.2.18.5.3.4.2"/>
+                            <rdg wit="#c" type="ptl" id="N3.4.2.18.5.3.4.4">
+                                <rdgMarker wit="c" type="ptl" ref="N3.4.2.18.5.3.4.4" mark="open" context="rdg"/>
+                                <milestone edRef="#c" type="structure" unit="p" break-after="yes"/>
+                                <seg xml:id="var_1_19_p2">{Dieß@ist@um@so@mehr@gleich@bei@dem@[...]@diesem@Stande@gewachsen@seyn@werden.}@<aligned rend="right-aligned">
+                                        <choice>
+                                            <abbr>A.@d.@H.</abbr>
+                                            <expan>Anmerkung@des@Herausgebers</expan>
+                                        </choice>
+                                        <rdgMarker wit="c" type="ptl" ref="N3.4.2.18.5.3.4.4" mark="close" context="rdg"/>
+                                    </aligned>
+                                </seg>
+                            </rdg>
+                        </app>
+                    </lem>
+                    <rdg type="var-structure" wit="#c" id="N3.4.2.18.5.5">
+                        <p copyOf="#var_1_19_p1"/>
+                        <p copyOf="#var_1_19_p2"/>
+                    </rdg>
+                </app>
+            </div>
+            <div n="7">
+                <head>Komplexes@Beispiel@mit@tei:rdg[@type='ppl']@und@ineinandergeschachtelten@Apparaten</head>
+                <p>
+                    <app>
+                        <lem id="N3.4.2.20.3.5.2.2">
+                            <rdgMarker wit="a" type="ppl" ref="N3.4.2.20.3.5.2.4" mark="open" context="lem"/>könnte;@und@der@hier@angegebene@scheint@mit@dem@Sprachgebrauch@am@meisten@<app>
+                                <lem id="N3.4.2.20.3.5.2.2.2.2">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="open" context="lem"/>überein@zu@kommen<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="close" context="lem"/>
+                                </lem>
+                                <rdg wit="#c" type="pp" id="N3.4.2.20.3.5.2.2.2.4">
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="open" context="rdg"/>übereinzukommen<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="close" context="rdg"/>
+                                </rdg>
+                            </app>,@weil@dadurch@wirklich@[...]@Bequemlichkeit@und@Vergnügen,@so@wie@mechanische@und@bildende@Künste,@um@Bildung@des@Geistes@zu@befördern.@<list>
+                                <item>
+                                    <choice break-after="yes">
+                                        <abbr>S.</abbr>
+                                        <expan>Siehe</expan>
+                                    </choice>
+                                    <hi>Philosophische@Blicke@auf@Wissenschaften@und@Menschenleben</hi>,@von@<index indexName="persons">
+                                        <term>Heinzelmann,@Johann@Christian@Friedrich</term>
+                                    </index>
+                                    <hi>
+                                        <persName ref="#textgrid:24kqp">Heinzelmann</persName>
+                                    </hi>@und@<app>
+                                        <lem id="N3.4.2.20.3.5.2.2.4.2.10.2">
+                                            <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="open" context="lem"/>
+                                            <index indexName="persons">
+                                                <term>Voss,@Christian@Daniel</term>
+                                            </index>
+                                            <hi>
+                                                <persName ref="#textgrid:24kqn">Voss</persName>
+                                            </hi>,@Band.<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="close" context="lem"/>
+                                        </lem>
+                                        <rdg wit="#c" type="pp" id="N3.4.2.20.3.5.2.2.4.2.10.4">
+                                            <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="open" context="rdg"/>
+                                            <hi>
+                                                <persName>Voß</persName>
+                                            </hi>,@Band<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="close" context="rdg"/>
+                                        </rdg>
+                                    </app>@1.<choice>
+                                        <abbr>S.</abbr>
+                                        <expan>Seite</expan>
+                                    </choice>@10@<choice>
+                                        <abbr>f.</abbr>
+                                        <expan>folgend</expan>
+                                    </choice>
+                                    <rdgMarker wit="a" type="ppl" ref="N3.4.2.20.3.5.2.4" mark="close" context="lem"/>
+                                </item>
+                            </list>
+                        </lem>
+                        <rdg wit="#a" type="ppl" id="N3.4.2.20.3.5.2.4">
+                            <rdgMarker wit="a" type="ppl" ref="N3.4.2.20.3.5.2.4" mark="open" context="rdg"/>könnte.@<ptr xml:id="klasse"/>Er@hat@den@<index indexName="subjects">
+                                <term>Sprachgebrauch</term>
+                            </index>Sprachgebrauch@so@gut@[...]@secundis@tertiisque@consistere.@<index indexName="classical-authors">
+                                <term>
+                                    <persName>Cicero,@Marcus@Tullius</persName>
+                                    <title>Orator.</title>
+                                    <measure>1</measure>
+                                </term>
+                            </index>
+                            <persName ref="#textgrid:24gxq">Cicero</persName>@Orator.@<choice>
+                                <abbr>cap.</abbr>
+                                <expan>caput/capitulum</expan>
+                            </choice>@1.<rdgMarker wit="a" type="ppl" ref="N3.4.2.20.3.5.2.4" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>
+                </p>
+            </div>
+            <div>
+                <p>
+                    <app>
+                        <lem id="N3.4.2.22.2.2.2">
+                            <rdgMarker wit="a b" type="ppl" ref="N3.4.2.22.2.2.4 N3.4.2.22.2.2.6" mark="open" context="lem"/>Bla<rdgMarker wit="a b" type="ppl" ref="N3.4.2.22.2.2.4 N3.4.2.22.2.2.6" mark="close" context="lem"/>
+                        </lem>
+                        <rdg type="ppl" wit="#a" id="N3.4.2.22.2.2.4">
+                            <div>
+                                <head>
+                                    <rdgMarker wit="a" type="ppl" ref="N3.4.2.22.2.2.4" mark="open" context="rdg"/>
+                                    <a>Blub@<note>hhj</note>
+                                    </a>
+                                </head>
+                                <p>Test<rdgMarker wit="a" type="ppl" ref="N3.4.2.22.2.2.4" mark="close" context="rdg"/>
+                                </p>
+                            </div>
+                        </rdg>
+                        <rdg type="ppl" wit="#b" id="N3.4.2.22.2.2.6">
+                            <rdgMarker wit="b" type="ppl" ref="N3.4.2.22.2.2.6" mark="open" context="rdg"/>@Zeuge@B@<rdgMarker wit="b" type="ppl" ref="N3.4.2.22.2.2.6" mark="close" context="rdg"/>
+                        </rdg>
+                    </app>
+                </p>
+            </div>
+        </body>
+    </text>
+    <editorialNotes/>
+</TEI>
