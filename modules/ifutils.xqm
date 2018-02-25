@@ -8,7 +8,7 @@ xquery version "3.1";
  : @status developing
  : @author Uwe Sikora
  :)
-module namespace ifutils="http://bdn.edition.de/intermediate_format/utils";
+module namespace ifutils="http://bdn-edition.de/intermediate_format/utils";
 import module namespace http = "http://expath.org/ns/http-client";
 
 (:############################# Modules Variables #############################:)
@@ -57,6 +57,25 @@ declare function ifutils:get-resource
     )
     
     return $resource
+};
+
+
+(:~  
+ : ifutils:ls()
+ : This function lists all documents from a collection
+ :
+ : @param $collection the path of a collection
+ : @return all document-base-uris from the collection
+ : 
+ : @version 1.0 (2018-03-23)
+ : @status developing
+ : @author Uwe Sikora
+ :)
+declare function ifutils:ls
+    ( $collection as xs:string ) {
+    
+    for $doc in collection($collection)
+    return base-uri($doc)
 };
 
 
