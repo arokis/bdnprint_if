@@ -376,7 +376,7 @@
                                     <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="open" context="lem"/>überein@zu@kommen<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="close" context="lem"/>
                                 </lem>
                                 <rdg wit="#c" type="pp" id="N3.4.2.20.3.5.2.2.2.4">
-                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="open" context="rdg"/>übereinzukommen<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="close" context="rdg"/>
+                                    <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.2.4" mark="open" context="rdg"/>übereinzukommen
                                 </rdg>
                             </app>,@weil@dadurch@wirklich@[...]@Bequemlichkeit@und@Vergnügen,@so@wie@mechanische@und@bildende@Künste,@um@Bildung@des@Geistes@zu@befördern.@<list>
                                 <item>
@@ -391,7 +391,7 @@
                                         <persName ref="#textgrid:24kqp">Heinzelmann</persName>
                                     </hi>@und@<app>
                                         <lem id="N3.4.2.20.3.5.2.2.4.2.10.2">
-                                            <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="open" context="lem"/>
+                                            
                                             <index indexName="persons">
                                                 <term>Voss,@Christian@Daniel</term>
                                             </index>
@@ -400,7 +400,7 @@
                                             </hi>,@Band.<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="close" context="lem"/>
                                         </lem>
                                         <rdg wit="#c" type="pp" id="N3.4.2.20.3.5.2.2.4.2.10.4">
-                                            <rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="open" context="rdg"/>
+                                            
                                             <hi>
                                                 <persName>Voß</persName>
                                             </hi>,@Band<rdgMarker wit="c" type="pp" ref="N3.4.2.20.3.5.2.2.4.2.10.4" mark="close" context="rdg"/>
@@ -412,7 +412,6 @@
                                         <abbr>f.</abbr>
                                         <expan>folgend</expan>
                                     </choice>
-                                    <rdgMarker wit="a" type="ppl" ref="N3.4.2.20.3.5.2.4" mark="close" context="lem"/>
                                 </item>
                             </list>
                         </lem>
@@ -438,7 +437,7 @@
                 <p>
                     <app>
                         <lem id="N3.4.2.22.2.2.2">
-                            <rdgMarker wit="a b" type="ppl" ref="N3.4.2.22.2.2.4 N3.4.2.22.2.2.6" mark="open" context="lem"/>Bla<rdgMarker wit="a b" type="ppl" ref="N3.4.2.22.2.2.4 N3.4.2.22.2.2.6" mark="close" context="lem"/>
+                            Bla<rdgMarker wit="a b" type="ppl" ref="N3.4.2.22.2.2.4 N3.4.2.22.2.2.6" mark="close" context="lem"/>
                         </lem>
                         <rdg type="ppl" wit="#a" id="N3.4.2.22.2.2.4">
                             <div>

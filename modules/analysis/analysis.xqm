@@ -163,7 +163,7 @@ declare function analysis:tei-body
                 if ($node/parent::tei:app[@type = "structural-variance"]) then (
                     analysis:tei-body($node/node())
                 ) 
-                else(analysis:lem($node)) 
+                else( analysis:lem($node) )
             )
             
             case element(tei:list) return (
@@ -286,20 +286,20 @@ declare function analysis:rdgMarker
     return
         if ( $marker[@type="pt" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="pt open">{concat("/", $wit)}</span>
+                <span class="pt open">{$wit}</span>
             ) 
             else (
-                <span class="pt closeing">{concat($wit, "\")}</span>
+                <span class="pt closeing">{$wit}</span>
             )
                
         )
         
         else if ( $marker[@type="ptl" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="ptl open">{concat("/", $wit)}</span>
+                <span class="ptl open">{$wit}</span>
             ) 
             else (
-                <span class="ptl closeing">{concat($wit, "\||", $wit)}</span>
+                <span class="ptl closeing">{$wit}</span>
             )
                
         )
@@ -316,20 +316,27 @@ declare function analysis:rdgMarker
         
         else if ( $marker[@type="pp" and @context="lem"] ) then (
             if ($marker[@mark="open"]) then (
-                <span class="pp open">{concat("~/", $wit)}</span>
+                <span class="pp open">{$wit}</span>
             ) 
             else (
-                <span class="pp closeing">{concat($wit, "\~")}</span>
+                <span class="pp closeing">{$wit}</span>
             )
                
         )
         
         else if ( $marker[@type="ppl" and @context="lem"] ) then (
+            (:
             if ($marker[@mark="open"]) then (
                 <span class="ppl open">{concat("~/", $wit)}</span>
             ) 
             else (
                 <span class="ppl closeing">{concat($wit, "\~||", $wit)}</span>
+            )  :)
+            if ($marker[@mark="open"]) then (
+                <span class="ppl open">{$wit}</span>
+            ) 
+            else (
+                <span class="ppl closeing">{$wit}</span>
             )  
         )
         
@@ -389,16 +396,18 @@ declare function analysis:rdgMarker
 declare function analysis:rdg
     ( $rdg as node() ) as item()* {
 
-    let $id := data($rdg[@id])
+    let $id := data($rdg/@id)
+    let $type := data($rdg/@type)
+    let $wit := data($rdg/@wit)
     let $errors := if ( $rdg[@type = "v" or @type="om"] ) then () else (analysis:check-rdg-markers($id, $rdg))
     return (
         element {"span"}{
             attribute {"class"}{"reading rdg " || data($rdg/@type)},
-            <span class="reading-term">tei:rdg</span>,
+            <span class="reading-term"><span class="reading-type">{ $type }</span> on <span class="reading-wit">{ replace($wit, "#", "") }</span></span>,
             <span class="error-status">
                 { if ($errors) then (<span style="color: red">&#10007;</span>, console:log($errors)) else (<span style="color: green">&#10004;</span>) }
             </span>,
-            <span class="reading-content">{ analysis:tei-body( $rdg/node() ) }</span>
+            if ($type != "om") then ( <span class="reading-content">{ analysis:tei-body( $rdg/node() ) }</span> ) else (<div></div>)
         }
     )
 };
@@ -432,29 +441,26 @@ declare function analysis:lem
 
     let $sibling-readings := $lem/following-sibling::tei:rdg[not(@type="typo_corr" or @type="invisible-ref")]
     let $ids := distinct-values($sibling-readings/@id)
-    let $errors := ( if ($lem[@type="om"] or count($lem/node()) = 0) then () else (for $id in $ids return analysis:check-lem-markers($id, $lem)) )
+    let $errors := (
+        for $id in $ids
+        let $open := $lem//tei:rdgMarker[@mark = "open" and @context = "lem"][$id = tokenize(@ref, " ")]
+        let $close := $lem//tei:rdgMarker[@mark = "close" and @context = "lem"][$id = tokenize(@ref, " ")]
+        where not($open and $close)
+        return (console:log($lem//tei:rdgMarker[@mark = "open" and @context = "lem"]), $open, $close)
+    )
+    
     return (
         element {"span"}{
             attribute {"class"}{"reading lem"},
             <span class="reading-term">tei:lem</span>,
-            console:log($errors),
-            <span class="error-status">{ if ($errors) then (<span style="color: red">&#10007;</span>) else (<span style="color: green">&#10004;</span>) }</span>,
-            <span class="reading-content">{ analysis:tei-body( $lem/node() ) }</span>
+            <span class="error-status">
+                { if ($errors) then (<span style="color: red">&#10007;</span>, console:log($errors)) else (<span style="color: green">&#10004;</span>) }
+            </span>,
+            if (data($lem/@type) != "om" or count($lem/node()) gt 0) then ( <span class="reading-content">{ analysis:tei-body( $lem/node() ) }</span> ) else (<div></div>)
         }
     )
-};
+    
 
-
-declare function analysis:check-lem-markers
-    ( $id as xs:string, $reading as node() ) as item()* {
-        
-    let $open-marker := $reading//tei:rdgMarker[@mark = "open" and @context = "lem"][tokenize(@ref, " ") = $id]
-    let $close-marker := $reading//tei:rdgMarker[@mark = "close" and @context = "lem"][tokenize(@ref, " ") = $id]
-    let $error := (
-        if ( not($open-marker) or not($close-marker ) ) then ("ERROR")
-        else ()
-    )
-    return $error
 };
 
 
@@ -507,4 +513,57 @@ declare function analysis:tei-header
 
 
             default return ()
+};
+
+
+declare function analysis:marker-report
+    ( $doc ) as item() {
+    
+    let $markers := analysis:get-rdg-markers($doc)
+    let $dif := data($markers//open/@count) - data($markers//close/@count)
+    return
+        if ($dif = 0) then (
+            <okay count="{data($markers//open/@count)}" />
+        ) 
+        else (
+            <error dif="{$dif}">{analysis:check-marker($markers)}</error>
+        )
+};
+
+
+declare function analysis:check-marker
+    ( $markers ) as item()* {
+    
+    let $open := $markers//open/node()
+    let $close := $markers//close/node()
+    let $dif := data($markers//open/@count) - data($markers//close/@count)
+    return (
+        for $marker in $open
+        let $type := data($marker/@type)
+        let $ref := data($marker/@ref)
+        let $context := data($marker/@context)
+        let $counter-part := $close[@type = $type and @context = $context and @ref = $ref]
+        where not($counter-part)
+        return $marker,
+        for $marker in $close
+        let $type := data($marker/@type)
+        let $ref := data($marker/@ref)
+        let $context := data($marker/@context)
+        let $counter-part := $open[@type = $type and @context = $context and @ref = $ref]
+        where not($counter-part)
+        return $marker
+    )
+};
+
+
+declare function analysis:get-rdg-markers
+    ( $doc ) as item()* {
+    
+    let $open := $doc//tei:rdgMarker[@mark = "open"]
+    let $close := $doc//tei:rdgMarker[@mark = "close"]
+    return
+        <markers>
+            <open count="{count($open)}">{$open}</open>
+            <close count="{count($close)}">{$close}</close>
+        </markers>
 };

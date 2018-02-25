@@ -6,8 +6,10 @@ declare namespace tei = "http://www.tei-c.org/ns/1.0";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://bdn-edition.de/intermediate_format/config" at "config.xqm";
 import module namespace analysis="http://bdn-edition.de/intermediate_format/analysis" at "analysis/analysis.xqm";
-import module namespace pre="http://bdn.edition.de/intermediate_format/preprocessing" at "intermediate_format/preprocessing.xqm";
-import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "intermediate_format/identification.xqm";
+import module namespace pre="http://bdn-edition.de/intermediate_format/preprocessing" at "intermediate_format/preprocessing.xqm";
+import module namespace ident = "http://bdn-edition.de/intermediate_format/identification" at "intermediate_format/identification.xqm";
+import module namespace ifutils="http://bdn-edition.de/intermediate_format/utils" at "ifutils.xqm";
+import module namespace console="http://exist-db.org/xquery/console";
 
 (:~
  : This is a sample templating function. It will be called by the templating module if
@@ -24,6 +26,7 @@ declare function app:test($node as node(), $model as map(*)) {
 };
 
 
+(:
 declare 
     %templates:wrap
     %templates:default("doc", "/db/apps/interformat/data/samples/samples.xml")
@@ -35,6 +38,46 @@ function app:present($node as node(), $model as map(*), $doc) {
             let $intermediate-format := ident:walk($preprocessed-data, ())
             return
                 analysis:tei-body($intermediate-format)
+        }
+    </div>
+};
+:)
+
+
+declare 
+    %templates:wrap
+    %templates:default("doc", "/db/apps/interformat/data/samples/samples.xml")
+function app:app-view($node as node(), $model as map(*), $doc) {
+    <div class="apps">
+        {   
+            for $app at $nr in doc($doc)//tei:app[not(@type='structural-variance')]
+            let $readings := $app/node()
+            return 
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <ul style="padding-left: 0px; list-style-type: none;">
+                            <li><strong>nr: </strong> {$nr}</li>
+                            <li><strong>readings: </strong> {count($readings)}</li>
+                            <li><strong>subapps: </strong> { if ($readings//tei:app) then ("true") else ("false") }</li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">{analysis:tei-body($app/node())}</div>
+                    <!--<div class="panel-footer">Panel Footer</div>-->
+                </div>
+        }
+    </div>
+};
+
+
+declare 
+    %templates:wrap
+    %templates:default("doc", "/db/apps/interformat/data/samples/samples.xml")
+function app:present($node as node(), $model as map(*), $doc) {
+    <div class="serialisation">
+        {   
+            let $nodes := doc($doc)/tei:TEI
+            return 
+                analysis:tei-body($nodes//tei:text)
         }
     </div>
 };
@@ -53,4 +96,66 @@ function app:tei-metadata($node as node(), $model as map(*), $doc) {
             </div>
             {analysis:tei-header($tei-header)}
         </div>
+};
+
+
+declare 
+    %templates:wrap
+    %templates:default("collection", "/db/apps/interformat/data/output")
+function app:list-output-resources($node as node(), $model as map(*), $collection) {
+    let $output-resources := collection($collection)
+    return
+        <table class="table table-condensed">
+            <tr>
+                <th>#</th>
+                <th>resource</th>
+                <th>Reading Markers</th>
+                <th>views</th>
+            </tr>
+            {
+                for $resource at $nr in $output-resources
+                let $base-uri := base-uri($resource)
+                let $filename := replace($base-uri, '.+/(.+)$', '$1')
+                let $analyse-markers := analysis:marker-report($resource)
+                return
+                    <tr>
+                        <td>{$nr}</td>
+                        <td>{$filename}</td>
+                        <td>
+                            {
+                                console:log($analyse-markers[self::okay]),
+                                if ($analyse-markers[self::okay]) then (
+                                    <span style="color: green">&#10004;</span>,
+                                    <span style="padding-left: 5px">{data($analyse-markers/@count)}</span>
+                                ) 
+                                else (
+                                    <span style="color: red">&#10007;</span>,
+                                    <span style="padding-left: 5px">error</span>,
+                                    <!--<span style="padding-left: 5px">{data($analyse-markers/@dif), $analyse-markers}</span>-->,
+                                    <ul style="padding-left: 0px; list-style-type: none;">
+                                        {
+                                            for $error in $analyse-markers/node()
+                                            let $type := if ($error/@mark = 'open') then ('close') else ('open')
+                                            let $wit := data($error/@wit)
+                                            let $ref := data($error/@ref)
+                                            let $context := data($error/@context)
+                                            return 
+                                                <li>missing <strong>{$type}</strong> marker for wit "{$wit}" in reading "{$context}" (<i>{$ref}</i>)</li>
+                                        }
+                                    </ul>
+                                )
+                                
+                            }
+                        </td>
+                        <td>
+                            <ul style="padding-left: 0px;">
+                                <li style="display:inline"><a href="app.presentation.html?doc={$base-uri}">apps</a></li>
+                                <li style="display:inline">whitespace</li>
+                                <li style="display:inline">.</li>
+                                <li style="display:inline">..</li>
+                            </ul>
+                        </td>
+                    </tr>
+            }
+        </table>
 };

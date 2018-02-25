@@ -17,16 +17,158 @@ span.label {
 span.rdgMarker {
     font-weight: bold;
     font-size: 16px;
+    font-family: Helvetica, 'Lucida Sans Unicode', sans-serif;
+    margin-left: 2px;
+    margin-right:2px;
+}
+
+
+/* OM */
+span.rdgMarker .om {
+    background: #FEBFFF;
 }
 
 span.rdgMarker .om.open::before, span.rdgMarker .om.closeing::after {
     content: "om";
-    background: #FA81FE;
     vertical-align: super;
     font-size: 70%;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
+
+
+span.rdgMarker .om.open::after {
+    content: "[";
+}
+
+span.rdgMarker .om.closeing::before {
+    content: "]";
+}
+
+/* LONG PP */
+span.rdgMarker .ppl {
+    background: #21E7FF;
+}
+
+span.rdgMarker .ppl.open::before, span.rdgMarker .ppl.closeing::after {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+span.rdgMarker .ppl.open::before {
+    content: "ppl";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+span.rdgMarker .ppl.open::after {
+    
+    content: "/";
+}
+
+span.rdgMarker .ppl.closeing::before {
+    content: "\\";
+}
+
+span.rdgMarker .ppl.closeing::after {
+    content: "ppl";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+/* PP */
+span.rdgMarker .pp {
+    background: #D2FAFF;
+}
+
+span.rdgMarker .pp.open::before, span.rdgMarker .pp.closeing::after {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+span.rdgMarker .pp.open::before {
+    content: "pp";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+span.rdgMarker .pp.open::after {
+    
+    content: "/";
+}
+
+span.rdgMarker .pp.closeing::before {
+    content: "\\";
+}
+
+span.rdgMarker .pp.closeing::after {
+    content: "pp";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+/* PT */
+span.rdgMarker .pt {
+    background: #FFBA9D;
+}
+
+span.rdgMarker .pt.open::before, span.rdgMarker .pt.closeing::after {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+span.rdgMarker .pt.open::before {
+    content: "pt";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+span.rdgMarker .pt.open::after {
+    
+    content: "{";
+}
+
+span.rdgMarker .pt.closeing::before {
+    content: "}";
+}
+
+span.rdgMarker .pt.closeing::after {
+    content: "pt";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+/* PTL */
+span.rdgMarker .ptl {
+    background: #FF7538;
+}
+
+span.rdgMarker .ptl.open::before, span.rdgMarker .ptl.closeing::after {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+span.rdgMarker .ptl.open::before {
+    content: "ptl";
+    vertical-align: super;
+    font-size: 70%;
+}
+
+span.rdgMarker .ptl.open::after {
+    
+    content: "{";
+}
+
+span.rdgMarker .ptl.closeing::before {
+    content: "}";
+}
+
+span.rdgMarker .ptl.closeing::after {
+    content: "ptl";
+    vertical-align: super;
+    font-size: 70%;
+}
+
 
 /****************************************/
 /*      Textcritical elements           */
