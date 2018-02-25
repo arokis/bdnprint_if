@@ -1,10 +1,10 @@
 xquery version "3.1";
 
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
-import module namespace pre="http://bdn.edition.de/intermediate_format/preprocessing" at "xmldb:exist:///db/apps/interformat/modules/intermediate_format/preprocessing.xqm";
-import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "xmldb:exist:///db/apps/interformat/modules/intermediate_format/identification.xqm";
+import module namespace pre="http://bdn-edition.de/intermediate_format/preprocessing" at "xmldb:exist:///db/apps/interformat/modules/intermediate_format/preprocessing.xqm";
+import module namespace ident = "http://bdn-edition.de/intermediate_format/identification" at "xmldb:exist:///db/apps/interformat/modules/intermediate_format/identification.xqm";
 import module namespace config = "http://bdn-edition.de/intermediate_format/config" at "xmldb:exist:///db/apps/interformat/modules/config.xqm";
-import module namespace ifutils="http://bdn.edition.de/intermediate_format/utils" at "xmldb:exist:///db/apps/interformat/modules/ifutils.xqm";
+import module namespace ifutils="http://bdn-edition.de/intermediate_format/utils" at "xmldb:exist:///db/apps/interformat/modules/ifutils.xqm";
 import module namespace console="http://exist-db.org/xquery/console";
 
 (: http://localhost:8080/exist/rest/apps/interformat/rest/intermediate_format.xql :)

@@ -8,7 +8,7 @@ xquery version "3.0";
  : @status working
  : @author Uwe Sikora, Michelles Rodzis
  :)
-module namespace markerset="http://bdn.edition.de/intermediate_format/markerset";
+module namespace markerset="http://bdn-edition.de/intermediate_format/markerset";
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
 

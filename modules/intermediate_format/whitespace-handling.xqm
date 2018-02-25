@@ -8,8 +8,8 @@ xquery version "3.0";
  : @status working
  : @author Uwe Sikora
  :)
-module namespace whitespace="http://bdn.edition.de/intermediate_format/whitespace_handling";
-import module namespace pre="http://bdn.edition.de/intermediate_format/preprocessing" at "preprocessing.xqm";
+module namespace whitespace="http://bdn-edition.de/intermediate_format/whitespace_handling";
+import module namespace pre="http://bdn-edition.de/intermediate_format/preprocessing" at "preprocessing.xqm";
 
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 

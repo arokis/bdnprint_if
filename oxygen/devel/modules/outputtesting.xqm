@@ -8,7 +8,7 @@ xquery version "3.0";
  : @status development
  : @author Uwe Sikora
  :)
-module namespace output="http://bdn.edition.de/intermediate_format/output_testing";
+module namespace output="http://bdn-edition.de/intermediate_format/output_testing";
 (:declare default element namespace "http://www.tei-c.org/ns/1.0";:)
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 

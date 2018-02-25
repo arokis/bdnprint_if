@@ -17,8 +17,8 @@ xquery version "3.0";
  : @status working
  : @author Uwe Sikora
  :)
-module namespace ident="http://bdn.edition.de/intermediate_format/identification";
-import module namespace markerset = "http://bdn.edition.de/intermediate_format/markerset" at "markerset.xqm";
+module namespace ident="http://bdn-edition.de/intermediate_format/identification";
+import module namespace markerset = "http://bdn-edition.de/intermediate_format/markerset" at "markerset.xqm";
 
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 

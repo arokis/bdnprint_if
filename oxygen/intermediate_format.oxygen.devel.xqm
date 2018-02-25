@@ -4,10 +4,10 @@ xquery version "3.0";
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
 import module namespace functx = "http://www.functx.com" at "functx.xqm";
-import module namespace markerset = "http://bdn.edition.de/intermediate_format/markerset" at "../modules/intermediate_format/markerset.xqm";
-import module namespace pre = "http://bdn.edition.de/intermediate_format/preprocessing" at "../modules/intermediate_format/preprocessing.xqm";
-import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "../modules/intermediate_format/identification.xqm";
-import module namespace test = "http://bdn.edition.de/intermediate_format/unit_testing" at "devel/modules/unittesting.xqm";
+import module namespace markerset = "http://bdn-edition.de/intermediate_format/markerset" at "../modules/intermediate_format/markerset.xqm";
+import module namespace pre = "http://bdn-edition.de/intermediate_format/preprocessing" at "../modules/intermediate_format/preprocessing.xqm";
+import module namespace ident = "http://bdn-edition.de/intermediate_format/identification" at "../modules/intermediate_format/identification.xqm";
+import module namespace test = "http://bdn-edition.de/intermediate_format/unit_testing" at "devel/modules/unittesting.xqm";
 (:declare namespace target = "http://www.interform.com/target_index";
 import module "http://www.interform.com/target_index" at "targetindex.xqm";
 :)

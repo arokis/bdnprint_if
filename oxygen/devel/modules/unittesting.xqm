@@ -10,9 +10,9 @@ xquery version "3.0";
  : @status development
  : @author Uwe Sikora
  :)
-module namespace test="http://bdn.edition.de/intermediate_format/unit_testing";
+module namespace test="http://bdn-edition.de/intermediate_format/unit_testing";
 
-import module namespace ident = "http://bdn.edition.de/intermediate_format/identification" at "../../../modules/intermediate_format/identification.xqm";
+import module namespace ident = "http://bdn-edition.de/intermediate_format/identification" at "../../../modules/intermediate_format/identification.xqm";
 
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
