@@ -9,7 +9,6 @@ xquery version "3.0";
  : @author Uwe Sikora
  :)
 module namespace whitespace="http://bdn-edition.de/intermediate_format/whitespace_handling";
-import module namespace pre="http://bdn-edition.de/intermediate_format/preprocessing" at "preprocessing.xqm";
 
 declare default element namespace "http://www.tei-c.org/ns/1.0";
 
@@ -31,7 +30,6 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
 declare function whitespace:text
     ( $text as text()*, $escape-char as xs:string? ) as text()* {
 
-    let $normalized := normalize-space($text)
     let $whitespace-node := $text[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
     let $single-whitespace-between-nodes := $text = ' '
     return
@@ -61,7 +59,7 @@ declare function whitespace:text
  : @author Uwe Sikora
  :)
 declare function whitespace:escape-text
-    ( $text, $escape as xs:string ) as text()* {
+    ($text as text()*, $escape as xs:string) as text()* {
 
     text {replace($text, '[\s]+', $escape)}
 };
