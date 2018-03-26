@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <text>
+        <p>
+          <app>
+               <lem>
+                    <seg type="item">
+                        <app>
+                        <lem/>
+                        <rdg wit="#c" type="pt">
+                                <milestone unit="p" edRef="#c" type="structure"/>
+                                <seg xml:id="var_1_51_p3_1">Unter den Neueren:</seg>
+                            </rdg>
+                     </app>
+                        <milestone unit="line" edRef="#c" type="structure"/>
+                        <seg xml:id="var_1_51_p3_item1">
+                            <index indexName="persons">
+                           <term>Mosheim, Johann Lorenz von</term>
+                        </index>
+                            <persName ref="#textgrid:250j4">
+                                <hi>Joh. Lorenz von</hi>
+                                <app>
+                              <lem>
+                                        <hi>Mosheims</hi>
+                                    </lem>
+                              <rdg wit="#c" type="v">
+                                        <hi>Mosheim</hi>
+                                    </rdg>
+                           </app>
+                            </persName> kurze Anweisung, die Gottesgelahrtheit vernünftig zu
+                        erlernen – – zum Druck befördert von <index indexName="persons">
+                           <term>Windheim, Christian Ernst von</term>
+                        </index>
+                            <hi>
+                                <persName ref="#textgrid:250j5">Christian Ernst von
+                              Windheim</persName>
+                            </hi>, Helmstädt 1756.<ptr target="#textgrid:250j7"/> in <choice>
+                           <abbr>gr.</abbr>
+                           <expan>groß</expan>
+                        </choice> 8.</seg>
+                    </seg>
+                </lem>
+               <rdg wit="#a" type="om"/>
+            </app>
+        </p>
+   </text>
+</TEI>

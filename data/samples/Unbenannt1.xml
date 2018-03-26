@@ -8,10 +8,41 @@
             <title>Title</title>
          </titleStmt>
          <publicationStmt>
-            <p>Publication Information</p>
+            <p>
+                    <publisher>Publication</publisher> Information</p>
          </publicationStmt>
          <sourceDesc>
-            <p>Information about the source</p>
+            <listWit>
+               <witness xml:id="a">
+                  <desc>1. Aufl. 1779</desc>
+                  <bibl>D. Johann Jakob Griesbach's Anleitung zur gelehrten Kenntnis der populären
+                     Dogmatik. Jena, mit Hellers Schriften, 1779</bibl>
+               </witness>
+               <witness xml:id="b">
+                  <desc>2. Aufl. 1786</desc>
+                  <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                     Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                     populären Dogmatik, besonders für künftige Religionslehrer. Zweite stark vermehrte
+                     Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                     Cunoischen Erben. 1786</bibl>
+               </witness>
+               <witness xml:id="c">
+                  <desc type="base-text">3. Aufl. 1787</desc>
+                  <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                     Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                     populären Dogmatik, besonders für künftige Religionslehrer. Dritte verbesserte
+                     Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, im Verlag der
+                     Cunoischen Erben. 1787</bibl>
+               </witness>
+               <witness xml:id="d">
+                  <desc>4. Aufl. 1789</desc>
+                  <bibl>D. Johann Jakob Griesbach's, Sachsen Weimar- und Eisenachischen Geheimen
+                     Kirchenraths und ersten Lehrers der Theologie zu Jena, Anleitung zum Studium der
+                     populären Dogmatik, besonders für künftige Religionslehrer. Vierte neu
+                     durchgesehene Ausgabe. Mit Churfürstl. Sächßis. gnädigsten Privilegien. Jena, bei
+                     Christ. Heinr. Cuno's Erben. 1789.</bibl>
+               </witness>
+            </listWit>
          </sourceDesc>
       </fileDesc>
    </teiHeader>
@@ -177,23 +208,89 @@
                      <lem>trtrlem</lem>
                   <rdg wit="#f" type="om"/>   
                      <rdg wit="#a" type="ptl">tata</rdg>
-                     <rdg wit="#b" type="ptl">tbtb</rdg>
+                     <rdg wit="#b" type="ptl">tb<ptr target="#blabla"/>tb</rdg>
                      <rdg wit="#c" type="om"/>
                      <rdg wit="#d" type="om"/> 
                   <rdg wit="#e" type="om"/>   
                      <rdg wit="#z" type="ppl">zzzz</rdg>
                   </app>
-                    </rdg>
+               </rdg>
+                    <ptr target="#uwes"/>
                <rdg type="ppl" wit="#b">
-                        <note>
+                        <note type="authorial" xml:id="blabla" place="end">
                             <p>
                                 <name>name <p>zweites p</p>
                                 </name>
                             </p>
                         </note>
+                  <note type="editorial" xml:id="uwes" place="end">
+                     <p>
+                        <name>name <p>zweites p</p>
+                        </name>
+                     </p>
+                  </note>
+                  <note type="authorial" place="end">
+                     <seg>label</seg>
+                     <seg>kein label <ptr target="#uwes"/>
+                            </seg>
+                     <p>
+                        <name>name <p>zweites p</p>
+                        </name>
+                     </p>
+                  </note>
                     </rdg>
             </app>
+            <ptr target="#textgrid:1234.7"/>
+            <ptr target="#textgrid:1234.7"/>
          </div>
+         <app>
+            <lem/>
+            <rdg wit="#d" type="pt">
+               <ref target="#gr_d_136_note1">
+                  <hi>*</hi>)</ref>
+            </rdg>
+         </app>
+         <app>
+            <lem/>
+            <rdg wit="#d" type="ptl">
+               <note place="bottom" type="authorial" xml:id="gr_d_136_note1">*) Von den eben so mannichfaltigen als
+                  großen <hi>Verdiensten</hi>
+                  <index indexName="persons">
+                     <term>Christus, s. Jesus Christus</term>
+                     <term>Jesus Christus</term>
+                  </index>Jesu um das menschliche Geschlecht müssen die Christen
+                  ausführlich und genau unterrichtet werden, und zwar nicht nur von
+                  denen, die er um uns durch sein Leiden und Sterben hat, sondern
+                  auch von denen, welche er durch sein ganzes Leben und durch die
+                  Führung seines Lehramts sich um uns erwarb. Durchgehends ist er
+                  als unser großer Wohlthäter, als der Gegenstand unsrer innigsten
+                  Liebe, Dankbarkeit und Verehrung, und, mit gehörigen
+                  Einschränkungen, als Muster der Nachahmung
+                  vorzustellen.</note>
+            </rdg>
+         </app>
+         <app>
+            <lem/>
+            <rdg type="ptl" wit="#c">
+               <div type="titlePage" xml:id="titlepage_2_1_c">
+                  <p>
+                     <hi rend="center-aligned">
+                        <pb edRef="#c" type="sp" n="1"/> Anweisung
+                        <lb/>zur <lb/>Bildung angehender Theologen. <lb/>Zweiter
+                        Theil.</hi>
+                  </p>
+               </div>
+               <pb edRef="#c" type="sp" n="2"/>
+            </rdg>
+         </app>
+         <choice resp="#uwes">
+            <sic>as</sic>
+            <corr>ds</corr>
+         </choice>
+         <choice resp="uwes">
+            <sic>as</sic>
+            <corr>ds</corr>
+         </choice>
       </body>
    </text>
 </TEI>

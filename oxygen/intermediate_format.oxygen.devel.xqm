@@ -162,38 +162,48 @@ let $app-index := local:app-index( $pre//app[not(@type)] )
 let $target-index := target:index($app-index):)
 let $test := 
     <test>
-        <div>
-            <head>
-                <app>
-                    <lem>
-                        <app>
-                            <lem><aligned><hi>LEM Überschrift</hi></aligned></lem>
-                            <rdg wit="#a" type="v">A Überschrift</rdg>
-                        </app>
-                    </lem>
-                    <rdg wit="#a" type="v">überschrift</rdg>
-                </app>
-            </head>
-            <p>Erster Absatz</p>
-            <p>Zweiter Absatz</p>
-            <note>
-                <app>
-                    <lem>Anmerkung</lem>
-                    <rdg wit="#a" type="v">anmerkung</rdg>
-                    <rdg wit="#b" type="ppl"><div>DIV anmerkung</div></rdg>
-                    <rdg wit="#c" type="v"><div>DIV2 anmerkung</div></rdg>
-                </app>
-            </note>
-        </div>
+        <app>
+               <lem><item><app>
+                        <lem/>
+                        <rdg wit="#c" type="pt"><milestone unit="p" edRef="#c" type="structure"
+                              /><seg xml:id="var_1_51_p3_1">Unter den Neueren:</seg></rdg>
+                     </app><milestone unit="line" edRef="#c" type="structure"/><seg
+                        xml:id="var_1_51_p3_item1"><index indexName="persons">
+                           <term>Mosheim, Johann Lorenz von</term>
+                        </index><persName ref="#textgrid:250j4"><hi>Joh. Lorenz von</hi><app>
+                              <lem><hi>Mosheims</hi></lem>
+                              <rdg wit="#c" type="v"><hi>Mosheim</hi></rdg>
+                           </app></persName> kurze Anweisung, die Gottesgelahrtheit vernünftig zu
+                        erlernen – – zum Druck befördert von <index indexName="persons">
+                           <term>Windheim, Christian Ernst von</term>
+                        </index><hi><persName ref="#textgrid:250j5">Christian Ernst von
+                              Windheim</persName></hi>, Helmstädt 1756.<ptr target="#textgrid:250j7"
+                        /> in <choice>
+                           <abbr>gr.</abbr>
+                           <expan>groß</expan>
+                        </choice> 8.</seg></item></lem>
+               <rdg wit="#a" type="om"/>
+            </app>
     </test>
-    
+
+let $lem := $test/app/lem
 return (
     (:ident:left-nodes-path($test),:)
     (:test:branch-axis($test):)
-    test:reading-evaluation($test)
+    (:test:reading-evaluation($test):)
+    (:test:reading-evaluation($pre):)
     (:test:identify-target($test):)
+    (:test:branch-axis($test):)
+
+    
+    (:test:reading-evaluation($pre):)
+    
+    (:ident:left-branch-axis($lem):)
+    (:ident:first-save-node($lem):)
+    (:ident:walk($test, ()):)
+    
     (:$pre:)
-    (:ident:walk($pre, ()):)
+    ident:walk($pre, ())
 (:    $target-index:)
     (:local:target-in-index("d0t36", $app-index),:)
     (:target:conversion-by-target-index($pre, $target-index):)
