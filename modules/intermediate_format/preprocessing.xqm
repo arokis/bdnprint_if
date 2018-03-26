@@ -114,7 +114,7 @@ declare function pre:default-element
             (if($following-node[matches(., "[\s\n\r\t]") and normalize-space(.) = ""]
             and $following-sibling[self::ref or self::app or self::hi or self::bibl
             or self::foreign or self::choice or self::milestone or self::persName
-            or self::choice or self::index or self::seg]
+            or self::choice or self::index or self::seg or self::ptr]
             and not($node[self::index]))
             then
                 attribute {"break-after"}{"yes"}

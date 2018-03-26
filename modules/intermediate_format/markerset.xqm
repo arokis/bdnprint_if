@@ -17,7 +17,7 @@ declare default element namespace "http://www.tei-c.org/ns/1.0";
 (:~
  : markerset:collect-markers()
  : This function collect markers for a given reading.
- : It destinguishes tei:lem and tei:rdg. In case of tei:lem it collects all sibling tei:rdgs. In case of tei:rdg it collect itself.
+ : It distinguishes tei:lem and tei:rdg. In case of tei:lem it collects all sibling tei:rdgs. In case of tei:rdg it collects itself.
  :
  : @param $reading the reading node to collect readings for
  : @return node() representing a markerset of readings for the given node
@@ -31,9 +31,9 @@ declare function markerset:collect-markers
 
     let $markers := (
         if ($reading[self::lem]) then (
-            (: In case of tei:lem ignore all siglae for types "typo_corr", "invisible-ref", "varying-target" :)
+            (: In case of tei:lem ignore all sigla for types "typo-correction", "invisible-ref", "varying-target" :)
             attribute {"count"}{count($reading/following-sibling::rdg)},
-            for $sibling in $reading/following-sibling::rdg[ not(@type="typo_corr" or @type="invisible-ref" or @type="varying-target") ]
+            for $sibling in $reading/following-sibling::rdg[ not(@type="typo-correction" or @type="invisible-ref" or @type="varying-target") ]
             return(
                 element {name($sibling)} {
                     $sibling/@*,
@@ -42,22 +42,10 @@ declare function markerset:collect-markers
             )
         )
         else if ($reading[self::rdg]) then (
-            (: Preparing "Leittextwechsel" :)
-            if ($reading[@type = "ppl" or @type = "pp"][descendant::lem[@wit]]) then (
-                let $children-readings := $reading/descendant::rdg
-                return(
-                    element {name($reading)} {
-                        $reading/@*,
-                        attribute {"context"}{"changed-lem ", data($children-readings/@wit)}
-                    }
-                )
-            ) 
-            else (
                 element {name($reading)} {
                     $reading/@*,
                     attribute {"context"}{"rdg"}
                 }
-            )
         )
         else ()
     )
