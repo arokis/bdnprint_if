@@ -120,7 +120,14 @@ declare function ident:left-branch-axis
                 
                 (: If tei:app has an empty tei:lem change the axis to tei:lems last child() :)
                 if ( empty($target/child::lem/node()) ) then (
-                    $target/child::rdg[@type eq "ppl" or @type eq "ptl"][1]/node()[1]
+                    if ( $target/child::rdg[@type eq "ppl" or @type eq "ptl"] ) then (
+                        $target/child::rdg[@type eq "ppl" or @type eq "ptl"][1]/node()[1]
+                    ) 
+                    
+                    else if ( $target/child::rdg[@type eq "pp" or @type eq "pt"] ) then (
+                        $target
+                    )
+                    else ()
                 ) 
                 
                 (: If tei:app has no empty tei:lem
