@@ -31,9 +31,9 @@ declare function markerset:collect-markers
 
     let $markers := (
         if ($reading[self::lem]) then (
-            (: In case of tei:lem ignore all sigla for types "typo-correction", "invisible-ref", "varying-target" :)
+            (: In case of tei:lem ignore all sigla for types "typo-correction", "varying-target" :)
             attribute {"count"}{count($reading/following-sibling::rdg)},
-            for $sibling in $reading/following-sibling::rdg[ not(@type="typo-correction" or @type="invisible-ref" or @type="varying-target") ]
+            for $sibling in $reading/following-sibling::rdg[ not(@type="typo-correction" or @type="varying-target") ]
             return(
                 element {name($sibling)} {
                     $sibling/@*,
