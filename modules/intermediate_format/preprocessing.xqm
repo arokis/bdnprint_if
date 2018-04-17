@@ -49,7 +49,7 @@ declare function pre:preprocessing-textNode
                 element{$node/name()}{
                     $node/@*,
                     pre:preprocessing-textNode($node/node()),
-                    element{"editorial-Notes"}{
+                    element{"editorial-notes"}{
                         $node//note[@type eq "editorial-commentary"]
                     }
                 }
