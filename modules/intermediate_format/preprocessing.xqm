@@ -49,8 +49,8 @@ declare function pre:preprocessing-textNode
                 element{$node/name()}{
                     $node/@*,
                     pre:preprocessing-textNode($node/node()),
-                    element{"editorialNotes"}{
-                        $node//note[@type eq "editorial"]
+                    element{"editorial-notes"}{
+                        $node//note[@type eq "editorial-commentary"]
                     }
                 }
             )
@@ -72,7 +72,7 @@ declare function pre:preprocessing-textNode
             )
 
             case element(note) return (
-                if ($node[@type eq "editorial"]) then (
+                if ($node[@type eq "editorial-commentary"]) then (
                 ) else (
                     element{$node/name()}{
                         $node/@*,
@@ -154,7 +154,7 @@ declare function pre:preprocessing
                     $node/@*,
                     pre:preprocessing($node/node()),
                     element{"editorialNotes"}{
-                        for $editorial-note in $node//note[@type eq "editorial"]
+                        for $editorial-note in $node//note[@type eq "editorial-commentary"]
                         return
                             pre:default-element( $editorial-note, pre:preprocessing($editorial-note/node()) )
                     }
@@ -190,7 +190,7 @@ declare function pre:preprocessing
             )
 
             case element(note) return (
-                if ( $node[@type != "editorial"] or $node[ not(@type) ] ) then (
+                if ( $node[@type != "editorial-commentary"] or $node[ not(@type) ] ) then (
                     pre:default-element( $node, pre:preprocessing($node/node()) )
                 ) else ( )
             )
